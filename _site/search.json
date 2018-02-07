@@ -1,0 +1,21 @@
+[
+  
+    {
+      "title"    : "First Post",
+      "tags"     : "python django",
+      "url"      : "/2018/02/07/first-try.html"
+    } ,
+  
+    {
+      "title"    : "H2O theme for Jekyll",
+      "tags"     : "jekyll",
+      "url"      : "/2017/04/18/new-theme-h2o.html"
+    } ,
+  
+    {
+      "title"    : "Hello Jekyll",
+      "tags"     : "jekyll",
+      "url"      : "/2017/04/18/hello-jekyll.html"
+    } 
+  
+]
