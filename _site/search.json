@@ -7,6 +7,12 @@
     } ,
   
     {
+      "title"    : "Django Project - Blog/AWMS",
+      "tags"     : "django",
+      "url"      : "/2018/02/07/django-project-blog-awms.html"
+    } ,
+  
+    {
       "title"    : "H2O theme for Jekyll",
       "tags"     : "jekyll",
       "url"      : "/2017/04/18/new-theme-h2o.html"
