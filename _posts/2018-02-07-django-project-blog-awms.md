@@ -65,9 +65,7 @@ TEMPLATES = [
 
 > Some will say that static and templates folder should created in the same level the myvenv and myproject,
 > Some also says, it doesn't matter even it is created under the webapp.
->>[Link to](http://davidkor.logdown.com/posts/5303036):#5 Templates, Static
-
-> Fuck them off !!!!! ok？
+> [Link to](http://davidkor.logdown.com/posts/5303036):#5 Templates, Static
 
 Go to the folder 'webapp' and create folder 'static' and 'templates' by Finder.
 
