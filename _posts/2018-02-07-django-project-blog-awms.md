@@ -39,7 +39,7 @@ $ ```python manage.py runserver```
 
 ### 1.2.1 INSTALLED APPS
 
-```python
+```Python
 INSTALLED_APPS = [
 	......
   'webapp',
@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 ```
 ### 1.2.2 TEMPLATES
 
-```python
+```Python
 TEMPLATES = [
 	......
   'DIRS': [os.path.join(BASE_DIR, 'templates').replace('\\', '/')],
@@ -56,7 +56,7 @@ TEMPLATES = [
 
 ### 1.2.3 STATICFILES_DIRS
 
-```python
+```Python
 	STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 ```
 
@@ -75,7 +75,7 @@ Copy the css and js...files to 'static', copy html files to 'templates'
 
 You can use the datalab web that we made through [HTML Page by SemanticUI](http://davidkor.logdown.com/posts/5395351-html-page-by-semanticui) and  [Show Highcharts.js in HTML with Dropdown Menu](http://davidkor.logdown.com/posts/5404393).
 
-```python
+```Python
 {% raw %}
 {% load static %} #insert at the first line of the html file
 href="{% static 'css/semantic.css' %}" #change css path by template language
@@ -85,14 +85,14 @@ href="{% static 'css/semantic.css' %}" #change css path by template language
 
 ## 1.4. views.py
 
-```python
+```Python
 def default(request):
 	return render(request, 'default.html')
 ```
 
 ## 1.5. urls.py
 
-```python
+```Python
 from webapp.views import default
 urlpatterns = [
 	url(r'^default', default),
@@ -126,7 +126,7 @@ Superuser created successfully.
 
 # 3. Create Database in models.py
 
-```python
+```Python
 class Caselog(models.Model):
     caseid = models.CharField(null=True, blank=True,max_length=200)
     orgnization = models.CharField(null=True, blank=True,max_length=200)
@@ -144,14 +144,14 @@ $ ```python manage.py migrate```
 
 # 4.admin.py
 Add data that you want to manage in admin console.
-```python
+```Python
 from webapp.models import Caselog
 admin.site.register(Caselog)
 ```
 
 # 5. models.py
 
-```python
+```Python
 from webapp.models import Caselog
 def default(request):
     context = {
@@ -162,26 +162,28 @@ def default(request):
 # 6. default.html
 
 ```html
-{% for item in Caselog %}
-<div class="item">
-<div class="content">
-<div class="header">
-{{ item.caseid }}
-</div>
-<div class="description">
-{{ item.orgnization }}
-</div>
-<div class="extra">
-<div class="ui label">
-{{ item.handleby }}
-</div>
-<div class="ui label">
-{{ item.date }}
-</div>
-</div>
-</div>
-</div>
-{% endfor %}
+	{% raw %}
+	{% for item in Caselog %}
+	<div class="item">
+	<div class="content">
+	<div class="header">
+	{{ item.caseid }}
+	</div>
+	<div class="description">
+	{{ item.orgnization }}
+	</div>
+	<div class="extra">
+	<div class="ui label">
+	{{ item.handleby }}
+	</div>
+	<div class="ui label">
+	{{ item.date }}
+	</div>
+	</div>
+	</div>
+	</div>
+	{% endfor %}
+	{% endraw %}
 ```
 
->  [Issue with highlighting load tags for Django code #4567](https://github.com/jekyll/jekyll/issues/4567) 
+>  [Issue with highlighting load tags for Django code #4567](https://github.com/jekyll/jekyll/issues/4567)

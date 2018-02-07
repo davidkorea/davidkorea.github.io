@@ -44,7 +44,7 @@
 </header>
 
 
-  <header class="g-banner post-header post-pattern-circuitBoard bgcolor-default " data-theme="default">
+  <header class="g-banner post-header post-pattern-circuitBoard bgcolor-default post-no-cover" data-theme="default">
     <div class="post-wrapper">
       <div class="post-tags">
         
@@ -62,21 +62,24 @@
       </div>
     </div>
     
-    <div class="filter"></div>
-    <div class="post-cover" style="background: url('http://on2171g4d.bkt.clouddn.com/jekyll-theme-h2o-postcover.jpg') center no-repeat; background-size: cover;">
-      
   </header>
 
   <div class="post-content visible">
-    
-    <h2 class="post-subtitle">try a md page</h2>
     
 
     <article class="markdown-body">
       <h1 id="1-django">1. django</h1>
 
-<pre><code class="language-Python">class Caselog(models.Model):
+<pre><code class="language-Python">
+class Caselog(models.Model):
   caseid = models.CharField(null=True)
+
+</code></pre>
+
+<pre><code class="language-Python">INSTALLED_APPS = [
+	......
+  'webapp',
+  ]
 </code></pre>
 
     </article>

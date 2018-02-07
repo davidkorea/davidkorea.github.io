@@ -101,23 +101,23 @@ the project will work well even you don’t change, just as what we did in the l
 
 <h3 id="121-installed-apps">1.2.1 INSTALLED APPS</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
-	<span class="o">......</span>
-  <span class="s">'webapp'</span><span class="p">,</span>
-  <span class="p">]</span>
-</code></pre></div></div>
+<pre><code class="language-Python">INSTALLED_APPS = [
+	......
+  'webapp',
+  ]
+</code></pre>
 <h3 id="122-templates">1.2.2 TEMPLATES</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">TEMPLATES</span> <span class="o">=</span> <span class="p">[</span>
-	<span class="o">......</span>
-  <span class="s">'DIRS'</span><span class="p">:</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s">'templates'</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\\</span><span class="s">'</span><span class="p">,</span> <span class="s">'/'</span><span class="p">)],</span>
-  <span class="o">......</span>
-</code></pre></div></div>
+<pre><code class="language-Python">TEMPLATES = [
+	......
+  'DIRS': [os.path.join(BASE_DIR, 'templates').replace('\\', '/')],
+  ......
+</code></pre>
 
 <h3 id="123-staticfiles_dirs">1.2.3 STATICFILES_DIRS</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="n">STATICFILES_DIRS</span> <span class="o">=</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s">"static"</span><span class="p">),)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">	STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+</code></pre>
 
 <h2 id="13-static-templates">1.3. static, templates</h2>
 
@@ -140,26 +140,26 @@ It’s said that the folder templates and static should be created at the same f
 
 <p>You can use the datalab web that we made through <a href="http://davidkor.logdown.com/posts/5395351-html-page-by-semanticui">HTML Page by SemanticUI</a> and  <a href="http://davidkor.logdown.com/posts/5404393">Show Highcharts.js in HTML with Dropdown Menu</a>.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="p">{</span><span class="o">%</span> <span class="n">load</span> <span class="n">static</span> <span class="o">%</span><span class="p">}</span> <span class="c">#insert at the first line of the html file</span>
-<span class="n">href</span><span class="o">=</span><span class="s">"{</span><span class="si">% </span><span class="s">static 'css/semantic.css' </span><span class="si">%</span><span class="s">}"</span> <span class="c">#change css path by template language</span>
-<span class="p">{</span><span class="o">%</span> <span class="n">static</span> <span class="s">'images/star_banner.jpg'</span> <span class="o">%</span><span class="p">}</span> <span class="c">#change image path by template language</span>
+<pre><code class="language-Python">
+{% load static %} #insert at the first line of the html file
+href="{% static 'css/semantic.css' %}" #change css path by template language
+{% static 'images/star_banner.jpg' %} #change image path by template language
 
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="14-viewspy">1.4. views.py</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-	<span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">'default.html'</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">def default(request):
+	return render(request, 'default.html')
+</code></pre>
 
 <h2 id="15-urlspy">1.5. urls.py</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">webapp.views</span> <span class="kn">import</span> <span class="n">default</span>
-<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
-	<span class="n">url</span><span class="p">(</span><span class="s">r'^default'</span><span class="p">,</span> <span class="n">default</span><span class="p">),</span>
-<span class="p">]</span>
-</code></pre></div></div>
+<pre><code class="language-Python">from webapp.views import default
+urlpatterns = [
+	url(r'^default', default),
+]
+</code></pre>
 
 <p><code class="highlighter-rouge">yay! by now, the basic completed</code> Details: <a href="http://davidkor.logdown.com/posts/5408258-django-template-inheritance"># 0.Preparation</a></p>
 
@@ -189,39 +189,60 @@ Superuser created successfully.
 
 <h1 id="3-create-database-in-modelspy">3. Create Database in models.py</h1>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Caselog</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">caseid</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-    <span class="n">orgnization</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-    <span class="n">problem</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-    <span class="n">solution</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">handleby</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">''</span><span class="p">,</span>
-                                <span class="n">choices</span><span class="o">=</span><span class="p">((</span><span class="s">u'Andy'</span><span class="p">,</span><span class="s">u'Andy'</span><span class="p">),(</span><span class="s">u'David'</span><span class="p">,</span><span class="s">u'David'</span><span class="p">)))</span>
-    <span class="n">date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">caseid</span>
-</code></pre></div></div>
+<pre><code class="language-Python">class Caselog(models.Model):
+    caseid = models.CharField(null=True, blank=True,max_length=200)
+    orgnization = models.CharField(null=True, blank=True,max_length=200)
+    problem = models.CharField(null=True, blank=True,max_length=200)
+    solution = models.TextField(null=True, blank=True)
+    handleby = models.CharField(max_length=100, default='',
+                                choices=((u'Andy',u'Andy'),(u'David',u'David')))
+    date = models.DateField(null=True)
+    def __str__(self):
+        return self.caseid
+</code></pre>
 
 <p>$ <code class="highlighter-rouge">python manage.py makemigrations</code>
 $ <code class="highlighter-rouge">python manage.py migrate</code></p>
 
 <h1 id="4adminpy">4.admin.py</h1>
 <p>Add data that you want to manage in admin console.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">webapp.models</span> <span class="kn">import</span> <span class="n">Caselog</span>
-<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Caselog</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">from webapp.models import Caselog
+admin.site.register(Caselog)
+</code></pre>
 
 <h1 id="5-modelspy">5. models.py</h1>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">webapp.models</span> <span class="kn">import</span> <span class="n">Caselog</span>
-<span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s">'Caselog'</span><span class="p">:</span> <span class="n">Caselog</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="nb">all</span><span class="p">()</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">'default.html'</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">from webapp.models import Caselog
+def default(request):
+    context = {
+        'Caselog': Caselog.objects.all()
+    }
+    return render(request, 'default.html', context)
+</code></pre>
 <h1 id="6-defaulthtml">6. default.html</h1>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	
+	{% for item in Caselog %}
+	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"content"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"header"</span><span class="nt">&gt;</span>
+	{{ item.caseid }}
+	<span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"description"</span><span class="nt">&gt;</span>
+	{{ item.orgnization }}
+	<span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"extra"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui label"</span><span class="nt">&gt;</span>
+	{{ item.handleby }}
+	<span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui label"</span><span class="nt">&gt;</span>
+	{{ item.date }}
+	<span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;/div&gt;</span>
+	{% endfor %}
+	
 </code></pre></div></div>
 
 <blockquote>
@@ -369,9 +390,6 @@ refer to:
           <span>First Post</span>
           <p>1. django</p>
         </section>
-        
-        <div class="filter"></div>
-        <img src="http://on2171g4d.bkt.clouddn.com/jekyll-theme-h2o-postcover.jpg" alt="">
         
      </div>
       
