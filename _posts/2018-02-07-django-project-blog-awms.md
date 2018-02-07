@@ -116,7 +116,7 @@ default.html - rewrite by django template language
 
 $ ```python manage.py createsuperuser```
 
-```
+```Python
 Username (leave blank to use 'YOUR_NAME'):
 Email address: your_name@yourmail.com
 Password:
@@ -161,8 +161,8 @@ def default(request):
 ```
 # 6. default.html
 
-```html
-	{% raw %}
+```HTML
+{% raw %}
 	{% for item in Caselog %}
 	<div class="item">
 	<div class="content">
@@ -183,7 +183,7 @@ def default(request):
 	</div>
 	</div>
 	{% endfor %}
-	{% endraw %}
+{% endraw %}
 ```
 
 >  [Issue with highlighting load tags for Django code #4567](https://github.com/jekyll/jekyll/issues/4567)

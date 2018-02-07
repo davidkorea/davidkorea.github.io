@@ -180,12 +180,12 @@ default.html - rewrite by django template language</p>
 
 <p>$ <code class="highlighter-rouge">python manage.py createsuperuser</code></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Username (leave blank to use 'YOUR_NAME'):
+<pre><code class="language-Python">Username (leave blank to use 'YOUR_NAME'):
 Email address: your_name@yourmail.com
 Password:
 Password (again):
 Superuser created successfully.
-</code></pre></div></div>
+</code></pre>
 
 <h1 id="3-create-database-in-modelspy">3. Create Database in models.py</h1>
 
@@ -221,29 +221,29 @@ def default(request):
 </code></pre>
 <h1 id="6-defaulthtml">6. default.html</h1>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	
+<pre><code class="language-HTML">
 	{% for item in Caselog %}
-	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;</span>
-	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"content"</span><span class="nt">&gt;</span>
-	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"header"</span><span class="nt">&gt;</span>
+	&lt;div class="item"&gt;
+	&lt;div class="content"&gt;
+	&lt;div class="header"&gt;
 	{{ item.caseid }}
-	<span class="nt">&lt;/div&gt;</span>
-	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"description"</span><span class="nt">&gt;</span>
+	&lt;/div&gt;
+	&lt;div class="description"&gt;
 	{{ item.orgnization }}
-	<span class="nt">&lt;/div&gt;</span>
-	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"extra"</span><span class="nt">&gt;</span>
-	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui label"</span><span class="nt">&gt;</span>
+	&lt;/div&gt;
+	&lt;div class="extra"&gt;
+	&lt;div class="ui label"&gt;
 	{{ item.handleby }}
-	<span class="nt">&lt;/div&gt;</span>
-	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui label"</span><span class="nt">&gt;</span>
+	&lt;/div&gt;
+	&lt;div class="ui label"&gt;
 	{{ item.date }}
-	<span class="nt">&lt;/div&gt;</span>
-	<span class="nt">&lt;/div&gt;</span>
-	<span class="nt">&lt;/div&gt;</span>
-	<span class="nt">&lt;/div&gt;</span>
+	&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;/div&gt;
 	{% endfor %}
-	
-</code></pre></div></div>
+
+</code></pre>
 
 <blockquote>
   <p><a href="https://github.com/jekyll/jekyll/issues/4567">Issue with highlighting load tags for Django code #4567</a></p>
