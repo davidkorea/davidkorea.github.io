@@ -2,7 +2,7 @@
 title: 'Everyday'
 description: 'Mostly forgettable, occasionally remarkable'
 keyword: 'python, ruby, javascript, vuejs, nodejs'
-url: 'https://davidkorea.github.com' # your host
+url: 'https://davidkorea.github.io' # your host
 
 # if you don't need baseurl, you should leave this value blank.
 baseurl: ''
