@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crawl data from 58.com 2nd-hand products - Everyday</title>
+    <meta name="author"  content="유용">
+    <meta name="description" content="Crawl data from 58.com 2nd-hand products">
+    <meta name="keywords"  content="python, mongodb">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Crawl data from 58.com 2nd-hand products - Everyday">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2018/01/06/Crawl-data-from-58-com-2nd-hand-products.html">
+    <meta property="og:description" content="Mostly forgettable, occasionally remarkable">
+    <meta property="og:site_name" content="Everyday">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+
+<style type="text/css">
+  #my_centered_buttons { display: flex; justify-content: center; }
+  #my_centered_buttons_older { margin: 0 auto; width: 380px;}
+</style>
+  
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
+    <div>
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header class="g-banner post-header post-pattern-circuitBoard bgcolor-default post-no-cover" data-theme="default">
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#python" class="post-tag">python</a>
+          
+            <a href="http://localhost:4000/tags#mongodb" class="post-tag">mongodb</a>
+          
+        
+      </div>
+      <h1>Crawl data from 58.com 2nd-hand products</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">유용</a></></span>
+        <time class="post-meta-item" datetime="18-01-06"><i class="iconfont icon-date"></i>06 Jan 2018</time>
+      </div>
+    </div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <h1 id="0workflow">0.Workflow</h1>
+
+<blockquote>
+  <p>1.Create a project with pycharm community version
+2.Get channel list
+3.Get each channel’s product links
+4.Get each product’s detailed info</p>
+</blockquote>
+
+<h1 id="1create-a-project">1.Create a project</h1>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4724433/35eHehBYSomLTHl469WX_2.png" alt="2.png" /></p>
+
+<h1 id="2-get-channel-list">2. Get channel list</h1>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4724433/C9ENwRShRFWHiLUquErF_1.png" alt="1.png" /></p>
+
+<h2 id="21-check-css-select-path">2.1 check css select path</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">start_url</span> <span class="o">=</span><span class="s">'http://jn.58.com/sale.shtml'</span>
+
+<span class="k">def</span> <span class="nf">get_channel_urls</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">wb_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">wb_data</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s">'lxml'</span><span class="p">)</span>
+    <span class="n">links</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'ul.ym-submnu &gt; li &gt; b &gt; a'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
+
+<span class="n">get_channel_urls</span><span class="p">(</span><span class="n">start_url</span><span class="p">)</span>
+
+</code></pre></div></div>
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4724433/l6NU6wmuS4W0pNkRIbDR_3.png" alt="3.png" /></p>
+
+<h2 id="22-crawl-channel-links-and-save-it-as-a-list">2.2 Crawl channel links and save it as a list</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">start_url</span> <span class="o">=</span><span class="s">'http://jn.58.com/sale.shtml'</span>
+<span class="n">url_host</span> <span class="o">=</span> <span class="s">'http://jn.58.com'</span>
+
+<span class="k">def</span> <span class="nf">get_channel_urls</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">wb_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">wb_data</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s">'lxml'</span><span class="p">)</span>
+    <span class="n">links</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'ul.ym-submnu &gt; li &gt; b &gt; a'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">links</span><span class="p">:</span>
+        <span class="n">page_link</span> <span class="o">=</span> <span class="n">url_host</span> <span class="o">+</span> <span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'href'</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">page_link</span><span class="p">)</span>
+
+<span class="n">get_channel_urls</span><span class="p">(</span><span class="n">start_url</span><span class="p">)</span>
+
+</code></pre></div></div>
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4724433/Wnggj5I6QcGJst1MB85E_1.png" alt="1.png" /></p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4724433/c7X24GURmeaeYNOZDxg9_2.png" alt="2.png" /></p>
+
+<h1 id="3-parse-product-page-and-get-each-products-link">3. Parse product page and get each product’s link</h1>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; parse
+  vt.从语法上描述或分析（词句等）
+  [例句]Parse files: files in this filter are parsed for autocomplete and other designers.
+  分析文件：针对自动完成和其他设计器来对该筛选器中的文件进行分析。
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4724433/RIoM2iujS96M9OTrt267_1.png" alt="1.png" /></p>
+
+<h2 id="31-check-css-select-path">3.1 check css select path</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">pymongo</span>
+
+<span class="c"># client = pymongo.MongoClient('localhost', 27017)</span>
+<span class="c"># ceshi_58 = client['ceshi_58']</span>
+<span class="c"># product_url_list = ceshi_58['product_url_list']</span>
+
+<span class="c">#spider1</span>
+
+<span class="k">def</span> <span class="nf">get_product_links_from</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">pages</span><span class="p">,</span> <span class="n">who_sells</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="c"># http://jn.58.com/shouji/0/pn2/?islocal=1</span>
+    <span class="n">link_view</span> <span class="o">=</span> <span class="s">'{}{}/pn{}/?islocal=1'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">who_sells</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">pages</span><span class="p">))</span>
+    <span class="n">wb_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">link_view</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">wb_data</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s">'lxml'</span><span class="p">)</span>
+    <span class="n">product_link</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'td.t &gt; a.t'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">product_link</span><span class="p">)</span>
+
+<span class="n">get_product_links_from</span><span class="p">(</span><span class="s">'http://jn.58.com/shouji/'</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4724433/Riyyw2FGTra3DIpEucnW_1.png" alt="1.png" /></p>
+
+<h2 id="32-get-products-link">3.2 Get product’s link</h2>
+<pre><code class="language-pythons">from bs4 import BeautifulSoup
+import requests
+import time
+import pymongo
+
+# client = pymongo.MongoClient('localhost', 27017)
+# ceshi_58 = client['ceshi_58']
+# product_url_list = ceshi_58['product_url_list']
+
+#spider1
+
+def get_product_links_from(channel, pages, who_sells=0):
+    # http://jn.58.com/shouji/0/pn2/?islocal=1
+    link_view = '{}{}/pn{}/?islocal=1'.format(channel,str(who_sells), str(pages))
+    wb_data = requests.get(link_view)
+    time.sleep(1)
+    soup = BeautifulSoup(wb_data.text, 'lxml')
+    product_link = soup.select('td.t &gt; a.t')
+    for link in product_link:
+        item_link = link.get('href').split('?')[0]
+        print(item_link)
+
+get_product_links_from('http://jn.58.com/shouji/', 2)
+
+</code></pre>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4724433/NmvkGkJoSYqDTRNUHog6_1.png" alt="1.png" /></p>
+
+<h2 id="33-save-products-links-to-mongodb">3.3 Save products’ links to Mongodb</h2>
+
+<p>Let’s make some changes on the code to be running more efficiently.</p>
+
+<h3 id="331-we-should-let-the-code-to-know-if-there-is-no-such-page-just-pass-eg-page200">3.3.1 we should let the code to know if there is no such page, just pass. eg. page200</h3>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4724433/qc0ngYVRT6es6uYdlc6w_1.png" alt="1.png" /></p>
+
+<p>use soup.find() to check whether the page has <code class="highlighter-rouge">&lt;div class="noinfotishi"&gt;</code>
+BeautifulSoup’s find() may a little different from select()
+we can just input tab div and class noinfotishi with , divided to find the css selector path,like find(‘div’, ‘noinfotishi’)
+if use select(), we need to use select(‘div.nothfotishi’)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">wb_data</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s">'lxml'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'td'</span><span class="p">,</span><span class="s">'t'</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'info'</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'noinfo'</span><span class="p">)</span>
+</code></pre></div></div>
+<p>or</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">wb_data</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s">'lxml'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'div'</span><span class="p">,</span> <span class="s">'noinfotishi'</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'td.t a.t'</span><span class="p">):</span>
+            <span class="n">item_link</span> <span class="o">=</span> <span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'href'</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'?'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">product_url_list</span><span class="o">.</span><span class="n">insert_one</span><span class="p">({</span><span class="s">'url'</span><span class="p">:</span><span class="n">item_link</span><span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="332-we-need-to-ignore-the-first-several-advs-by-its-link-that-contains-jump">3.3.2 we need to ignore the first several advs by its link that contains ‘jump’</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'td.t a.t'</span><span class="p">):</span>
+            <span class="n">item_link</span> <span class="o">=</span> <span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'href'</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'?'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s">'jump'</span> <span class="ow">in</span> <span class="n">item_link</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">):</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">product_url_list1</span><span class="o">.</span><span class="n">insert_one</span><span class="p">({</span><span class="s">'url'</span><span class="p">:</span><span class="n">item_link</span><span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="333-before-run-page_parsingpy-run-mongodb-service-first">3.3.3 Before run page_parsing.py, run mongodb service first.</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mongod
+</code></pre></div></div>
+<h3 id="334--page_parsingpy">3.3.4  page_parsing.py</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">pymongo</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">(</span><span class="s">'localhost'</span><span class="p">,</span> <span class="mi">27017</span><span class="p">)</span>
+<span class="n">ceshi_58</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s">'ceshi_58'</span><span class="p">]</span>
+<span class="n">product_url_list</span> <span class="o">=</span> <span class="n">ceshi_58</span><span class="p">[</span><span class="s">'product_url_list'</span><span class="p">]</span>
+
+<span class="c">#spider1</span>
+
+<span class="k">def</span> <span class="nf">get_product_links_from</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">pages</span><span class="p">,</span> <span class="n">who_sells</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="c"># http://jn.58.com/shouji/0/pn2/?islocal=1</span>
+    <span class="n">link_view</span> <span class="o">=</span> <span class="s">'{}{}/pn{}/?islocal=1'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">who_sells</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">pages</span><span class="p">))</span>
+    <span class="n">wb_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">link_view</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">wb_data</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s">'lxml'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'div'</span><span class="p">,</span> <span class="s">'noinfotishi'</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'td.t a.t'</span><span class="p">):</span>
+            <span class="n">item_link</span> <span class="o">=</span> <span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'href'</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'?'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s">'jump'</span> <span class="ow">in</span> <span class="n">item_link</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">):</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">product_url_list1</span><span class="o">.</span><span class="n">insert_one</span><span class="p">({</span><span class="s">'url'</span><span class="p">:</span><span class="n">item_link</span><span class="p">})</span>
+
+<span class="n">get_product_links_from</span><span class="p">(</span><span class="s">'http://jn.58.com/shouji/'</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4724433/otaXAENaRFwdz0m07T0X_1.png" alt="1.png" /></p>
+
+<h1 id="4-save-item-info-to-mongodb">4 Save item info to Mongodb</h1>
+
+<h2 id="41-if-the-item-are-sould-out-ignore-it-cuz-no-info-on-that-page">4.1 if the item are sould out, ignore it cuz no info on that page</h2>
+<p>eg: http://zhuanzhuan.58.com/detail/938627420277926918z.shtml</p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4724433/db6MOEIzSXa1NNYGxvk3_1.png" alt="1.png" /></p>
+
+<h2 id="42-get-info-in-the-tag">4.2 get info in the tag</h2>
+<ol>
+  <li><code class="highlighter-rouge">link = soup.select('ul.ym-submnu &gt; li &gt; b &gt; a').get('href')</code></li>
+  <li><code class="highlighter-rouge">price = soup.select('span.price_now &gt; i')[0].text</code></li>
+  <li><code class="highlighter-rouge">area = list(soup.select('div.palce_li &gt; span &gt; i')[0].stripped_strings)</code></li>
+</ol>
+
+<h2 id="43-if-the-tag-is-in-this-page-then-get-it-otherwise-ignore">4.3 if the tag is in this page then get it otherwise ignore</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">area</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'div.palce_li &gt; span &gt; i'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">stripped_strings</span><span class="p">)</span> <span class="k">if</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'div'</span><span class="p">,</span> <span class="s">'palce_li'</span><span class="p">)</span> <span class="k">else</span> <span class="bp">None</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_item_info</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">wb_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">wb_data</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s">'lxml'</span><span class="p">)</span>
+    <span class="n">no_longer_exist</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'span.soldout_btn'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">no_longer_exist</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'h1'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">price</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'span.price_now &gt; i'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">area</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">'div.palce_li &gt; span &gt; i'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">stripped_strings</span><span class="p">)</span> <span class="k">if</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'div'</span><span class="p">,</span> <span class="s">'palce_li'</span><span class="p">)</span> <span class="k">else</span> <span class="bp">None</span>
+        <span class="n">item_info</span><span class="o">.</span><span class="n">insert_one</span><span class="p">({</span><span class="s">'title'</span><span class="p">:</span><span class="n">title</span><span class="p">,</span> <span class="s">'price'</span><span class="p">:</span><span class="n">price</span><span class="p">,</span> <span class="s">'area'</span><span class="p">:</span><span class="n">area</span><span class="p">})</span>
+
+<span class="n">get_item_info</span><span class="p">(</span><span class="s">'http://zhuanzhuan.58.com/detail/948479863277731847z.shtml'</span><span class="p">)</span>
+</code></pre></div></div>
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4724433/QDodt1QYTCqIHqZue92R_2.png" alt="2.png" /></p>
+
+    </article>
+
+    
+      <!--
+Author: Ray-Eldath
+refer to:
+ - https://github.com/theme-next/hexo-theme-next/blob/4bfbd67b3edc6f11b00357da6e509e5281a896f1/layout/_macro/reward.swig and
+ - https://github.com/theme-next/hexo-theme-next/blob/e12bb0b27e16072eb82baa4c7dda1c41c8de7264/source/css/_common/components/post/post-reward.styl
+-->
+<style media="screen">
+  .reward {
+    padding: 5px 0;
+    margin: 20px auto;
+    width: 90%;
+    text-align: center;
+  }
+
+  .rewardButton {
+    background-color: #f44236;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: '微软雅黑';
+    font-size: 18px;
+    padding: 5px 25px;
+    text-decoration: none;
+  }
+
+  .rewardButton:hover {
+    background-color: #F7877F;
+  }
+
+  .wechat:hover p {
+    animation: roll 0.1s infinite linear;
+    -webkit-animation: roll 0.1s infinite linear;
+    -moz-animation: roll 0.1s infinite linear;
+  }
+
+  .alipay:hover p {
+    animation: roll 0.1s infinite linear;
+    -webkit-animation: roll 0.1s infinite linear;
+    -moz-animation: roll 0.1s infinite linear;
+  }
+
+  .QR {
+    padding-top: 20px;
+  }
+
+  .QR a {
+    border: 0;
+  }
+
+  .QR img {
+    width: 180px;
+    max-width: 100%;
+    display: inline-block;
+    margin: 0.8em 2em 0 2em;
+  }
+</style>
+
+<div class="reward">
+  <a class="rewardButton" title="请유용喝杯咖啡？">赞 赏</a>
+
+  <div class="QR" style="display: none;">
+    
+    <div>
+      <span style="font-family: '微软雅黑'; font-size: 18px; "></span>
+    </div>
+    
+
+    
+    <div class="wechat" style="display: inline-block">
+      <img class="wechat_qr" src="/assets/img/wechatpay.jpg" title="用微信请유용喝杯咖啡？" alt="用微信请유용喝杯咖啡？" />
+      <p>微信支付</p>
+    </div>
+    
+
+    
+    <div class="alipay" style="display: inline-block">
+      <img class="alipay_qr" src="/assets/img/alipay.jpg" title="用支付宝请유용喝杯咖啡？" alt="用支付宝请유용喝杯咖啡？" />
+      <p>支付宝</p>
+    </div>
+    
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("a.rewardButton").click(function() {
+      $("div.QR").slideToggle()
+    });
+  });
+</script>
+
+    
+
+    <!-- default share with h20 theme
+     
+    -->
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="/assets/img/profile1.png" alt="">
+      </div>
+      <div class="author-name" rel="author">유용</div>
+      <div class="bio">
+        <p>FoMo</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="mailto:lyfirst@naver.com" target="_blank">
+                    <i class="iconfont icon-email"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//github.com/davidkorea" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//facebook.com/100010686574858" target="_blank">
+                    <i class="iconfont icon-facebook"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2018/01/06/blockchain-from-0-to-1-day2.html" class="read-next-link"></a>
+        <section>
+          <span>BlockChain from 0 to 1_day2</span>
+          <p>5.比特币价格的含义</p>
+        </section>
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2018/01/05/BlockChain-from-0-to-1-day1.html" class="read-next-link"></a>
+          <section>
+            <span>BlockChain from 0 to 1_day1</span>
+            <p>1.人类社会货币的演变</p>
+          </section>
+          
+      </div>
+      
+    </section>
+
+    
+    <section class="post-footer-item comment">
+      <div id="disqus_thread"></div>
+    </section>
+    
+
+    
+    <section class="post-footer-item comment">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzk5My8xMDUyOA">
+    </section>
+    
+  </section>
+
+  
+  <!--
+Author: Ray-Eldath
+refer to:
+ - https://github.com/theme-next/hexo-theme-next/blob/master/source/js/src/utils.js
+ - https://jingyan.baidu.com/article/b2c186c83ec846c46ef6ff80.html
+ - http://www.bkjia.com/jQuery/449205.html
+-->
+<style media="screen">
+  .scroll {
+    z-index: 10000;
+    display: none;
+    width: 56px;
+    height: 24px;
+    background: #222;
+    color: #fff;
+    line-height: 24px;
+    text-align: center;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+</style>
+<div class="scroll">
+  <i class="fa fa-arrow-up"></i>
+  <span class="scrollpercent"></span><span> %</span>
+</div>
+
+<script src="/assets/js/util.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    if (utils.isMobile()) {
+      $('.scroll').hide();
+      return;
+    }
+    $(window).scroll(function() {
+      let scrollValue = $(window).scrollTop();
+
+      var scrollPercentRounded = Math.round((scrollValue / utils.getContentVisibilityHeight()) * 100);
+      var scrollPercentMaxed = (scrollPercentRounded > 100) ? 100 : scrollPercentRounded;
+
+      $('.scrollpercent').html(scrollPercentMaxed);
+      scrollValue > 100 ? $('.scroll').fadeIn() : $('.scroll').fadeOut();
+    });
+
+    $('.scroll').click(function() {
+      $('html, body').animate({
+        scrollTop: 0
+      }, 300);
+    })
+  })
+</script>
+
+
+
+<footer class="g-footer">
+  <section>Everyday ©
+  
+  
+    2017
+    -
+  
+  2018
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          ,
+          
+        
+          'twitter'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+
+  <script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document,
+        s = d.createElement('script');
+      /*写入自己的disqus信息*/
+      s.src = 'https://davidkor.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+
+</script>
+
+
+
+<script>
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+
+      if (typeof LivereTower === 'function') {
+        return;
+      }
+
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+
+  </script>
+
+
+  <noscript>为正常使用评论功能请激活JavaScript。</noscript>
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a7bcee5ba9eb132"></script>
+
+</body>
+
+</html>

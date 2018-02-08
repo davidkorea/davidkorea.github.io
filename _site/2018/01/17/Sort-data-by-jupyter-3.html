@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort data by jupyter 3 - Everyday</title>
+    <meta name="author"  content="유용">
+    <meta name="description" content="Sort data by jupyter 3">
+    <meta name="keywords"  content="jupyter, aggregate, pipeline">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Sort data by jupyter 3 - Everyday">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2018/01/17/Sort-data-by-jupyter-3.html">
+    <meta property="og:description" content="Mostly forgettable, occasionally remarkable">
+    <meta property="og:site_name" content="Everyday">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+
+<style type="text/css">
+  #my_centered_buttons { display: flex; justify-content: center; }
+  #my_centered_buttons_older { margin: 0 auto; width: 380px;}
+</style>
+  
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
+    <div>
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header class="g-banner post-header post-pattern-circuitBoard bgcolor-default post-no-cover" data-theme="default">
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#jupyter" class="post-tag">jupyter</a>
+          
+            <a href="http://localhost:4000/tags#aggregate" class="post-tag">aggregate</a>
+          
+            <a href="http://localhost:4000/tags#pipeline" class="post-tag">pipeline</a>
+          
+        
+      </div>
+      <h1>Sort data by jupyter 3</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">유용</a></></span>
+        <time class="post-meta-item" datetime="18-01-17"><i class="iconfont icon-date"></i>17 Jan 2018</time>
+      </div>
+    </div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <h3 id="sort-data-by-using-aggregatepipeline-user-guide">Sort data by using <a href="https://docs.mongodb.com/manual/reference/operator/aggregation/">aggregate(pipeline)-&gt;user guide</a></h3>
+
+<h1 id="1overview-of-aggregate">1.Overview of aggregate</h1>
+<p>Aggregate function need the pipeline to sort data where it contains all the conditions we need.
+first, let’s get to know how to write the sort conditions.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pipeline</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s">'$match'</span><span class="p">:</span> <span class="p">{</span><span class="s">'$and'</span><span class="p">:[{</span><span class="s">'date'</span><span class="p">:</span><span class="s">'2018/01/09'</span><span class="p">},{</span><span class="s">'handle_by'</span><span class="p">:</span><span class="s">'David Liu'</span><span class="p">}]}},</span>
+    <span class="p">{</span><span class="s">'$group'</span><span class="p">:</span> <span class="p">{</span><span class="s">'_id'</span><span class="p">:</span><span class="s">'$city'</span><span class="p">,</span><span class="s">'counts'</span><span class="p">:{</span><span class="s">'$sum'</span><span class="p">:</span><span class="mi">1</span><span class="p">}}},</span>
+    <span class="p">{</span><span class="s">'$sort'</span><span class="p">:</span> <span class="p">{</span><span class="s">'counts'</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">}},</span>
+    <span class="p">{</span><span class="s">'$limit'</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">pipeline</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">$match</code>: <code class="highlighter-rouge">$and</code>is needed if 2 conditions must be met at the same time,if not<code class="highlighter-rouge">{'$match':{'date':'2018/01/09'}}</code></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">$group</code>: grouping by ‘city’ and will sum up the same city +1, ‘counts’ isn’t in database but named manually</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">$sort</code>: -1: from 9 to 0, 1: from 0 to 9</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">$limit</code>: same as <code class="highlighter-rouge">find().limit(3)</code> , show items by limit(3)</p>
+  </li>
+</ul>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4773093/PhwpK2GQRRatsPLZZsXp_1.jpg" alt="1.jpg" /></p>
+<blockquote>
+  <p>city column chart top 10</p>
+</blockquote>
+
+<h1 id="2transfer-it-to-be-a-data-generator-for-pie-charts">2.Transfer it to be a data generator for pie charts</h1>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">data_gen</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">member</span><span class="p">):</span>
+    <span class="n">pipeline</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s">'$match'</span><span class="p">:{</span><span class="s">'$and'</span><span class="p">:[{</span><span class="s">'date'</span><span class="p">:</span><span class="n">date</span><span class="p">},{</span><span class="s">'handle_by'</span><span class="p">:</span><span class="n">member</span><span class="p">}]}},</span>
+        <span class="p">{</span><span class="s">'$group'</span><span class="p">:{</span><span class="s">'_id'</span><span class="p">:</span><span class="s">'$city'</span><span class="p">,</span> <span class="s">'counts'</span><span class="p">:{</span><span class="s">'$sum'</span><span class="p">:</span><span class="mi">1</span><span class="p">}}},</span>
+        <span class="p">{</span><span class="s">'$sort'</span><span class="p">:</span> <span class="p">{</span><span class="s">'counts'</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">}},</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">pipeline</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="s">'_id'</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="s">'counts'</span><span class="p">]]</span>
+</code></pre></div></div>
+<p>when we use <code class="highlighter-rouge">yield</code>, a list could be yield by puting data in ‘<code class="highlighter-rouge">[]</code>‘,like <code class="highlighter-rouge">yield [i['_id'], i['counts']]</code>
+<img src="http://user-image.logdown.io/user/42937/blog/39533/post/4773093/31dZ16OqQ8WJgeVYfGP7_2.jpg" alt="2.jpg" /></p>
+
+<h1 id="3-make-a-pie-chart">3. Make a pie chart</h1>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'chart'</span><span class="p">:{</span><span class="s">'zoomType'</span><span class="p">:</span><span class="s">'xy'</span><span class="p">},</span>
+    <span class="s">'title'</span><span class="p">:{</span><span class="s">'text'</span><span class="p">:</span><span class="s">'city on one day'</span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">series</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="s">'type'</span><span class="p">:</span> <span class="s">'pie'</span><span class="p">,</span>
+    <span class="s">'name'</span><span class="p">:</span> <span class="s">'volume'</span><span class="p">,</span>
+    <span class="s">'data'</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data_gen</span><span class="p">(</span><span class="s">'2018/01/09'</span><span class="p">,</span><span class="s">'David Liu'</span><span class="p">)]</span>
+<span class="p">}]</span>
+
+<span class="n">charts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="s">'inline'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4773093/SAQX7PO8T3KsT40yUp3m_3.jpg" alt="3.jpg" /></p>
+
+<hr />
+<blockquote>
+  <h3 id="more">More…</h3>
+  <h1 id="q-20180101-20180109-city-volume-in-a-period">Q: 2018/01/01-2018/01/09 city volume in a period</h1>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pipeline</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s">'$match'</span><span class="p">:</span> <span class="p">{</span><span class="s">'$and'</span><span class="p">:</span> <span class="p">[{</span><span class="s">'date'</span><span class="p">:{</span><span class="s">'$gte'</span><span class="p">:</span><span class="s">'2017/01/01'</span><span class="p">,</span><span class="s">'$lte'</span><span class="p">:</span><span class="s">'2018/01/09'</span><span class="p">}},{</span><span class="s">'handle_by'</span><span class="p">:</span><span class="s">'David Liu'</span><span class="p">}]}},</span>
+    <span class="p">{</span><span class="s">'$group'</span><span class="p">:</span> <span class="p">{</span><span class="s">'_id'</span><span class="p">:</span><span class="s">'$city'</span><span class="p">,</span> <span class="s">'counts'</span><span class="p">:</span> <span class="p">{</span><span class="s">'$sum'</span><span class="p">:</span> <span class="mi">1</span><span class="p">}}},</span>
+    <span class="p">{</span><span class="s">'$sort'</span><span class="p">:{</span><span class="s">'counts'</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">}},</span>
+    <span class="p">{</span><span class="s">'$limit'</span><span class="p">:</span><span class="mi">10</span><span class="p">}</span>
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">pipeline</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div></div>
+<p>unduplicated data can be sorted through <code class="highlighter-rouge">$grooup</code>, cuz it means that find the same city and add 1.
+grouping means take duplicated data in order and make it unduplicated.</p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4773093/fyHR4bURfabsCNCZ17iy_2.jpg" alt="2.jpg" />
+create a data generator to yiled the data that column chart needs.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">data_gen</span><span class="p">(</span><span class="n">date1</span><span class="p">,</span> <span class="n">date2</span><span class="p">,</span> <span class="n">member</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
+    <span class="n">pipeline</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s">'$match'</span><span class="p">:</span> <span class="p">{</span><span class="s">'$and'</span><span class="p">:</span> <span class="p">[{</span><span class="s">'date'</span><span class="p">:{</span><span class="s">'$gte'</span><span class="p">:</span><span class="n">date1</span><span class="p">,</span><span class="s">'$lte'</span><span class="p">:</span><span class="n">date2</span><span class="p">}},{</span><span class="s">'handle_by'</span><span class="p">:</span><span class="n">member</span><span class="p">}]}},</span>
+    <span class="p">{</span><span class="s">'$group'</span><span class="p">:</span> <span class="p">{</span><span class="s">'_id'</span><span class="p">:</span><span class="s">'$city'</span><span class="p">,</span> <span class="s">'counts'</span><span class="p">:</span> <span class="p">{</span><span class="s">'$sum'</span><span class="p">:</span> <span class="mi">1</span><span class="p">}}},</span>
+    <span class="p">{</span><span class="s">'$sort'</span><span class="p">:</span> <span class="p">{</span><span class="s">'counts'</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">}},</span>
+    <span class="p">{</span><span class="s">'$limit'</span><span class="p">:</span> <span class="n">limit</span><span class="p">}</span>
+<span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">pipeline</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">'name'</span><span class="p">:</span> <span class="n">i</span><span class="p">[</span><span class="s">'_id'</span><span class="p">],</span>
+            <span class="s">'data'</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="s">'counts'</span><span class="p">]],</span>
+            <span class="s">'type'</span><span class="p">:</span> <span class="s">'column'</span>
+        <span class="p">}</span>
+        <span class="k">yield</span> <span class="n">data</span>
+</code></pre></div></div>
+<p>then use the data yielded above to generate the chart</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data_gen</span><span class="p">(</span><span class="s">'2017/01/01'</span><span class="p">,</span><span class="s">'2017/12/31'</span><span class="p">,</span><span class="s">'David Liu'</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="p">]</span>
+<span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'chart'</span><span class="p">:{</span><span class="s">'zoomType'</span><span class="p">:</span><span class="s">'xy'</span><span class="p">},</span>
+    <span class="s">'title'</span><span class="p">:{</span><span class="s">'text'</span><span class="p">:</span><span class="s">'Top 10 Citys Handled by David in 2017'</span><span class="p">},</span>
+    <span class="s">'yAxis'</span><span class="p">:{</span><span class="s">'title'</span><span class="p">:{</span><span class="s">'text'</span><span class="p">:</span><span class="s">'volume'</span><span class="p">}},</span>
+    <span class="p">}</span>
+<span class="n">charts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="s">'inline'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4773093/lppeh9SiRHGDIfJDAsQw_3.jpg" alt="3.jpg" /></p>
+
+    </article>
+
+    
+      <!--
+Author: Ray-Eldath
+refer to:
+ - https://github.com/theme-next/hexo-theme-next/blob/4bfbd67b3edc6f11b00357da6e509e5281a896f1/layout/_macro/reward.swig and
+ - https://github.com/theme-next/hexo-theme-next/blob/e12bb0b27e16072eb82baa4c7dda1c41c8de7264/source/css/_common/components/post/post-reward.styl
+-->
+<style media="screen">
+  .reward {
+    padding: 5px 0;
+    margin: 20px auto;
+    width: 90%;
+    text-align: center;
+  }
+
+  .rewardButton {
+    background-color: #f44236;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: '微软雅黑';
+    font-size: 18px;
+    padding: 5px 25px;
+    text-decoration: none;
+  }
+
+  .rewardButton:hover {
+    background-color: #F7877F;
+  }
+
+  .wechat:hover p {
+    animation: roll 0.1s infinite linear;
+    -webkit-animation: roll 0.1s infinite linear;
+    -moz-animation: roll 0.1s infinite linear;
+  }
+
+  .alipay:hover p {
+    animation: roll 0.1s infinite linear;
+    -webkit-animation: roll 0.1s infinite linear;
+    -moz-animation: roll 0.1s infinite linear;
+  }
+
+  .QR {
+    padding-top: 20px;
+  }
+
+  .QR a {
+    border: 0;
+  }
+
+  .QR img {
+    width: 180px;
+    max-width: 100%;
+    display: inline-block;
+    margin: 0.8em 2em 0 2em;
+  }
+</style>
+
+<div class="reward">
+  <a class="rewardButton" title="请유용喝杯咖啡？">赞 赏</a>
+
+  <div class="QR" style="display: none;">
+    
+    <div>
+      <span style="font-family: '微软雅黑'; font-size: 18px; "></span>
+    </div>
+    
+
+    
+    <div class="wechat" style="display: inline-block">
+      <img class="wechat_qr" src="/assets/img/wechatpay.jpg" title="用微信请유용喝杯咖啡？" alt="用微信请유용喝杯咖啡？" />
+      <p>微信支付</p>
+    </div>
+    
+
+    
+    <div class="alipay" style="display: inline-block">
+      <img class="alipay_qr" src="/assets/img/alipay.jpg" title="用支付宝请유용喝杯咖啡？" alt="用支付宝请유용喝杯咖啡？" />
+      <p>支付宝</p>
+    </div>
+    
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("a.rewardButton").click(function() {
+      $("div.QR").slideToggle()
+    });
+  });
+</script>
+
+    
+
+    <!-- default share with h20 theme
+     
+    -->
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="/assets/img/profile1.png" alt="">
+      </div>
+      <div class="author-name" rel="author">유용</div>
+      <div class="bio">
+        <p>FoMo</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="mailto:lyfirst@naver.com" target="_blank">
+                    <i class="iconfont icon-email"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//github.com/davidkorea" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//facebook.com/100010686574858" target="_blank">
+                    <i class="iconfont icon-facebook"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2018/01/18/how-to-create-slides-by-jupyter-notebook.html" class="read-next-link"></a>
+        <section>
+          <span>How to create slides by jupyter notebook</span>
+          <p>$jupyter nbconvert Untitled4.ipynb --to slides --post serve</p>
+        </section>
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2018/01/16/4772427.html" class="read-next-link"></a>
+          <section>
+            <span>돌을 옮기다가 발등에 떨어졌다!!!!!</span>
+            <p>비트코인 다시 오르겠지??? 당연히 오르길 바래 ㅠ많이 밑졌는데 아직도 정산할 용기가 없어서… 내일 다...</p>
+          </section>
+          
+      </div>
+      
+    </section>
+
+    
+    <section class="post-footer-item comment">
+      <div id="disqus_thread"></div>
+    </section>
+    
+
+    
+    <section class="post-footer-item comment">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzk5My8xMDUyOA">
+    </section>
+    
+  </section>
+
+  
+  <!--
+Author: Ray-Eldath
+refer to:
+ - https://github.com/theme-next/hexo-theme-next/blob/master/source/js/src/utils.js
+ - https://jingyan.baidu.com/article/b2c186c83ec846c46ef6ff80.html
+ - http://www.bkjia.com/jQuery/449205.html
+-->
+<style media="screen">
+  .scroll {
+    z-index: 10000;
+    display: none;
+    width: 56px;
+    height: 24px;
+    background: #222;
+    color: #fff;
+    line-height: 24px;
+    text-align: center;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+</style>
+<div class="scroll">
+  <i class="fa fa-arrow-up"></i>
+  <span class="scrollpercent"></span><span> %</span>
+</div>
+
+<script src="/assets/js/util.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    if (utils.isMobile()) {
+      $('.scroll').hide();
+      return;
+    }
+    $(window).scroll(function() {
+      let scrollValue = $(window).scrollTop();
+
+      var scrollPercentRounded = Math.round((scrollValue / utils.getContentVisibilityHeight()) * 100);
+      var scrollPercentMaxed = (scrollPercentRounded > 100) ? 100 : scrollPercentRounded;
+
+      $('.scrollpercent').html(scrollPercentMaxed);
+      scrollValue > 100 ? $('.scroll').fadeIn() : $('.scroll').fadeOut();
+    });
+
+    $('.scroll').click(function() {
+      $('html, body').animate({
+        scrollTop: 0
+      }, 300);
+    })
+  })
+</script>
+
+
+
+<footer class="g-footer">
+  <section>Everyday ©
+  
+  
+    2017
+    -
+  
+  2018
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          ,
+          
+        
+          'twitter'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+
+  <script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document,
+        s = d.createElement('script');
+      /*写入自己的disqus信息*/
+      s.src = 'https://davidkor.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+
+</script>
+
+
+
+<script>
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+
+      if (typeof LivereTower === 'function') {
+        return;
+      }
+
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+
+  </script>
+
+
+  <noscript>为正常使用评论功能请激活JavaScript。</noscript>
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a7bcee5ba9eb132"></script>
+
+</body>
+
+</html>

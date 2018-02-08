@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First Post - Everyday</title>
+    <title>[Ultimate] Django Web created by Command - Everyday</title>
     <meta name="author"  content="유용">
-    <meta name="description" content="First Post">
-    <meta name="keywords"  content="python, django">
+    <meta name="description" content="[Ultimate] Django Web created by Command">
+    <meta name="keywords"  content="django">
     <!-- Open Graph -->
-    <meta property="og:title" content="First Post - Everyday">
+    <meta property="og:title" content="[Ultimate] Django Web created by Command - Everyday">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://localhost:4000/2018/02/07/first-try.html">
+    <meta property="og:url" content="http://localhost:4000/2018/01/25/Ultimate-Django-Web-created-by-Command.html">
     <meta property="og:description" content="Mostly forgettable, occasionally remarkable">
     <meta property="og:site_name" content="Everyday">
     <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
@@ -54,16 +54,14 @@
       <div class="post-tags">
         
           
-            <a href="http://localhost:4000/tags#python" class="post-tag">python</a>
-          
             <a href="http://localhost:4000/tags#django" class="post-tag">django</a>
           
         
       </div>
-      <h1>First Post</h1>
+      <h1>[Ultimate] Django Web created by Command</h1>
       <div class="post-meta">
         <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">유용</a></></span>
-        <time class="post-meta-item" datetime="18-02-07"><i class="iconfont icon-date"></i>07 Feb 2018</time>
+        <time class="post-meta-item" datetime="18-01-25"><i class="iconfont icon-date"></i>25 Jan 2018</time>
       </div>
     </div>
     
@@ -73,22 +71,127 @@
     
 
     <article class="markdown-body">
-      <h1 id="1-django">1. django</h1>
+      <blockquote>
+  <p>An updated version of the <a href="http://davidkor.logdown.com/posts/5298745">last aritical</a>.
+Due to the <a href="http://davidkor.logdown.com/posts/5298745">last ariticle</a> is still 번거로워…lets use only command line to create a Django project.let’s start ㄱ</p>
+</blockquote>
 
-<pre><code class="language-Python">
-class Caselog(models.Model):
-  caseid = models.CharField(null=True)
+<h1 id="1-command">1. Command</h1>
 
-</code></pre>
+<p>$ <code class="highlighter-rouge">mkdir 180125</code></p>
 
-<pre><code class="language-Python">INSTALLED_APPS = [
-	......
-  'webapp',
-  ]
-</code></pre>
+<p>$ <code class="highlighter-rouge">cd 180125</code></p>
 
-<p>이미지 추가 테스트
- <img src="http://i1.bvimg.com/631779/4dc55b04d45c20b3.png" alt="Markdown" /></p>
+<p>$ <code class="highlighter-rouge">python3 -m venv my_venv</code></p>
+
+<p>$ <code class="highlighter-rouge">source my_venv/bin/activate</code></p>
+
+<p>$ <code class="highlighter-rouge">pip install django</code></p>
+
+<p>$ <code class="highlighter-rouge">django-admin.py startproject my_project</code></p>
+
+<p>$ <code class="highlighter-rouge">cd my_project</code></p>
+
+<p>$ <code class="highlighter-rouge">python manage.py runserver</code></p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5303036/F650caD7To2xbaYt9MSS_1.png" alt="1.png" /></p>
+
+<h1 id="2-run-1270018000">2. Run 127.0.0.1:8000</h1>
+
+<h1 id="3-open-by-pycharm-and-create-app">3. Open by Pycharm and create app</h1>
+
+<p>There is no need to run venv again in pycharm terminal, cuz it has been started automatically.
+go to my_project and startapp directly.</p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5303036/Oh3lEWGkSDOnXRt9augG_2.png" alt="2.png" /></p>
+
+<hr />
+
+<p>Refer to : <a href="https://djangogirlstaipei.gitbooks.io/django-girls-taipei-tutorial/content/django/installation.html">djangogirls</a></p>
+
+<hr />
+
+<h1 id="4-add-app-to-my_projectsettingspy">4. add app to my_project/settings.py</h1>
+
+<p>my_project/settings.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED</span><span class="o">-</span><span class="n">APPS</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="o">...</span>
+	<span class="s">'django_web'</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<h1 id="5-templates-static">5. Templates, Static</h1>
+
+<p>For make the process visible, i would like to create the relevant folders in Finder.</p>
+
+<p>It’s said that the folder templates and static should be created at the same folder level as [startapp:django_web], in another word, the 2 folders should be created under [startproject:my_project]</p>
+
+<p>Actually, as last ariticle showed that even you don’t follow the rule, it still works.</p>
+
+<p>Whatever, just do as the rule, for coding more reasonalbe.</p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5303036/pK1fRXwTkyrG3HUu5l2V_3.png" alt="3.png" /></p>
+
+<p>Then, copy index.html to templates and copy css,js,font,images to static</p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5303036/XkT1K3tGSXusojVHSbfU_4.png" alt="4.png" /></p>
+
+<h1 id="6-rewrite-indexhtml-by-template-languague">6. Rewrite index.html by template languague</h1>
+
+<p>Add <code class="highlighter-rouge">STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)</code> to settings.py</p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5303036/TH2B7jvmSieuBQmtttPv_5.png" alt="5.png" /></p>
+
+<h1 id="7-django_webviewspy">7. django_web/views.py</h1>
+
+<p>django_web/views.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">'index.html'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5303036/1AhgMFTLWCK0qTwNxwJw_7.png" alt="7.png" /></p>
+
+<h1 id="8-my_projecturlspy">8. my_project/urls.py</h1>
+
+<p>my_project/urls.py</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django_web.views</span> <span class="kn">import</span> <span class="n">index</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r'^admin/'</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r'^index/'</span><span class="p">,</span> <span class="n">index</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5303036/9bubl9JRS6u2PrFMEote_8.png" alt="8.png" /></p>
+
+<hr />
+
+<h1 id="-error-">========== ERROR ==========</h1>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5303036/W5DgRVTRPFB2zKwMoVAg_6.png" alt="6.png" /></p>
+
+<h1 id="-answer-">========== ANSWER ==========</h1>
+
+<p>add <code class="highlighter-rouge">[os.path.join(BASE_DIR, 'templates')]</code>to TEMPLATES ‘DIRS’ in settings.py
+<a href="https://www.zhihu.com/question/61051824">Reference</a>
+<img src="http://user-image.logdown.io/user/42937/blog/39533/post/5303036/6jh9BOOVTFyOavIL0Kjf_9.png" alt="9.png" /></p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5303036/QjhV0HSXQSKeTpBsqeGt_10.png" alt="10.png" /></p>
+
+<blockquote>
+  <p>Haven’t figured out what’s the problem for the TEMPLATES DIR. BUT, it works without this code in <a href="http://davidkor.logdown.com/posts/5298745">last aritical</a>.</p>
+</blockquote>
+
+<blockquote>
+  <p>The ONLY different thing is that i created templates folder by mkdir in pycharm terminal in the last article.</p>
+</blockquote>
+
+<blockquote>
+  <p>I found that the video codes also has  <code class="highlighter-rouge">[os.path.join(BASE_DIR, 'templates')]</code> in the settings.py file. cuz the templates folder was created in Finder. BUT it wasn’t taughted in the video about this piece of code.</p>
+</blockquote>
+
+<hr />
 
     </article>
 
@@ -231,10 +334,10 @@ refer to:
     <section class="post-footer-item read-next">
       
       <div class="read-next-item">
-        <a href="/2018/02/08/django-project-blog-awms.html" class="read-next-link"></a>
+        <a href="/2018/01/26/html-page-by-semanticui.html" class="read-next-link"></a>
         <section>
-          <span>Django Project - Blog/AWMS</span>
-          <p>1. Create a django project1.1 Command »Deatils</p>
+          <span>HTML Page by SemanticUI</span>
+          <p>1. Preparation</p>
         </section>
         
      </div>
@@ -242,10 +345,10 @@ refer to:
 
       
       <div class="read-next-item">
-        <a href="/2018/02/02/get-a-month-period.html" class="read-next-link"></a>
+        <a href="/2018/01/25/Django-Template-Language.html" class="read-next-link"></a>
           <section>
-            <span>Get a Month Period</span>
-            <p>  This article is aiming at getting the first day and the...</p>
+            <span>Django Template Language</span>
+            <p>장고 템플릿 언어  All the steps should be finished before start....</p>
           </section>
           
       </div>

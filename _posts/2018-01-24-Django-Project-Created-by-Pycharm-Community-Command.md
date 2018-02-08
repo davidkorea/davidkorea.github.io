@@ -68,13 +68,14 @@ def index(request):
 # 8.urls.py
  my_project/urls.py
 
-```python
- from django_web.views import index
-
+```Python
+{% raw %}
+from django_web.views import index
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/', index),
 ]
+{% endraw %}
 ```
 
 ![6.png](http://user-image.logdown.io/user/42937/blog/39533/post/5298745/C3eO5JciS5GDhuzIxuFK_6.png)
@@ -85,27 +86,31 @@ urlpatterns = [
 
 it can run normally except css. then we will continue to add css to index.html
 
-# 10.static
-$```mkdir static```,  copy 'css' and 'images'folder to static
+# 10."static"
+$```{% raw %}mkdir static{% endraw %}```,  copy 'css' and 'images'folder to "static"
 
 go to templates/index.html, put the following code on the 1st line of this html file
-```python
+```Python
 {% raw %}
-{% load static %}
+  {% load static %}
 {% endraw %}
 ```
-change all the css styles and image paths by using ```{% static 'oringin path' %}```,sample as follows
+change all the css styles and image paths by using ```{% raw %}{% static 'oringin path' %}{% endraw %}```,sample as follows
 
 ```
+{% raw %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/semantic.css' %}">
 <img src="{% static 'images/0001.jpg' %}" width="100" height="91">
+{% endraw %}
 ```
 
 ![1.png](http://user-image.logdown.io/user/42937/blog/39533/post/5298745/L90aIjAHSrGWwzv7U2YX_1.png)
 
-but, the static files may not be found by codes, so we need to set the absolute path in settings.py
+but, the "static files" may not be found by codes, so we need to set the absolute path in settings.py
 ```python
+{% raw %}
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+{% endraw %}
 ```
 
 ![2.png](http://user-image.logdown.io/user/42937/blog/39533/post/5298745/zSW8jhhR0mNfUcmOJrYR_2.png)

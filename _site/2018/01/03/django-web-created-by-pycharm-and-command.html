@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First Post - Everyday</title>
+    <title>Django Web created by Pycharm & Command - Everyday</title>
     <meta name="author"  content="유용">
-    <meta name="description" content="First Post">
-    <meta name="keywords"  content="python, django">
+    <meta name="description" content="Django Web created by Pycharm & Command">
+    <meta name="keywords"  content="pycharm, django">
     <!-- Open Graph -->
-    <meta property="og:title" content="First Post - Everyday">
+    <meta property="og:title" content="Django Web created by Pycharm & Command - Everyday">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://localhost:4000/2018/02/07/first-try.html">
+    <meta property="og:url" content="http://localhost:4000/2018/01/03/django-web-created-by-pycharm-and-command.html">
     <meta property="og:description" content="Mostly forgettable, occasionally remarkable">
     <meta property="og:site_name" content="Everyday">
     <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
@@ -54,16 +54,16 @@
       <div class="post-tags">
         
           
-            <a href="http://localhost:4000/tags#python" class="post-tag">python</a>
+            <a href="http://localhost:4000/tags#pycharm" class="post-tag">pycharm</a>
           
             <a href="http://localhost:4000/tags#django" class="post-tag">django</a>
           
         
       </div>
-      <h1>First Post</h1>
+      <h1>Django Web created by Pycharm & Command</h1>
       <div class="post-meta">
         <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">유용</a></></span>
-        <time class="post-meta-item" datetime="18-02-07"><i class="iconfont icon-date"></i>07 Feb 2018</time>
+        <time class="post-meta-item" datetime="18-01-03"><i class="iconfont icon-date"></i>03 Jan 2018</time>
       </div>
     </div>
     
@@ -73,22 +73,43 @@
     
 
     <article class="markdown-body">
-      <h1 id="1-django">1. django</h1>
+      <h1 id="1pycharm---community-edition">1.Pycharm - Community Edition</h1>
 
-<pre><code class="language-Python">
-class Caselog(models.Model):
-  caseid = models.CharField(null=True)
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4716406/OX2sU3HlQkuGC86nodOk_1.jpg" alt="1.jpg" /></p>
 
-</code></pre>
+<h1 id="2command">2.Command</h1>
+<p>iTerm</p>
 
-<pre><code class="language-Python">INSTALLED_APPS = [
-	......
-  'webapp',
-  ]
-</code></pre>
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4716406/xhJsDAEITsGm9xdeKXnY_2.jpg" alt="2.jpg" /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  cd 180103
+  mkdir david
+  cd david
+  python3 -m venv my_venv
+  cd my_venv
+  source bin/activate
+  pip install django
+  django-admin.py startproject my_project
+  cd my_project
+  python manage.py migrate
+  python manage.py runserver
+</code></pre></div></div>
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4716406/rCrpZYTs2AW9oaDVBX7Q_1.png" alt="1.png" /></p>
 
-<p>이미지 추가 테스트
- <img src="http://i1.bvimg.com/631779/4dc55b04d45c20b3.png" alt="Markdown" /></p>
+<h1 id="3-pycharm-terminal">3. Pycharm Terminal</h1>
+<p>이어서 계속 iTerm에서 코딩해도 됩니다만 Pycharm Terminal을 이용하려면 추가로 다시 한번 venv를 껴놔야 됩니다.</p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4716406/sFVmeO8vRDWQRmbbZQKZ_3.jpg" alt="3.jpg" /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> cd david
+ cd my_venv
+ source bin/activate
+ cd my_project
+ python manage.py createsuperuser
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4716406/J6Z7hBNCRqC190lDzxjp_2.png" alt="2.png" /></p>
+
+<h4 id="reference">reference</h4>
+<p><a href="https://djangogirlstaipei.gitbooks.io/django-girls-taipei-tutorial/content/django/installation.html">create django web by command</a></p>
 
     </article>
 
@@ -231,10 +252,10 @@ refer to:
     <section class="post-footer-item read-next">
       
       <div class="read-next-item">
-        <a href="/2018/02/08/django-project-blog-awms.html" class="read-next-link"></a>
+        <a href="/2018/01/03/start-to-use-mongodb.html" class="read-next-link"></a>
         <section>
-          <span>Django Project - Blog/AWMS</span>
-          <p>1. Create a django project1.1 Command »Deatils</p>
+          <span>Start to use MongoDB</span>
+          <p>1.split content in lineswalden.txtcreate new file in pych...</p>
         </section>
         
      </div>
@@ -242,10 +263,10 @@ refer to:
 
       
       <div class="read-next-item">
-        <a href="/2018/02/02/get-a-month-period.html" class="read-next-link"></a>
+        <a href="/2017/04/18/new-theme-h2o.html" class="read-next-link"></a>
           <section>
-            <span>Get a Month Period</span>
-            <p>  This article is aiming at getting the first day and the...</p>
+            <span>H2O theme for Jekyll</span>
+            <p>正如我在微博上所说的，使用Jekyll半年以来一直没有令我满意的主题模板，所以开始计划自己写一套好看又好用的主题模...</p>
           </section>
           
       </div>

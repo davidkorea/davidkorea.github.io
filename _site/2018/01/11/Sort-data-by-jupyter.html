@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort data by jupyter - Everyday</title>
+    <meta name="author"  content="유용">
+    <meta name="description" content="Sort data by jupyter">
+    <meta name="keywords"  content="jupyter, chart">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Sort data by jupyter - Everyday">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2018/01/11/Sort-data-by-jupyter.html">
+    <meta property="og:description" content="Mostly forgettable, occasionally remarkable">
+    <meta property="og:site_name" content="Everyday">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+
+<style type="text/css">
+  #my_centered_buttons { display: flex; justify-content: center; }
+  #my_centered_buttons_older { margin: 0 auto; width: 380px;}
+</style>
+  
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
+    <div>
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header class="g-banner post-header post-pattern-circuitBoard bgcolor-default post-no-cover" data-theme="default">
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#jupyter" class="post-tag">jupyter</a>
+          
+            <a href="http://localhost:4000/tags#chart" class="post-tag">chart</a>
+          
+        
+      </div>
+      <h1>Sort data by jupyter</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">유용</a></></span>
+        <time class="post-meta-item" datetime="18-01-11"><i class="iconfont icon-date"></i>11 Jan 2018</time>
+      </div>
+    </div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <h1 id="1-make-a-backup-of-database">1. make a backup of database</h1>
+<p>1st, open a terminal in jupyter
+$ <code class="highlighter-rouge">mongod</code>
+$ <code class="highlighter-rouge">mongo</code>
+2nd, select the db you will use
+$ <code class="highlighter-rouge">show dbs</code>
+$ <code class="highlighter-rouge">use awms</code>
+3rd, select which table you will use
+$ <code class="highlighter-rouge">show tables</code>
+4th, create a backup table and copy the data from orgin one to the one newly created
+$ <code class="highlighter-rouge">db.createCollection('loginfo_backup')</code>
+$ <code class="highlighter-rouge">db.loginfo.copyTo('logdata_backup')</code>
+5th, use backup db when sort data</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pymongo</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">(</span><span class="s">'localhost'</span><span class="p">,</span> <span class="mi">27017</span><span class="p">)</span>
+<span class="n">awms</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s">'awms'</span><span class="p">]</span>
+<span class="n">loginfo</span> <span class="o">=</span> <span class="n">awms</span><span class="p">[</span><span class="s">'loginfo_backup'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h1 id="2-string-of-xa0-in-caseid">2. String of ‘\xa0’ in [‘caseid’]</h1>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4734411/FlGFz0ZTQmFaPfkbU1p7_1.png" alt="1.png" />
+1st, use this codes to find out which one has ‘\xa0’</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">find</span><span class="p">():</span>
+    <span class="k">if</span> <span class="s">'</span><span class="se">\xa0</span><span class="s">'</span> <span class="ow">in</span> <span class="n">i</span><span class="p">[</span><span class="s">'caseid'</span><span class="p">]:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s">'caseid'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4734411/v9hToJhOSBOakpFsWitF_2.png" alt="2.png" /></p>
+
+<p>2nd, delete this string of data, you need to <code class="highlighter-rouge">j = "".join(j.split())</code>,or <code class="highlighter-rouge">j = ''.join(j.split())</code>
+refer to :<a href="https://www.cnblogs.com/yqpy/p/8203783.html">https://www.cnblogs.com/yqpy/p/8203783.html</a></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">find</span><span class="p">():</span>
+    <span class="k">if</span> <span class="s">'</span><span class="se">\xa0</span><span class="s">'</span> <span class="ow">in</span> <span class="n">i</span><span class="p">[</span><span class="s">'caseid'</span><span class="p">]:</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="s">'caseid'</span><span class="p">]</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="s">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+        <span class="k">if</span> <span class="s">'</span><span class="se">\xa0</span><span class="s">'</span> <span class="ow">in</span> <span class="n">j</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'yes'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'no'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4734411/ygx6Co5RWexSkayag1CJ_3.png" alt="3.png" /></p>
+
+<p>3rd, update the refreshed data to db</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">find</span><span class="p">():</span>
+    <span class="k">if</span> <span class="s">'</span><span class="se">\xa0</span><span class="s">'</span> <span class="ow">in</span> <span class="n">i</span><span class="p">[</span><span class="s">'caseid'</span><span class="p">]:</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="s">'caseid'</span><span class="p">]</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+        <span class="n">loginfo</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s">'_id'</span><span class="p">:</span><span class="n">i</span><span class="p">[</span><span class="s">'_id'</span><span class="p">]},{</span><span class="s">'$set'</span><span class="p">:{</span><span class="s">'caseid'</span><span class="p">:</span><span class="n">j</span><span class="p">}})</span>
+</code></pre></div></div>
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4734411/BxAQSs23SmOKiV1YY2Gv_1.png" alt="1.png" /></p>
+
+<h1 id="3-make-data-visible-by-highcharts">3. Make data visible by highcharts</h1>
+
+<p>import charts package</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">charts</span>
+</code></pre></div></div>
+<p>shift + enter, it runs well if the following come out‘Server running in the folder /Users/osx at 127.0.0.1:65060’</p>
+
+<p>firstly, let’s see a sample</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">series</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="s">'name'</span><span class="p">:</span> <span class="s">'OS X'</span><span class="p">,</span>
+    <span class="s">'data'</span><span class="p">:</span> <span class="p">[</span><span class="mi">11</span><span class="p">],</span>
+    <span class="s">'type'</span><span class="p">:</span> <span class="s">'column'</span>
+<span class="p">},{</span>
+    <span class="s">'name'</span><span class="p">:</span> <span class="s">'windows'</span><span class="p">,</span>
+    <span class="s">'data'</span><span class="p">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">],</span>
+    <span class="s">'type'</span><span class="p">:</span> <span class="s">'column'</span>
+<span class="p">},{</span>
+    <span class="s">'name'</span><span class="p">:</span> <span class="s">'other'</span><span class="p">,</span>
+    <span class="s">'data'</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+    <span class="s">'type'</span><span class="p">:</span> <span class="s">'column'</span>
+<span class="p">}]</span>
+<span class="n">charts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="s">'inline'</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s">'charts are nice!'</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4734411/UxyPOH4GTHygDqx9hiV6_2.png" alt="2.png" /></p>
+
+<p>NOW, let’s start to make a chart to show the volume of each city
+1st, unduplicated city names</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">city_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">find</span><span class="p">():</span>
+    <span class="n">city_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s">'city'</span><span class="p">])</span>
+<span class="n">city_index</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">city_list</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">city_index</span><span class="p">)</span>
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># unduplicated city索引, 集合set可自动去重 ![3.png](http://user-image.logdown.io/user/42937/blog/39533/post/4734411/i4cAurYwR3GMDsjSbT4U_3.png)
+</code></pre></div></div>
+
+<p>2nd, volumes of each unduplicated city</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">post_times</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">city_index</span><span class="p">:</span>
+    <span class="n">post_times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">city_list</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">post_times</span><span class="p">)</span>
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># count each unduplicated city in the duplicated city_list
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4734411/hDSSv4gMTSOsA4ci2viQ_4.jpg" alt="4.jpg" /></p>
+
+<p>3rd, make a data generator for making a chart</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">data_gen</span><span class="p">(</span><span class="n">types</span><span class="p">):</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">length</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">city_index</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">city</span><span class="p">,</span> <span class="n">times</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">city_index</span><span class="p">,</span> <span class="n">post_times</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s">'name'</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span>
+                <span class="s">'data'</span><span class="p">:</span> <span class="p">[</span><span class="n">times</span><span class="p">],</span>
+                <span class="s">'type'</span><span class="p">:</span> <span class="n">types</span>
+            <span class="p">}</span>
+            <span class="k">yield</span> <span class="n">data</span>
+            <span class="n">length</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div></div>
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4734411/gL5IFhd8TEauzgBQ4FuR_5.jpg" alt="5.jpg" /></p>
+
+<p>4th, make the chart</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">data_gen</span><span class="p">(</span><span class="s">'column'</span><span class="p">)]</span>
+<span class="n">charts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="s">'inline'</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s">'case city'</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4734411/ACLdbUQRlKTFhl9BdfIP_6.jpg" alt="6.jpg" /></p>
+
+    </article>
+
+    
+      <!--
+Author: Ray-Eldath
+refer to:
+ - https://github.com/theme-next/hexo-theme-next/blob/4bfbd67b3edc6f11b00357da6e509e5281a896f1/layout/_macro/reward.swig and
+ - https://github.com/theme-next/hexo-theme-next/blob/e12bb0b27e16072eb82baa4c7dda1c41c8de7264/source/css/_common/components/post/post-reward.styl
+-->
+<style media="screen">
+  .reward {
+    padding: 5px 0;
+    margin: 20px auto;
+    width: 90%;
+    text-align: center;
+  }
+
+  .rewardButton {
+    background-color: #f44236;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: '微软雅黑';
+    font-size: 18px;
+    padding: 5px 25px;
+    text-decoration: none;
+  }
+
+  .rewardButton:hover {
+    background-color: #F7877F;
+  }
+
+  .wechat:hover p {
+    animation: roll 0.1s infinite linear;
+    -webkit-animation: roll 0.1s infinite linear;
+    -moz-animation: roll 0.1s infinite linear;
+  }
+
+  .alipay:hover p {
+    animation: roll 0.1s infinite linear;
+    -webkit-animation: roll 0.1s infinite linear;
+    -moz-animation: roll 0.1s infinite linear;
+  }
+
+  .QR {
+    padding-top: 20px;
+  }
+
+  .QR a {
+    border: 0;
+  }
+
+  .QR img {
+    width: 180px;
+    max-width: 100%;
+    display: inline-block;
+    margin: 0.8em 2em 0 2em;
+  }
+</style>
+
+<div class="reward">
+  <a class="rewardButton" title="请유용喝杯咖啡？">赞 赏</a>
+
+  <div class="QR" style="display: none;">
+    
+    <div>
+      <span style="font-family: '微软雅黑'; font-size: 18px; "></span>
+    </div>
+    
+
+    
+    <div class="wechat" style="display: inline-block">
+      <img class="wechat_qr" src="/assets/img/wechatpay.jpg" title="用微信请유용喝杯咖啡？" alt="用微信请유용喝杯咖啡？" />
+      <p>微信支付</p>
+    </div>
+    
+
+    
+    <div class="alipay" style="display: inline-block">
+      <img class="alipay_qr" src="/assets/img/alipay.jpg" title="用支付宝请유용喝杯咖啡？" alt="用支付宝请유용喝杯咖啡？" />
+      <p>支付宝</p>
+    </div>
+    
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("a.rewardButton").click(function() {
+      $("div.QR").slideToggle()
+    });
+  });
+</script>
+
+    
+
+    <!-- default share with h20 theme
+     
+    -->
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="/assets/img/profile1.png" alt="">
+      </div>
+      <div class="author-name" rel="author">유용</div>
+      <div class="bio">
+        <p>FoMo</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="mailto:lyfirst@naver.com" target="_blank">
+                    <i class="iconfont icon-email"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//github.com/davidkorea" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//facebook.com/100010686574858" target="_blank">
+                    <i class="iconfont icon-facebook"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2018/01/12/blockchain-from-0-to-1-day6.html" class="read-next-link"></a>
+        <section>
+          <span>BlockChain from 0 to 1_day6</span>
+          <p>12. 区块链的诞生</p>
+        </section>
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2018/01/10/beautifulsoup.html" class="read-next-link"></a>
+          <section>
+            <span>BeautifulSoup</span>
+            <p>0-1.TODAY’S FU*KIN CASE 1if you create a python file name...</p>
+          </section>
+          
+      </div>
+      
+    </section>
+
+    
+    <section class="post-footer-item comment">
+      <div id="disqus_thread"></div>
+    </section>
+    
+
+    
+    <section class="post-footer-item comment">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzk5My8xMDUyOA">
+    </section>
+    
+  </section>
+
+  
+  <!--
+Author: Ray-Eldath
+refer to:
+ - https://github.com/theme-next/hexo-theme-next/blob/master/source/js/src/utils.js
+ - https://jingyan.baidu.com/article/b2c186c83ec846c46ef6ff80.html
+ - http://www.bkjia.com/jQuery/449205.html
+-->
+<style media="screen">
+  .scroll {
+    z-index: 10000;
+    display: none;
+    width: 56px;
+    height: 24px;
+    background: #222;
+    color: #fff;
+    line-height: 24px;
+    text-align: center;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+</style>
+<div class="scroll">
+  <i class="fa fa-arrow-up"></i>
+  <span class="scrollpercent"></span><span> %</span>
+</div>
+
+<script src="/assets/js/util.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    if (utils.isMobile()) {
+      $('.scroll').hide();
+      return;
+    }
+    $(window).scroll(function() {
+      let scrollValue = $(window).scrollTop();
+
+      var scrollPercentRounded = Math.round((scrollValue / utils.getContentVisibilityHeight()) * 100);
+      var scrollPercentMaxed = (scrollPercentRounded > 100) ? 100 : scrollPercentRounded;
+
+      $('.scrollpercent').html(scrollPercentMaxed);
+      scrollValue > 100 ? $('.scroll').fadeIn() : $('.scroll').fadeOut();
+    });
+
+    $('.scroll').click(function() {
+      $('html, body').animate({
+        scrollTop: 0
+      }, 300);
+    })
+  })
+</script>
+
+
+
+<footer class="g-footer">
+  <section>Everyday ©
+  
+  
+    2017
+    -
+  
+  2018
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          ,
+          
+        
+          'twitter'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+
+  <script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document,
+        s = d.createElement('script');
+      /*写入自己的disqus信息*/
+      s.src = 'https://davidkor.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+
+</script>
+
+
+
+<script>
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+
+      if (typeof LivereTower === 'function') {
+        return;
+      }
+
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+
+  </script>
+
+
+  <noscript>为正常使用评论功能请激活JavaScript。</noscript>
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a7bcee5ba9eb132"></script>
+
+</body>
+
+</html>

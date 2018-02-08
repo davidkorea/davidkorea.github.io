@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get a Month Period - Everyday</title>
+    <meta name="author"  content="유용">
+    <meta name="description" content="Get a Month Period">
+    <meta name="keywords"  content="python">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Get a Month Period - Everyday">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2018/02/02/get-a-month-period.html">
+    <meta property="og:description" content="Mostly forgettable, occasionally remarkable">
+    <meta property="og:site_name" content="Everyday">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+
+<style type="text/css">
+  #my_centered_buttons { display: flex; justify-content: center; }
+  #my_centered_buttons_older { margin: 0 auto; width: 380px;}
+</style>
+  
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
+    <div>
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header class="g-banner post-header post-pattern-circuitBoard bgcolor-default post-no-cover" data-theme="default">
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#python" class="post-tag">python</a>
+          
+        
+      </div>
+      <h1>Get a Month Period</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">유용</a></></span>
+        <time class="post-meta-item" datetime="18-02-02"><i class="iconfont icon-date"></i>02 Feb 2018</time>
+      </div>
+    </div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <blockquote>
+  <p>This article is aiming at getting the first day and the last day of current week and last week.
+<code class="highlighter-rouge">from datetime import *</code>
+<code class="highlighter-rouge">import calendar</code></p>
+</blockquote>
+
+<blockquote>
+  <p>when you use <code class="highlighter-rouge">month_range = calendar.monthrange(year, month)</code>, it returns a tuple (x, y)
+x = the 요일 of the month’s first day
+y = the total days in the month
+Be careful when you use the attribute y by using <code class="highlighter-rouge">month_range[1]</code></p>
+</blockquote>
+
+<p><a href="http://python3-cookbook.readthedocs.io/zh_CN/latest/c03/p14_date_range_for_current_month.html">Reference1</a>, <a href="http://blog.csdn.net/yannanxiu/article/details/53809600">Reference2</a></p>
+
+<h1 id="1-today">1. today</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">calendar</span>
+
+<span class="k">def</span> <span class="nf">current_month</span><span class="p">(</span><span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()):</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">year</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span>
+    <span class="n">month_range</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="n">monthrange</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="n">month</span><span class="p">)</span>
+    <span class="n">first_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">last_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="n">month_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">last_month</span><span class="p">(</span><span class="n">today</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()):</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">year</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span>
+    <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">last_year</span> <span class="o">=</span> <span class="n">year</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">first_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">last_year</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">last_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">last_year</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">month_range</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="n">monthrange</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">first_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="n">month</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">last_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">month_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
+
+<span class="n">current_month</span><span class="p">()</span>
+<span class="n">last_month</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h1 id="2-oneday">2. oneday</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">calendar</span>
+
+<span class="k">def</span> <span class="nf">current_month</span><span class="p">(</span><span class="n">day</span><span class="p">):</span>
+    <span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">year</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span>
+    <span class="n">month_range</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="n">monthrange</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="n">month</span><span class="p">)</span>
+    <span class="n">first_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">last_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="n">month_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">last_month</span><span class="p">(</span><span class="n">day</span><span class="p">):</span>
+    <span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">year</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span>
+    <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">last_year</span> <span class="o">=</span> <span class="n">year</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">first_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">last_year</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">last_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">last_year</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">month_range</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="n">monthrange</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">first_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="n">month</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">last_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">month_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
+
+
+<span class="n">current_month</span><span class="p">(</span><span class="s">'2018/01/03'</span><span class="p">)</span>
+<span class="n">last_month</span><span class="p">(</span><span class="s">'2018/01/11'</span><span class="p">)</span>
+</code></pre></div></div>
+
+    </article>
+
+    
+      <!--
+Author: Ray-Eldath
+refer to:
+ - https://github.com/theme-next/hexo-theme-next/blob/4bfbd67b3edc6f11b00357da6e509e5281a896f1/layout/_macro/reward.swig and
+ - https://github.com/theme-next/hexo-theme-next/blob/e12bb0b27e16072eb82baa4c7dda1c41c8de7264/source/css/_common/components/post/post-reward.styl
+-->
+<style media="screen">
+  .reward {
+    padding: 5px 0;
+    margin: 20px auto;
+    width: 90%;
+    text-align: center;
+  }
+
+  .rewardButton {
+    background-color: #f44236;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: '微软雅黑';
+    font-size: 18px;
+    padding: 5px 25px;
+    text-decoration: none;
+  }
+
+  .rewardButton:hover {
+    background-color: #F7877F;
+  }
+
+  .wechat:hover p {
+    animation: roll 0.1s infinite linear;
+    -webkit-animation: roll 0.1s infinite linear;
+    -moz-animation: roll 0.1s infinite linear;
+  }
+
+  .alipay:hover p {
+    animation: roll 0.1s infinite linear;
+    -webkit-animation: roll 0.1s infinite linear;
+    -moz-animation: roll 0.1s infinite linear;
+  }
+
+  .QR {
+    padding-top: 20px;
+  }
+
+  .QR a {
+    border: 0;
+  }
+
+  .QR img {
+    width: 180px;
+    max-width: 100%;
+    display: inline-block;
+    margin: 0.8em 2em 0 2em;
+  }
+</style>
+
+<div class="reward">
+  <a class="rewardButton" title="请유용喝杯咖啡？">赞 赏</a>
+
+  <div class="QR" style="display: none;">
+    
+    <div>
+      <span style="font-family: '微软雅黑'; font-size: 18px; "></span>
+    </div>
+    
+
+    
+    <div class="wechat" style="display: inline-block">
+      <img class="wechat_qr" src="/assets/img/wechatpay.jpg" title="用微信请유용喝杯咖啡？" alt="用微信请유용喝杯咖啡？" />
+      <p>微信支付</p>
+    </div>
+    
+
+    
+    <div class="alipay" style="display: inline-block">
+      <img class="alipay_qr" src="/assets/img/alipay.jpg" title="用支付宝请유용喝杯咖啡？" alt="用支付宝请유용喝杯咖啡？" />
+      <p>支付宝</p>
+    </div>
+    
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("a.rewardButton").click(function() {
+      $("div.QR").slideToggle()
+    });
+  });
+</script>
+
+    
+
+    <!-- default share with h20 theme
+     
+    -->
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="/assets/img/profile1.png" alt="">
+      </div>
+      <div class="author-name" rel="author">유용</div>
+      <div class="bio">
+        <p>FoMo</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="mailto:lyfirst@naver.com" target="_blank">
+                    <i class="iconfont icon-email"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//github.com/davidkorea" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//facebook.com/100010686574858" target="_blank">
+                    <i class="iconfont icon-facebook"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2018/02/07/first-try.html" class="read-next-link"></a>
+        <section>
+          <span>First Post</span>
+          <p>1. django</p>
+        </section>
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2018/02/01/get-a-period-of-date.html" class="read-next-link"></a>
+          <section>
+            <span>Get a Week Period</span>
+            <p>  Get the date period of this week and last week.from dat...</p>
+          </section>
+          
+      </div>
+      
+    </section>
+
+    
+    <section class="post-footer-item comment">
+      <div id="disqus_thread"></div>
+    </section>
+    
+
+    
+    <section class="post-footer-item comment">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzk5My8xMDUyOA">
+    </section>
+    
+  </section>
+
+  
+  <!--
+Author: Ray-Eldath
+refer to:
+ - https://github.com/theme-next/hexo-theme-next/blob/master/source/js/src/utils.js
+ - https://jingyan.baidu.com/article/b2c186c83ec846c46ef6ff80.html
+ - http://www.bkjia.com/jQuery/449205.html
+-->
+<style media="screen">
+  .scroll {
+    z-index: 10000;
+    display: none;
+    width: 56px;
+    height: 24px;
+    background: #222;
+    color: #fff;
+    line-height: 24px;
+    text-align: center;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+</style>
+<div class="scroll">
+  <i class="fa fa-arrow-up"></i>
+  <span class="scrollpercent"></span><span> %</span>
+</div>
+
+<script src="/assets/js/util.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    if (utils.isMobile()) {
+      $('.scroll').hide();
+      return;
+    }
+    $(window).scroll(function() {
+      let scrollValue = $(window).scrollTop();
+
+      var scrollPercentRounded = Math.round((scrollValue / utils.getContentVisibilityHeight()) * 100);
+      var scrollPercentMaxed = (scrollPercentRounded > 100) ? 100 : scrollPercentRounded;
+
+      $('.scrollpercent').html(scrollPercentMaxed);
+      scrollValue > 100 ? $('.scroll').fadeIn() : $('.scroll').fadeOut();
+    });
+
+    $('.scroll').click(function() {
+      $('html, body').animate({
+        scrollTop: 0
+      }, 300);
+    })
+  })
+</script>
+
+
+
+<footer class="g-footer">
+  <section>Everyday ©
+  
+  
+    2017
+    -
+  
+  2018
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          ,
+          
+        
+          'twitter'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+
+  <script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document,
+        s = d.createElement('script');
+      /*写入自己的disqus信息*/
+      s.src = 'https://davidkor.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+
+</script>
+
+
+
+<script>
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+
+      if (typeof LivereTower === 'function') {
+        return;
+      }
+
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+
+  </script>
+
+
+  <noscript>为正常使用评论功能请激活JavaScript。</noscript>
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a7bcee5ba9eb132"></script>
+
+</body>
+
+</html>

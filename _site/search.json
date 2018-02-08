@@ -13,6 +13,210 @@
     } ,
   
     {
+      "title"    : "Get a Month Period",
+      "tags"     : "python",
+      "url"      : "/2018/02/02/get-a-month-period.html"
+    } ,
+  
+    {
+      "title"    : "Get a Week Period",
+      "tags"     : "python datetime",
+      "url"      : "/2018/02/01/get-a-period-of-date.html"
+    } ,
+  
+    {
+      "title"    : "Django Template Inheritance",
+      "tags"     : "django",
+      "url"      : "/2018/01/30/django-template-inheritance.html"
+    } ,
+  
+    {
+      "title"    : "Show Highcharts.js in HTML with Dropdown Menu",
+      "tags"     : "highcharts",
+      "url"      : "/2018/01/29/Show-Highcharts-js-in-HTML-with-Dropdown-Menu.html"
+    } ,
+  
+    {
+      "title"    : "나답지않게",
+      "tags"     : "",
+      "url"      : "/2018/01/28/5403910.html"
+    } ,
+  
+    {
+      "title"    : "HTML Page by SemanticUI",
+      "tags"     : "semanticui",
+      "url"      : "/2018/01/26/html-page-by-semanticui.html"
+    } ,
+  
+    {
+      "title"    : "[Ultimate] Django Web created by Command",
+      "tags"     : "django",
+      "url"      : "/2018/01/25/Ultimate-Django-Web-created-by-Command.html"
+    } ,
+  
+    {
+      "title"    : "Django Template Language",
+      "tags"     : "django",
+      "url"      : "/2018/01/25/Django-Template-Language.html"
+    } ,
+  
+    {
+      "title"    : "Django Project Created by Pycharm Community + Command",
+      "tags"     : "django",
+      "url"      : "/2018/01/24/Django-Project-Created-by-Pycharm-Community-Command.html"
+    } ,
+  
+    {
+      "title"    : "Aspiring data scientists and people who are completely new to the field",
+      "tags"     : "",
+      "url"      : "/2018/01/24/Aspiring-data-scientists-and-people-who-are-completely-new-to-the-field.html"
+    } ,
+  
+    {
+      "title"    : "인간이 똑같구나 ",
+      "tags"     : "",
+      "url"      : "/2018/01/23/5249607.html"
+    } ,
+  
+    {
+      "title"    : "정형외과 갔다왔음",
+      "tags"     : "",
+      "url"      : "/2018/01/22/5203992.html"
+    } ,
+  
+    {
+      "title"    : "며칠간의 생각 01.18-01.20",
+      "tags"     : "",
+      "url"      : "/2018/01/21/5203971.html"
+    } ,
+  
+    {
+      "title"    : "Cryptocurrency - January is the best time to hop on the train？！",
+      "tags"     : "",
+      "url"      : "/2018/01/19/don-t-panic-january-is-the-best-time-hop-on-the-train.html"
+    } ,
+  
+    {
+      "title"    : "How to create slides by jupyter notebook",
+      "tags"     : "jupyter slide",
+      "url"      : "/2018/01/18/how-to-create-slides-by-jupyter-notebook.html"
+    } ,
+  
+    {
+      "title"    : "Sort data by jupyter 3",
+      "tags"     : "jupyter aggregate pipeline",
+      "url"      : "/2018/01/17/Sort-data-by-jupyter-3.html"
+    } ,
+  
+    {
+      "title"    : "돌을 옮기다가 발등에 떨어졌다!!!!!",
+      "tags"     : "",
+      "url"      : "/2018/01/16/4772427.html"
+    } ,
+  
+    {
+      "title"    : "망할 수 도 있음",
+      "tags"     : "",
+      "url"      : "/2018/01/16/4771977.html"
+    } ,
+  
+    {
+      "title"    : "바보같은 날",
+      "tags"     : "",
+      "url"      : "/2018/01/15/4770017.html"
+    } ,
+  
+    {
+      "title"    : "개빡치네...",
+      "tags"     : "",
+      "url"      : "/2018/01/14/4767051.html"
+    } ,
+  
+    {
+      "title"    : "Sort data by jupyter 2",
+      "tags"     : "jupyter chart",
+      "url"      : "/2018/01/13/sort-data-by-jupyter-2.html"
+    } ,
+  
+    {
+      "title"    : "BlockChain from 0 to 1_day6",
+      "tags"     : "blockchain bitcoin",
+      "url"      : "/2018/01/12/blockchain-from-0-to-1-day6.html"
+    } ,
+  
+    {
+      "title"    : "Sort data by jupyter",
+      "tags"     : "jupyter chart",
+      "url"      : "/2018/01/11/Sort-data-by-jupyter.html"
+    } ,
+  
+    {
+      "title"    : "BeautifulSoup",
+      "tags"     : "beautifulsoup",
+      "url"      : "/2018/01/10/beautifulsoup.html"
+    } ,
+  
+    {
+      "title"    : "Running a jupyter notebook server on local pc",
+      "tags"     : "jupyter",
+      "url"      : "/2018/01/10/Running-a-jupyter-notebook-server-on-local-pc.html"
+    } ,
+  
+    {
+      "title"    : "BlockChain from 0 to 1_day5",
+      "tags"     : "blockchain bitcoin",
+      "url"      : "/2018/01/09/blockchain-from-0-to-1-day5.html"
+    } ,
+  
+    {
+      "title"    : "BlockChain from 0 to 1_day4",
+      "tags"     : "blockchain bitcoin",
+      "url"      : "/2018/01/08/blockchain-from-0-to-1-day4.html"
+    } ,
+  
+    {
+      "title"    : "BlockChain from 0 to 1_day3",
+      "tags"     : "blockchain bitcoin",
+      "url"      : "/2018/01/07/blockchain-from-0-to-1-day3.html"
+    } ,
+  
+    {
+      "title"    : "BlockChain from 0 to 1_day2",
+      "tags"     : "blockchain bitcoin",
+      "url"      : "/2018/01/06/blockchain-from-0-to-1-day2.html"
+    } ,
+  
+    {
+      "title"    : "Crawl data from 58.com 2nd-hand products",
+      "tags"     : "python mongodb",
+      "url"      : "/2018/01/06/Crawl-data-from-58-com-2nd-hand-products.html"
+    } ,
+  
+    {
+      "title"    : "BlockChain from 0 to 1_day1",
+      "tags"     : "blockchain bitcoin",
+      "url"      : "/2018/01/05/BlockChain-from-0-to-1-day1.html"
+    } ,
+  
+    {
+      "title"    : "How to activate Pycharm Professional ",
+      "tags"     : "pycharm",
+      "url"      : "/2018/01/04/How-to-activate-Pycharm-Professional.html"
+    } ,
+  
+    {
+      "title"    : "Start to use MongoDB",
+      "tags"     : "python mongodb pymongo",
+      "url"      : "/2018/01/03/start-to-use-mongodb.html"
+    } ,
+  
+    {
+      "title"    : "Django Web created by Pycharm &amp; Command",
+      "tags"     : "pycharm django",
+      "url"      : "/2018/01/03/django-web-created-by-pycharm-and-command.html"
+    } ,
+  
+    {
       "title"    : "H2O theme for Jekyll",
       "tags"     : "jekyll",
       "url"      : "/2017/04/18/new-theme-h2o.html"

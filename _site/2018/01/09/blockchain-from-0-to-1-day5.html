@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First Post - Everyday</title>
+    <title>BlockChain from 0 to 1_day5 - Everyday</title>
     <meta name="author"  content="유용">
-    <meta name="description" content="First Post">
-    <meta name="keywords"  content="python, django">
+    <meta name="description" content="BlockChain from 0 to 1_day5">
+    <meta name="keywords"  content="blockchain, bitcoin">
     <!-- Open Graph -->
-    <meta property="og:title" content="First Post - Everyday">
+    <meta property="og:title" content="BlockChain from 0 to 1_day5 - Everyday">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://localhost:4000/2018/02/07/first-try.html">
+    <meta property="og:url" content="http://localhost:4000/2018/01/09/blockchain-from-0-to-1-day5.html">
     <meta property="og:description" content="Mostly forgettable, occasionally remarkable">
     <meta property="og:site_name" content="Everyday">
     <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
@@ -54,16 +54,16 @@
       <div class="post-tags">
         
           
-            <a href="http://localhost:4000/tags#python" class="post-tag">python</a>
+            <a href="http://localhost:4000/tags#blockchain" class="post-tag">blockchain</a>
           
-            <a href="http://localhost:4000/tags#django" class="post-tag">django</a>
+            <a href="http://localhost:4000/tags#bitcoin" class="post-tag">bitcoin</a>
           
         
       </div>
-      <h1>First Post</h1>
+      <h1>BlockChain from 0 to 1_day5</h1>
       <div class="post-meta">
         <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">유용</a></></span>
-        <time class="post-meta-item" datetime="18-02-07"><i class="iconfont icon-date"></i>07 Feb 2018</time>
+        <time class="post-meta-item" datetime="18-01-09"><i class="iconfont icon-date"></i>09 Jan 2018</time>
       </div>
     </div>
     
@@ -73,22 +73,75 @@
     
 
     <article class="markdown-body">
-      <h1 id="1-django">1. django</h1>
+      <h1 id="10比特币的扩容与分叉">10.比特币的扩容与分叉</h1>
 
-<pre><code class="language-Python">
-class Caselog(models.Model):
-  caseid = models.CharField(null=True)
+<h2 id="比特币的每一个区块的大小是1m能容纳1000条左右的交易信息">比特币的每一个区块的大小是1M，能容纳1000条左右的交易信息</h2>
+<ul>
+  <li>比特币网络的交易越来越多，很多交易无法在交易发生后的第一个产生的区块被打包和确认，可能等好几个区块甚至更久</li>
+  <li>粉尘攻击
+    <ul>
+      <li>即有人制造出大量的小额转账，是个网络中有大量的待确认交易，导致正常的比特币转账不能被确认</li>
+      <li>粉尘攻击事件中，有交易者等待了2天或更久</li>
+    </ul>
+  </li>
+  <li>扩容，扩大区块的容量，突破1M的限制。2014年开始提上日程</li>
+  <li>2015年年底，core开发团队和矿工在香港进行圆桌会议，达成了“香港共识”，很快流产</li>
+  <li>2017年在纽约，再次达成共识，实行隔离见证+2M扩容方式，因此从2017年上半年开始，比特币系统开始升级和部署</li>
+</ul>
 
-</code></pre>
+<h2 id="比特币的扩容方案">比特币的扩容方案</h2>
+<ul>
+  <li>不碰比特币本身的区块，用闪电网络去进行比特币结算，将大量的交易置于比特币本身网络之外
+    <ul>
+      <li>闪电网络，先把小额交易进行记账，最后进行结算</li>
+      <li>技术不成熟，需要在隔离见证技术之上才能运用</li>
+    </ul>
+  </li>
+  <li>直接扩大区块的大小
+    <ul>
+      <li>BIP141，core团队提出的隔离见证方案
+        <ul>
+          <li>隔离见证是为了让区块承载更多的交易而设计，将区块上的信息分为交易信息（记录转账信息）和见证信息（记录每个借点在什么时间验证交易的信息）</li>
+          <li>中本聪最初设计时，将交易信息和见证信息同时放到了区块里，分离后将扩大区块存储交易信息</li>
+          <li>当前公认的隔离见证方案。激活条件：2017年1月15日前的任意一个难度周期（约两周）内如果有95%的算力发出准备就绪信号，隔离见证将被激活</li>
+        </ul>
+      </li>
+      <li>UASF，用户激活软分叉
+        <ul>
+          <li>采用BIP148的软件来实现隔离见证</li>
+          <li>2017.8.1，比特币BIP148软件会拒绝不包含bit1信号的区块。即如果大多数矿工运行这个软件，他们会拒绝少数没有运行该软件的矿工挖出的区块。运行软件的矿工将拥有最长链，并在最长链上激活BIP141的隔离见证条件
+    * 最终运行BIP141的借点会在脸上看到超过95%的区块包含bit1，从而触发隔离见证
+    * 此方案已经实施，诞生了新的区块链资产bitcoincash
+    * bitcoincash的区块大小可上升到8M，容纳交易的笔数大约是原来的8倍</li>
+        </ul>
+      </li>
+      <li>SegWit2x
+        <ul>
+          <li>通过BIP91来激活隔离见证</li>
+          <li>BIP91，当连续两天内有80%的算力发出支持BIP91的信号的话，所有BIP91借点将拒绝不含BIP141准备信号的区块</li>
+          <li>激活后，2017年底或2018年初，SegWit2x将通过硬分叉把区块大小从1M增加至2M
+            <h2 id="硬分叉">硬分叉</h2>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>比特币规则协议发生改变，旧节点拒绝新节点创造的区块，区块链将分成两条独立的链</li>
+  <li>矿工需要选择其中一条进行挖矿</li>
+  <li>重放攻击
+    <ul>
+      <li>比特币分裂为比特币1，2，3</li>
+      <li>当1被交易时，很可能对应的2和3也被自动交易，再也拿不不回来</li>
+      <li>尘埃落定之前，不要转比特币</li>
+      <li>存放在一个能够帮你处理好分叉的可信赖的交易平台</li>
+    </ul>
+  </li>
+</ul>
 
-<pre><code class="language-Python">INSTALLED_APPS = [
-	......
-  'webapp',
-  ]
-</code></pre>
-
-<p>이미지 추가 테스트
- <img src="http://i1.bvimg.com/631779/4dc55b04d45c20b3.png" alt="Markdown" /></p>
+<h2 id="软分叉">软分叉</h2>
+<ul>
+  <li>比特币规则协议发生改变，旧节点并不会意识到规则的不同，将遵循改变后的规则，并接受新节点产生的区块</li>
+</ul>
 
     </article>
 
@@ -231,10 +284,10 @@ refer to:
     <section class="post-footer-item read-next">
       
       <div class="read-next-item">
-        <a href="/2018/02/08/django-project-blog-awms.html" class="read-next-link"></a>
+        <a href="/2018/01/10/Running-a-jupyter-notebook-server-on-local-pc.html" class="read-next-link"></a>
         <section>
-          <span>Django Project - Blog/AWMS</span>
-          <p>1. Create a django project1.1 Command »Deatils</p>
+          <span>Running a jupyter notebook server on local pc</span>
+          <p>$jupyter notebook --generate-config</p>
         </section>
         
      </div>
@@ -242,10 +295,10 @@ refer to:
 
       
       <div class="read-next-item">
-        <a href="/2018/02/02/get-a-month-period.html" class="read-next-link"></a>
+        <a href="/2018/01/08/blockchain-from-0-to-1-day4.html" class="read-next-link"></a>
           <section>
-            <span>Get a Month Period</span>
-            <p>  This article is aiming at getting the first day and the...</p>
+            <span>BlockChain from 0 to 1_day4</span>
+            <p>8.比特币的中游，交易</p>
           </section>
           
       </div>

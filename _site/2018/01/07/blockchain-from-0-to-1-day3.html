@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First Post - Everyday</title>
+    <title>BlockChain from 0 to 1_day3 - Everyday</title>
     <meta name="author"  content="유용">
-    <meta name="description" content="First Post">
-    <meta name="keywords"  content="python, django">
+    <meta name="description" content="BlockChain from 0 to 1_day3">
+    <meta name="keywords"  content="blockchain, bitcoin">
     <!-- Open Graph -->
-    <meta property="og:title" content="First Post - Everyday">
+    <meta property="og:title" content="BlockChain from 0 to 1_day3 - Everyday">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://localhost:4000/2018/02/07/first-try.html">
+    <meta property="og:url" content="http://localhost:4000/2018/01/07/blockchain-from-0-to-1-day3.html">
     <meta property="og:description" content="Mostly forgettable, occasionally remarkable">
     <meta property="og:site_name" content="Everyday">
     <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
@@ -54,16 +54,16 @@
       <div class="post-tags">
         
           
-            <a href="http://localhost:4000/tags#python" class="post-tag">python</a>
+            <a href="http://localhost:4000/tags#blockchain" class="post-tag">blockchain</a>
           
-            <a href="http://localhost:4000/tags#django" class="post-tag">django</a>
+            <a href="http://localhost:4000/tags#bitcoin" class="post-tag">bitcoin</a>
           
         
       </div>
-      <h1>First Post</h1>
+      <h1>BlockChain from 0 to 1_day3</h1>
       <div class="post-meta">
         <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">유용</a></></span>
-        <time class="post-meta-item" datetime="18-02-07"><i class="iconfont icon-date"></i>07 Feb 2018</time>
+        <time class="post-meta-item" datetime="18-01-07"><i class="iconfont icon-date"></i>07 Jan 2018</time>
       </div>
     </div>
     
@@ -73,22 +73,88 @@
     
 
     <article class="markdown-body">
-      <h1 id="1-django">1. django</h1>
+      <h1 id="6-比特币的上游挖矿">6. 比特币的上游，挖矿</h1>
 
-<pre><code class="language-Python">
-class Caselog(models.Model):
-  caseid = models.CharField(null=True)
+<h2 id="比特币产业划分为上中下游">比特币产业划分为上中下游</h2>
 
-</code></pre>
+<ul>
+  <li>上游，比特币的上产。围绕比特币挖矿的所有企业，大部分属于比特币的上游企业
+    <ul>
+      <li>矿机的设计、生产</li>
+      <li>矿场和发电设备的建设、矿池的运营</li>
+    </ul>
+  </li>
+  <li>中游，交易和存储。</li>
+  <li>下游，比特币的应用</li>
+  <li>中本聪发明比特币时，希望所有有人都可以参与，而不希望有专门挖矿的矿机产生</li>
+  <li>第一个以讴歌GPU挖矿的就是用10000比特币买披萨的程序员</li>
+</ul>
 
-<pre><code class="language-Python">INSTALLED_APPS = [
-	......
-  'webapp',
-  ]
-</code></pre>
+<h2 id="矿机的由来">矿机的由来</h2>
 
-<p>이미지 추가 테스트
- <img src="http://i1.bvimg.com/631779/4dc55b04d45c20b3.png" alt="Markdown" /></p>
+<ul>
+  <li>随着挖矿所需的算力不断上升，GPU也达到了算力的上限，为了突破这个局限，发明了挖矿的专业设备</li>
+  <li>矿机虽然也是计算机，但处理挖比特币，运行哈希运算之外，其它什么也干不了</li>
+</ul>
+
+<h2 id="如何选好一部矿机">如何选好一部矿机</h2>
+
+<ul>
+  <li>目前全球知名矿机厂家，比特大陆的蚂蚁矿机，张楠赓的阿瓦隆矿机</li>
+  <li>矿机的芯片需要非常强的研发技术实力，需要和不断上涨的算力赛跑，和科技进行接轨。出现过刚面世就被市场淘汰以及制作中就被淘汰的例子</li>
+  <li>选矿机一般是最新型号越好，一看算力，二看功耗，三看历史口碑。目前主流矿机算力14TT（14*10^13次/秒）</li>
+  <li>目前个人挖币已不可能，需要和矿池合作</li>
+</ul>
+
+<h2 id="如何参与挖矿">如何参与挖矿</h2>
+
+<ul>
+  <li>买来矿机，启动并接入网络，分三步
+    <ol>
+      <li>选择一个矿池，在矿池注册一个帐号，填入子账户和密码</li>
+      <li>填好比特币收币地址，可以使钱包地址也可以是交易平台的充值地址</li>
+      <li>矿机插上电源和网线，开机就可以运行</li>
+    </ol>
+  </li>
+  <li>后台界面可以查看矿机实时状态</li>
+  <li>矿机有两个指示灯，正常运行+故障</li>
+  <li>打败家庭挖矿的不是电费，而是噪音</li>
+</ul>
+
+<h2 id="矿场的成本">矿场的成本</h2>
+
+<ul>
+  <li>建设车根本、设备成本、维护成本（电力成本和人力成本）、网络成本、其他成本</li>
+  <li>矿场建设在选择电费便宜且稳定的地方，拥有一支7*24小时换班的团队，电费是成本的主要来源之一</li>
+  <li>矿场的设计，包括水冷、风冷、电路设计的优劣非常影响后期的维护和收益</li>
+  <li>早期矿场运营比较粗放，搭个架子，放上矿机，就开始运营。缺点是矿机损坏率严重，维修成本太高</li>
+  <li>通风、隔尘方案，室内温度和湿度控制，使矿场运营不断升级和进化，甚至出现了静音矿场</li>
+  <li>矿场运营风险：政策风险、技术风险、前期资金投入风险</li>
+  <li>一台比特币矿机的回本周期，根据比特币价格不同，算力变化的不同，大致为200-300天</li>
+</ul>
+
+<h2 id="矿池的定义">矿池的定义</h2>
+
+<ul>
+  <li>最早比特币世界里没有矿池这个角色，矿工自行计算，进行交易信息打包</li>
+  <li>随着挖矿的嗯越来越多，算力越来越大，单个矿工挖矿的概率越来越小，导致单个矿工的收益越来越不稳定</li>
+  <li>一个普通矿工，一个普通矿场可能一个月才挖到一个区块，因此大家想把分散的算力集中起来一起挖矿，然后再把挖到的奖励发给大家，于是产生了矿池</li>
+  <li>矿机负责哈希运算，矿池负责交易信息打包。即算力竞争和记账分别有矿机和矿池完成</li>
+  <li>矿池通过PPS和PPLNS说服矿工加入矿池
+    <ul>
+      <li>PPS，Pay Per Share，根据个人算力占矿池的比例，每天固定收益模式。首先矿池根据自己的算力站全网算力的比例，估算出矿池一天挖出几个区块，根据个人占矿池的比例，算出一天的报酬。挖多了不多给，挖少了不少给，固定报酬</li>
+      <li>PPLNS，Pay Per Last N Shares，动态收益模式，矿池挖的多多给，挖的少就少给，矿池运营不好有可能矿工没有收益</li>
+    </ul>
+  </li>
+  <li>全球前十矿池中，7家在中国</li>
+  <li>矿池是中国人建立的，并不代表接入的矿工也都是中国的</li>
+  <li>2017年5月份开始，朝鲜出现了比特币节点</li>
+</ul>
+
+<h2 id="成为一名在矿场维护的矿工">成为一名在矿场维护的矿工</h2>
+<ul>
+  <li>基本机械维修，看懂电路板，适应偏远地区的寂寞</li>
+</ul>
 
     </article>
 
@@ -231,10 +297,10 @@ refer to:
     <section class="post-footer-item read-next">
       
       <div class="read-next-item">
-        <a href="/2018/02/08/django-project-blog-awms.html" class="read-next-link"></a>
+        <a href="/2018/01/08/blockchain-from-0-to-1-day4.html" class="read-next-link"></a>
         <section>
-          <span>Django Project - Blog/AWMS</span>
-          <p>1. Create a django project1.1 Command »Deatils</p>
+          <span>BlockChain from 0 to 1_day4</span>
+          <p>8.比特币的中游，交易</p>
         </section>
         
      </div>
@@ -242,10 +308,10 @@ refer to:
 
       
       <div class="read-next-item">
-        <a href="/2018/02/02/get-a-month-period.html" class="read-next-link"></a>
+        <a href="/2018/01/06/blockchain-from-0-to-1-day2.html" class="read-next-link"></a>
           <section>
-            <span>Get a Month Period</span>
-            <p>  This article is aiming at getting the first day and the...</p>
+            <span>BlockChain from 0 to 1_day2</span>
+            <p>5.比特币价格的含义</p>
           </section>
           
       </div>

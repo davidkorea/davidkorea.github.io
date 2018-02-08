@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort data by jupyter 2 - Everyday</title>
+    <meta name="author"  content="유용">
+    <meta name="description" content="Sort data by jupyter 2">
+    <meta name="keywords"  content="jupyter, chart">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Sort data by jupyter 2 - Everyday">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2018/01/13/sort-data-by-jupyter-2.html">
+    <meta property="og:description" content="Mostly forgettable, occasionally remarkable">
+    <meta property="og:site_name" content="Everyday">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+
+<style type="text/css">
+  #my_centered_buttons { display: flex; justify-content: center; }
+  #my_centered_buttons_older { margin: 0 auto; width: 380px;}
+</style>
+  
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
+    <div>
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header class="g-banner post-header post-pattern-circuitBoard bgcolor-default post-no-cover" data-theme="default">
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#jupyter" class="post-tag">jupyter</a>
+          
+            <a href="http://localhost:4000/tags#chart" class="post-tag">chart</a>
+          
+        
+      </div>
+      <h1>Sort data by jupyter 2</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">유용</a></></span>
+        <time class="post-meta-item" datetime="18-01-13"><i class="iconfont icon-date"></i>13 Jan 2018</time>
+      </div>
+    </div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <h1 id="1get-the-data-we-need-by-find">1.get the data we need by .find({},{})</h1>
+<p>to find the only data that i need through monggodb find() ,find(),will not change database.
+find the data in 2018/01/09 and only show caseid,<code class="highlighter-rouge">loginfo.find({'date':'2018/01/09'},{'_id':0,'caseid':1})</code></p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4739924/WPfwEzTxmpscbpl3qiGw_1.png" alt="1.png" /></p>
+
+<p>to find data in a range,use $in,<code class="highlighter-rouge">loginfo.find({'date',{'$in':['2018/01/08','2018/01/09']}},{'_id':0,'date':1,'caseid':1})</code></p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4739924/w5JgGHn6QaoOf29r7XAw_2.png" alt="2.png" /></p>
+
+<p>the different format of data,yy-mm-dd,yy.mm.dd,yy/mm/dd</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">find</span><span class="p">():</span>
+    <span class="n">frags</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="s">'date'</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">frags</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">frags</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="s">'{}.{}.{}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">frags</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">frags</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">frags</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+    <span class="n">loginfo</span><span class="o">.</span><span class="n">update_one</span><span class="p">({</span><span class="s">'_id'</span><span class="p">:</span><span class="n">i</span><span class="p">[</span><span class="s">'_id'</span><span class="p">]},{</span><span class="s">'$set'</span><span class="p">:{</span><span class="s">'date'</span><span class="p">:</span><span class="n">date</span><span class="p">}})</span>
+</code></pre></div></div>
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4739924/OZ25yEvnRvGcwQDhpTsr_3.png" alt="3.png" /></p>
+
+<h1 id="2-let-codes-know-the-date">2. let codes know the date</h1>
+
+<p>import the libraries, <code class="highlighter-rouge">from datetime import timedelta, date</code>
+firstly, let’s ge to know how date and datedelta work</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</code></pre></div></div>
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4739924/NnfetC86QleEvKoEUIWV_1.png" alt="1.png" />
+NOW, let’s jump into the codes
+unfortunately, this is a wrong case to remind me not to do it again</p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4739924/OubwIE4KTHeR3J7a4q0t_1.jpg" alt="1.jpg" />
+we will input the date like ‘2018-01-01’ into the get_all_dates(). and for comparing the 2 dates, we need to split it first, and the combine them together by date() so that our code could compare them and give us a date period. BUT, when use date() to combine, transfer it into <code class="highlighter-rouge">int(date1.split('-'))</code>.</p>
+
+<p>you may think why not use date2 minus date1???. the problem is how to minus them and give us how many days between them???</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_all_dates</span><span class="p">(</span><span class="n">date1</span><span class="p">,</span> <span class="n">date2</span><span class="p">):</span>
+    <span class="n">start_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">date1</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">date1</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">date1</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="n">end_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">date2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">date2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">date2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="n">days</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">start_date</span> <span class="o">&lt;=</span> <span class="n">end_date</span><span class="p">:</span>
+        <span class="k">yield</span><span class="p">(</span><span class="n">start_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'</span><span class="si">%</span><span class="s">y/</span><span class="si">%</span><span class="s">m/</span><span class="si">%</span><span class="s">d'</span><span class="p">))</span>
+        <span class="n">start_date</span> <span class="o">=</span> <span class="n">start_date</span> <span class="o">+</span> <span class="n">days</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">get_all_dates</span><span class="p">(</span><span class="s">'2018/01/01'</span><span class="p">,</span><span class="s">'2018/01/10'</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4739924/Jswq4hMPTJyw6Bj9Yykz_2.jpg" alt="2.jpg" /></p>
+
+<p>you probably find that the date of the year is %yy, not %yyyy
+so, just change the code to <code class="highlighter-rouge">yield (start_date.strftime('%Y-%m-%d'))</code>, capital letter Y.</p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4739924/eCKNFOV7QjeKyj9pEsa9_1.jpg" alt="1.jpg" /></p>
+
+<h1 id="3-find-the-member--the-date">3. find the member &amp; the date</h1>
+
+<p>we need to find the volume of which member on which day.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_data_within</span><span class="p">(</span><span class="n">date1</span><span class="p">,</span><span class="n">date2</span><span class="p">,</span><span class="n">members</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="n">members</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">get_all_dates</span><span class="p">(</span><span class="n">date1</span><span class="p">,</span><span class="n">date2</span><span class="p">):</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">loginfo</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">'date'</span><span class="p">:</span><span class="n">date</span><span class="p">,</span><span class="s">'handle_by'</span><span class="p">:</span><span class="n">member</span><span class="p">}))</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">member</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_data_within</span><span class="p">(</span><span class="s">'2018/01/01'</span><span class="p">,</span><span class="s">'2018/01/10'</span><span class="p">,[</span><span class="s">'David Liu'</span><span class="p">])</span>
+</code></pre></div></div>
+<p>we use <code class="highlighter-rouge">for</code> loop to find who in which day did how much cases. that means each factor in members, and get_date_from() will generate a list named a, one by one.
+<img src="http://user-image.logdown.io/user/42937/blog/39533/post/4739924/A8dVcnW2Q3O83Oer3dqV_2.jpg" alt="2.jpg" /></p>
+
+<h1 id="4make-the-chart-by-using-the-data-above">4.Make the chart by using the data above</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_data_within</span><span class="p">(</span><span class="n">date1</span><span class="p">,</span> <span class="n">date2</span><span class="p">,</span> <span class="n">members</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="n">members</span><span class="p">:</span>
+        <span class="n">each_day_posts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">get_all_dates</span><span class="p">(</span><span class="n">date1</span><span class="p">,</span><span class="n">date2</span><span class="p">):</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">loginfo</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">'date'</span><span class="p">:</span><span class="n">date</span><span class="p">,</span> <span class="s">'handle_by'</span><span class="p">:</span><span class="n">member</span><span class="p">}))</span>
+            <span class="n">each_day_post</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+            <span class="n">each_day_posts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">each_day_post</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">'name'</span><span class="p">:</span> <span class="n">member</span><span class="p">,</span>
+            <span class="s">'data'</span><span class="p">:</span> <span class="n">each_day_posts</span><span class="p">,</span>
+            <span class="s">'type'</span><span class="p">:</span> <span class="s">'line'</span>
+        <span class="p">}</span>
+        <span class="k">yield</span> <span class="n">data</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">get_data_within</span><span class="p">(</span><span class="s">'2018/01/01'</span><span class="p">,</span> <span class="s">'2018/01/10'</span><span class="p">,</span> <span class="p">[</span><span class="s">'David Liu'</span><span class="p">,</span><span class="s">'Andy Tsao'</span><span class="p">]):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div></div>
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4739924/970Qf0UTCLqpdBEeRk4Q_1.jpg" alt="1.jpg" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'chart'</span><span class="p">:</span> <span class="p">{</span><span class="s">'zoomType'</span><span class="p">:</span><span class="s">'xy'</span><span class="p">},</span>
+    <span class="s">'title'</span> <span class="p">:</span> <span class="p">{</span><span class="s">'text'</span><span class="p">:</span> <span class="s">'volume'</span><span class="p">},</span>
+    <span class="s">'subtitle'</span> <span class="p">:</span> <span class="p">{</span><span class="s">'text'</span><span class="p">:</span> <span class="s">'by member'</span><span class="p">},</span>
+    <span class="s">'xAxis'</span> <span class="p">:</span> <span class="p">{</span><span class="s">'categories'</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">get_all_dates</span><span class="p">(</span><span class="s">'2018/01/01'</span><span class="p">,</span> <span class="s">'2018/01/10'</span><span class="p">)]},</span>
+    <span class="s">'yAxis'</span> <span class="p">:</span> <span class="p">{</span><span class="s">'title'</span><span class="p">:</span> <span class="p">{</span><span class="s">'text'</span><span class="p">:</span> <span class="s">'cases'</span><span class="p">}}</span>
+<span class="p">}</span>
+<span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">get_data_within</span><span class="p">(</span><span class="s">'2018/01/01'</span><span class="p">,</span> <span class="s">'2018/01/10'</span><span class="p">,</span> <span class="p">[</span><span class="s">'David Liu'</span><span class="p">,</span><span class="s">'Andy Tsao'</span><span class="p">])]</span>
+<span class="n">charts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="s">'inline'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4739924/HjXtvhUSSmiTTM42uV3d_1.jpg" alt="1.jpg" /></p>
+
+    </article>
+
+    
+      <!--
+Author: Ray-Eldath
+refer to:
+ - https://github.com/theme-next/hexo-theme-next/blob/4bfbd67b3edc6f11b00357da6e509e5281a896f1/layout/_macro/reward.swig and
+ - https://github.com/theme-next/hexo-theme-next/blob/e12bb0b27e16072eb82baa4c7dda1c41c8de7264/source/css/_common/components/post/post-reward.styl
+-->
+<style media="screen">
+  .reward {
+    padding: 5px 0;
+    margin: 20px auto;
+    width: 90%;
+    text-align: center;
+  }
+
+  .rewardButton {
+    background-color: #f44236;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: '微软雅黑';
+    font-size: 18px;
+    padding: 5px 25px;
+    text-decoration: none;
+  }
+
+  .rewardButton:hover {
+    background-color: #F7877F;
+  }
+
+  .wechat:hover p {
+    animation: roll 0.1s infinite linear;
+    -webkit-animation: roll 0.1s infinite linear;
+    -moz-animation: roll 0.1s infinite linear;
+  }
+
+  .alipay:hover p {
+    animation: roll 0.1s infinite linear;
+    -webkit-animation: roll 0.1s infinite linear;
+    -moz-animation: roll 0.1s infinite linear;
+  }
+
+  .QR {
+    padding-top: 20px;
+  }
+
+  .QR a {
+    border: 0;
+  }
+
+  .QR img {
+    width: 180px;
+    max-width: 100%;
+    display: inline-block;
+    margin: 0.8em 2em 0 2em;
+  }
+</style>
+
+<div class="reward">
+  <a class="rewardButton" title="请유용喝杯咖啡？">赞 赏</a>
+
+  <div class="QR" style="display: none;">
+    
+    <div>
+      <span style="font-family: '微软雅黑'; font-size: 18px; "></span>
+    </div>
+    
+
+    
+    <div class="wechat" style="display: inline-block">
+      <img class="wechat_qr" src="/assets/img/wechatpay.jpg" title="用微信请유용喝杯咖啡？" alt="用微信请유용喝杯咖啡？" />
+      <p>微信支付</p>
+    </div>
+    
+
+    
+    <div class="alipay" style="display: inline-block">
+      <img class="alipay_qr" src="/assets/img/alipay.jpg" title="用支付宝请유용喝杯咖啡？" alt="用支付宝请유용喝杯咖啡？" />
+      <p>支付宝</p>
+    </div>
+    
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("a.rewardButton").click(function() {
+      $("div.QR").slideToggle()
+    });
+  });
+</script>
+
+    
+
+    <!-- default share with h20 theme
+     
+    -->
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="/assets/img/profile1.png" alt="">
+      </div>
+      <div class="author-name" rel="author">유용</div>
+      <div class="bio">
+        <p>FoMo</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="mailto:lyfirst@naver.com" target="_blank">
+                    <i class="iconfont icon-email"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//github.com/davidkorea" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//facebook.com/100010686574858" target="_blank">
+                    <i class="iconfont icon-facebook"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2018/01/14/4767051.html" class="read-next-link"></a>
+        <section>
+          <span>개빡치네...</span>
+          <p>ㅅㅂ..빗썸출금신청ㅗ코이원가상계좌 법에따라발급불가GXS구매하자마 손해발생XRP절반정도밑짐BTCJL사용하...</p>
+        </section>
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2018/01/12/blockchain-from-0-to-1-day6.html" class="read-next-link"></a>
+          <section>
+            <span>BlockChain from 0 to 1_day6</span>
+            <p>12. 区块链的诞生</p>
+          </section>
+          
+      </div>
+      
+    </section>
+
+    
+    <section class="post-footer-item comment">
+      <div id="disqus_thread"></div>
+    </section>
+    
+
+    
+    <section class="post-footer-item comment">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzk5My8xMDUyOA">
+    </section>
+    
+  </section>
+
+  
+  <!--
+Author: Ray-Eldath
+refer to:
+ - https://github.com/theme-next/hexo-theme-next/blob/master/source/js/src/utils.js
+ - https://jingyan.baidu.com/article/b2c186c83ec846c46ef6ff80.html
+ - http://www.bkjia.com/jQuery/449205.html
+-->
+<style media="screen">
+  .scroll {
+    z-index: 10000;
+    display: none;
+    width: 56px;
+    height: 24px;
+    background: #222;
+    color: #fff;
+    line-height: 24px;
+    text-align: center;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+</style>
+<div class="scroll">
+  <i class="fa fa-arrow-up"></i>
+  <span class="scrollpercent"></span><span> %</span>
+</div>
+
+<script src="/assets/js/util.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    if (utils.isMobile()) {
+      $('.scroll').hide();
+      return;
+    }
+    $(window).scroll(function() {
+      let scrollValue = $(window).scrollTop();
+
+      var scrollPercentRounded = Math.round((scrollValue / utils.getContentVisibilityHeight()) * 100);
+      var scrollPercentMaxed = (scrollPercentRounded > 100) ? 100 : scrollPercentRounded;
+
+      $('.scrollpercent').html(scrollPercentMaxed);
+      scrollValue > 100 ? $('.scroll').fadeIn() : $('.scroll').fadeOut();
+    });
+
+    $('.scroll').click(function() {
+      $('html, body').animate({
+        scrollTop: 0
+      }, 300);
+    })
+  })
+</script>
+
+
+
+<footer class="g-footer">
+  <section>Everyday ©
+  
+  
+    2017
+    -
+  
+  2018
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          ,
+          
+        
+          'twitter'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+
+  <script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document,
+        s = d.createElement('script');
+      /*写入自己的disqus信息*/
+      s.src = 'https://davidkor.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+
+</script>
+
+
+
+<script>
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+
+      if (typeof LivereTower === 'function') {
+        return;
+      }
+
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+
+  </script>
+
+
+  <noscript>为正常使用评论功能请激活JavaScript。</noscript>
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a7bcee5ba9eb132"></script>
+
+</body>
+
+</html>

@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First Post - Everyday</title>
+    <title>Django Project Created by Pycharm Community + Command - Everyday</title>
     <meta name="author"  content="유용">
-    <meta name="description" content="First Post">
-    <meta name="keywords"  content="python, django">
+    <meta name="description" content="Django Project Created by Pycharm Community + Command">
+    <meta name="keywords"  content="django">
     <!-- Open Graph -->
-    <meta property="og:title" content="First Post - Everyday">
+    <meta property="og:title" content="Django Project Created by Pycharm Community + Command - Everyday">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://localhost:4000/2018/02/07/first-try.html">
+    <meta property="og:url" content="http://localhost:4000/2018/01/24/Django-Project-Created-by-Pycharm-Community-Command.html">
     <meta property="og:description" content="Mostly forgettable, occasionally remarkable">
     <meta property="og:site_name" content="Everyday">
     <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
@@ -54,16 +54,14 @@
       <div class="post-tags">
         
           
-            <a href="http://localhost:4000/tags#python" class="post-tag">python</a>
-          
             <a href="http://localhost:4000/tags#django" class="post-tag">django</a>
           
         
       </div>
-      <h1>First Post</h1>
+      <h1>Django Project Created by Pycharm Community + Command</h1>
       <div class="post-meta">
         <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">유용</a></></span>
-        <time class="post-meta-item" datetime="18-02-07"><i class="iconfont icon-date"></i>07 Feb 2018</time>
+        <time class="post-meta-item" datetime="18-01-24"><i class="iconfont icon-date"></i>24 Jan 2018</time>
       </div>
     </div>
     
@@ -73,22 +71,116 @@
     
 
     <article class="markdown-body">
-      <h1 id="1-django">1. django</h1>
+      <blockquote>
+  <p>This is an updated approach to create Django project by Pycharm community version which is much easier and more reasonable than the former one: <a href="http://davidkor.logdown.com/posts/4716406"> Django Web created by Pycharm+Command</a></p>
+</blockquote>
+
+<h1 id="1pycharm---new-project">1.Pycharm - new project</h1>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5298745/jRV2IJYmSQqJb9zZEICB_1.png" alt="1.png" /></p>
+
+<p>we don’t use pycharm to create a virtual environment.</p>
+
+<h1 id="2command">2.Command</h1>
+<p>$<code class="highlighter-rouge">cd PycharmProjects</code></p>
+
+<p>$<code class="highlighter-rouge">cd 180124_3</code></p>
+
+<p>$<code class="highlighter-rouge">python3 -m venv my_venv</code></p>
+
+<p>$<code class="highlighter-rouge">cd my_venv</code></p>
+
+<p>$<code class="highlighter-rouge">source bin/activate</code></p>
+
+<p>$<code class="highlighter-rouge">pip install django</code></p>
+
+<p>$<code class="highlighter-rouge">django-admin.py startproject my_project</code></p>
+
+<p>$<code class="highlighter-rouge">cd my_project</code></p>
+
+<p>$<code class="highlighter-rouge">python manage.py migrate</code></p>
+
+<p>$<code class="highlighter-rouge">python manage.py runserver</code></p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5298745/53qZkHTJ2SBSr8BvquAg_2.png" alt="2.png" /></p>
+
+<h1 id="3run-1270018000">3.Run 127.0.0.1:8000</h1>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5298745/PvTmLclmRU2j92agJ1KR_3.png" alt="3.png" /></p>
+
+<h1 id="4python-managepy-startapp-django_web">4.python manage.py startapp django_web</h1>
+<p>$<code class="highlighter-rouge">python manage.py startapp django_web</code></p>
+
+<h1 id="5add-django_web-to-installed-app">5.Add django_web to installed app</h1>
+
+<p>my_project/settings.py</p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5298745/JdT46TmIQPWt6dP2Jtsi_4.png" alt="4.png" /></p>
+
+<h1 id="6mkdir-templates-under-django_web">6.mkdir templates under django_web</h1>
+
+<p>mkdir templates under django_web
+copy index.html to templates folder</p>
+
+<h1 id="7viewspy">7.views.py</h1>
+
+<p>django_web/views.py</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">'index.html'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5298745/LoRWZnGeTSit0iaefvQA_5.png" alt="5.png" /></p>
+
+<h1 id="8urlspy">8.urls.py</h1>
+<p>my_project/urls.py</p>
 
 <pre><code class="language-Python">
-class Caselog(models.Model):
-  caseid = models.CharField(null=True)
+from django_web.views import index
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    url(r'^index/', index),
+]
 
 </code></pre>
 
-<pre><code class="language-Python">INSTALLED_APPS = [
-	......
-  'webapp',
-  ]
-</code></pre>
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5298745/C3eO5JciS5GDhuzIxuFK_6.png" alt="6.png" /></p>
 
-<p>이미지 추가 테스트
- <img src="http://i1.bvimg.com/631779/4dc55b04d45c20b3.png" alt="Markdown" /></p>
+<h1 id="9get-access-to-1270018000index">9.Get access to 127.0.0.1:8000/index</h1>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5298745/Z08OaWjpTt2qK3CYwr34_7.png" alt="7.png" /></p>
+
+<p>it can run normally except css. then we will continue to add css to index.html</p>
+
+<h1 id="10static">10.”static”</h1>
+<p>$<code class="highlighter-rouge">mkdir static</code>,  copy ‘css’ and ‘images’folder to “static”</p>
+
+<p>go to templates/index.html, put the following code on the 1st line of this html file</p>
+<pre><code class="language-Python">
+  {% load static %}
+
+</code></pre>
+<p>change all the css styles and image paths by using <code class="highlighter-rouge">{% static 'oringin path' %}</code>,sample as follows</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+&lt;link rel="stylesheet" type="text/css" href="{% static 'css/semantic.css' %}"&gt;
+&lt;img src="{% static 'images/0001.jpg' %}" width="100" height="91"&gt;
+
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5298745/L90aIjAHSrGWwzv7U2YX_1.png" alt="1.png" /></p>
+
+<p>but, the “static files” may not be found by codes, so we need to set the absolute path in settings.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">STATICFILES_DIRS</span> <span class="o">=</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s">"static"</span><span class="p">),)</span>
+
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5298745/zSW8jhhR0mNfUcmOJrYR_2.png" alt="2.png" /></p>
+
+<p>Done, html can run with css and give up a wonderful page!!</p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5298745/zrK26yiTKiYOeuLKod5A_3.png" alt="3.png" /></p>
 
     </article>
 
@@ -231,10 +323,10 @@ refer to:
     <section class="post-footer-item read-next">
       
       <div class="read-next-item">
-        <a href="/2018/02/08/django-project-blog-awms.html" class="read-next-link"></a>
+        <a href="/2018/01/25/Django-Template-Language.html" class="read-next-link"></a>
         <section>
-          <span>Django Project - Blog/AWMS</span>
-          <p>1. Create a django project1.1 Command »Deatils</p>
+          <span>Django Template Language</span>
+          <p>장고 템플릿 언어  All the steps should be finished before start....</p>
         </section>
         
      </div>
@@ -242,10 +334,10 @@ refer to:
 
       
       <div class="read-next-item">
-        <a href="/2018/02/02/get-a-month-period.html" class="read-next-link"></a>
+        <a href="/2018/01/24/Aspiring-data-scientists-and-people-who-are-completely-new-to-the-field.html" class="read-next-link"></a>
           <section>
-            <span>Get a Month Period</span>
-            <p>  This article is aiming at getting the first day and the...</p>
+            <span>Aspiring data scientists and people who are completely new to the field</span>
+            <p>  “Big data is like teenage sex: everyone talks about it,...</p>
           </section>
           
       </div>

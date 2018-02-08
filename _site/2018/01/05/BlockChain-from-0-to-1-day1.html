@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlockChain from 0 to 1_day1 - Everyday</title>
+    <meta name="author"  content="유용">
+    <meta name="description" content="BlockChain from 0 to 1_day1">
+    <meta name="keywords"  content="blockchain, bitcoin">
+    <!-- Open Graph -->
+    <meta property="og:title" content="BlockChain from 0 to 1_day1 - Everyday">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2018/01/05/BlockChain-from-0-to-1-day1.html">
+    <meta property="og:description" content="Mostly forgettable, occasionally remarkable">
+    <meta property="og:site_name" content="Everyday">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+
+<style type="text/css">
+  #my_centered_buttons { display: flex; justify-content: center; }
+  #my_centered_buttons_older { margin: 0 auto; width: 380px;}
+</style>
+  
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
+    <div>
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header class="g-banner post-header post-pattern-circuitBoard bgcolor-default post-no-cover" data-theme="default">
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#blockchain" class="post-tag">blockchain</a>
+          
+            <a href="http://localhost:4000/tags#bitcoin" class="post-tag">bitcoin</a>
+          
+        
+      </div>
+      <h1>BlockChain from 0 to 1_day1</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">유용</a></></span>
+        <time class="post-meta-item" datetime="18-01-05"><i class="iconfont icon-date"></i>05 Jan 2018</time>
+      </div>
+    </div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <h1 id="1人类社会货币的演变">1.人类社会货币的演变</h1>
+
+<ul>
+  <li>2008年金融危机，美国政府可以无限增发货币因为只有它有记账权
+    <ul>
+      <li>不需要一个中心来记账，大家都有权记账货币不能超发，整个账本完全公开透明</li>
+    </ul>
+  </li>
+  <li>银行或是第三方支付机构，高度依赖其自身信用作为担保，中心化方式记账，存在黑客攻击，数据篡改危险
+    <ul>
+      <li>由只有银行自己记账到人人参与记账，去中心化，更安全</li>
+    </ul>
+  </li>
+  <li>区块链技术保证每人手中的账本统一
+    <ul>
+      <li>比特币网络大约每0分钟出一页账单，即区块。类似每十分钟出一道数学题，比赛谁算的快。赢得比赛即获得该区块的记账权以及获得新的比特币作为奖励。即，算的快的计算机将“挖”到一定数量的比特币。</li>
+      <li>最初每个区块奖励50个比特币，大约每4年减半一次，一直到2140年全部奖励耗尽。</li>
+      <li>一页账单生成后，紧接着进行下一单的竞争</li>
+      <li>只有掌握全网算力的51%以上，理论上才能改掉某一页账本的数据。社区会警惕并施压超过30%的计算力量，因此恶意数据修改几乎无可能</li>
+      <li>比特币实现了去中心，发行，记账，激励为一整套的发明。其底层技术就是区块链</li>
+    </ul>
+  </li>
+  <li>实现价值的传递
+    <ul>
+      <li>互联网传递信息：照片发给朋友，你有一份，发给朋友一个普本，即朋友有个同样的备份。但货币，版权，票据等价值载体传递时，不可能出现自己手里100块，转给朋友100，自己还有100。</li>
+      <li>价值的传递：信息的转移和价值的转移同时进行。</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="2比特币的转账机制及必修名词">2.比特币的转账机制及必修名词</h1>
+
+<ul>
+  <li>比特币转账机制
+    <ul>
+      <li>登录钱包</li>
+      <li>选择从自己哪个比特币地址转账给对方</li>
+      <li>对方钱包地址，填写数额，手续费（自己选择手续费多少，不给可能会被矿工拒绝确认），签名，提交比特币网络</li>
+    </ul>
+  </li>
+  <li>算力
+    <ul>
+      <li>解答比特币数学题：计算机做随即的哈希碰撞，每秒能做多少次哈希碰撞，代表“算力”</li>
+      <li>目前主流矿机为10T左右计算量级，即一台矿机每秒至少10的13次方哈希碰撞</li>
+      <li>一个矿工所掌握矿机占全网总算力的百分比是多少，代表其在这10分钟竞争中获胜的概率为多少</li>
+    </ul>
+  </li>
+  <li>工作量证明pow
+    <ul>
+      <li>矿工最先计算出数学题的正确答案，说明这个矿工付出了工作量，是一个有权利记账的人。他会把之前打包好的网络上的交易记录到一页账本上，同步给其它人。其他人通过工作量证明来信任他的记账权以及这个账单上的记录</li>
+    </ul>
+  </li>
+  <li>权益证明pos
+    <ul>
+      <li>拥有越多比特币，记账权利获取的概率越大</li>
+      <li>这种证明机制在一定程度上缩短了达成共识的时间，不需要消耗能源挖矿</li>
+    </ul>
+  </li>
+  <li>区块
+    <ul>
+      <li>比特币网络是一个巨大的账本，平均每十分钟诞生账本的一页，称之为“区块”</li>
+      <li>包括一：此区块的身份信息，诞生时间，第几个，哈希值，区块大小。用于证明这个区块是正确的，是沿着上一个区块往下的取消，也给下一个区块提供了验证身份的信息</li>
+      <li>包括二：这段时间内网络里产生的比特币之间的交易（非实体货币购买比特币），即这个账本记录的每一笔交易</li>
+    </ul>
+  </li>
+  <li>minning挖矿</li>
+  <li>minner矿工</li>
+  <li>hash哈希</li>
+  <li>Proof of Work</li>
+  <li>block</li>
+  <li>blockchain
+    <h1 id="3比特币转账运行的原理">3.比特币转账运行的原理</h1>
+  </li>
+  <li>比特币发行机制
+    <ul>
+      <li>总量2100万</li>
+      <li>1BTC可分割到小数点后8位，即一亿份</li>
+      <li>每十分钟出一页账单。即每个区块问世，伴随奖励的比特币一起问世，最初每个区块奖励50个比特币。</li>
+      <li>每21万个区块，奖励减半，到2140年，奖励为0。21万个区块，平均10分钟1个，理论上1458.3天，即3.99年</li>
+      <li>区块高度，用来标记当前为第几个区块</li>
+    </ul>
+  </li>
+  <li>比特币记账
+    <ul>
+      <li>所有矿工通过竞争哈希计算的方式，争夺记账权。即每十分钟一道数学题被丢到网络中，谁先计算出正确答案，谁将会的本轮的记账权利。紧接着，大家以此页账单为准，争夺下一账单的记账权利。通过这种pow共识机制，实现区中心化的账本</li>
+      <li>获得记账权利的同时，将获得比特币作为奖励，即挖到比特币。以及获得记录在此账单里面交易的手续费，一般一个区块手续费为零点几到两个比特币</li>
+    </ul>
+  </li>
+  <li>比特币交易
+    <ul>
+      <li>每个区块大小为1M字节，大概容纳数千笔交易</li>
+      <li>当网络中交易较少时，等待矿工确认的时间可能只需要10分钟（挖到下一个区块的矿工将记录此间发生的交易）</li>
+      <li>当网络中交易较多时，将多等待一个或多个10分钟，或更长时间。矿工将选择记录手续高的交易</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="4比特币的技术来源">4.比特币的技术来源</h1>
+
+<ul>
+  <li>去中心化
+    <ul>
+      <li>通过非对称加密实现验证真伪，所有节点（nodes）都能验证交易真伪</li>
+      <li>加密和解密使用不同的密钥即为非对称加密，加密和解密使用相同的密钥即为对称加密</li>
+      <li>私钥，只有拥有者用来加密</li>
+      <li>公钥，公开给需要的人，用于解密</li>
+      <li>公钥和私钥可以互相验证对方</li>
+      <li>A发信给B，A使用B的公钥加密后发送给B，B用自己的私钥进行解密。别人收到这条信息后无法解密</li>
+      <li>比特比世界中：比特币地址可理解为公钥，签名、输密码的过程理解为私钥的签名</li>
+      <li>每个矿工拿到一笔转账交易时，通过验证公钥和私钥是否匹配，来验证交易是否合法</li>
+      <li>每个人保管好自己的私钥，知道自己的地址和对方的比特币地址，就能够安全的交易，无需中心化的机构来验证交易真伪</li>
+      <li>非对称加密+分布式存储保证了比特币的去中心化</li>
+    </ul>
+  </li>
+  <li>无法被篡改
+    <ul>
+      <li>工作量证明+最长链机制保证了比特币无法被篡改</li>
+      <li>工作量证明，类似毕业证、驾驶证，即通过一定时间学习或掌握某种知识或技能，通过结果证明你曾经做过某事，做过一定量的工作</li>
+      <li>工作量证明的特点：对于执行的一方，难度适中，对于验证的一方，非常容易验证。因此矿工通过哈希计算获得正确答案，其它节点通过非常简单的验证就可以同意其记账，并同步账本。打上时间戳后，进行下一轮挖矿</li>
+      <li>篡改某个区块高度上的交易信息：从这个区块开始，把之后的区块全部重新计算一遍，再把账本同步给其他人。而在他重算的同时，其它矿工在原有链上继续前进，因为默认最长链为唯一正确的链。若想篡改，需要在很短的时间内赶上现有最长链的区块高度，已让其它矿工误以为这是最长的“正确”链（账本）。除非拥有至少50%的算力，否则机本无可能篡改</li>
+      <li>目前全网算力约为8E哈希每秒，即每秒进行8<em>10^18<code class="highlighter-rouge">$8*10^18$</code>次方次计算，目前主流矿机算力10T左右，即每秒10</em>13次计算。若要拥有51%的算力，需要矿机=1/2 * 8E18/1E13 = 4E5 = 400000，即40万台矿机。按照一台矿机1万人民币，则设备投入为40亿元，况且矿机生产赶不上销量，买不到现货。老矿机不断被淘汰，大于10T的新矿机出世，全网算力会不断提高。购买机器的速度很难赶上算力上涨的速度。因此，从投资回报率角度来看，如果不是为了追逐60，70亿以上的利益，并且有雄厚的资金和技术支持，一般很不会想去进行算力攻击</li>
+      <li>试想攻击发生，比特币的区块连被篡改，则比特币会变得一文不值，通过篡改获得的收益也将不复存在</li>
+    </ul>
+  </li>
+  <li>不可伪造
+    <ul>
+      <li>UTXO，Unspent Transaction Output 未花费的交易输出，比特币交易生成及验证的核心概念</li>
+      <li>从别人那里拿到的钱，我还没花出去，才能给你。即未花费的交易输出</li>
+      <li>我转给你1比特币，一定是别人给我的、我还没有进行花费的比特币。可以一直往前追溯到矿工挖出来的那个区块</li>
+      <li>UTXO保证了比特币不可伪造，不可双花/重复支付，解决的信任问题，使得比特币可以广泛被认可</li>
+    </ul>
+  </li>
+</ul>
+
+    </article>
+
+    
+      <!--
+Author: Ray-Eldath
+refer to:
+ - https://github.com/theme-next/hexo-theme-next/blob/4bfbd67b3edc6f11b00357da6e509e5281a896f1/layout/_macro/reward.swig and
+ - https://github.com/theme-next/hexo-theme-next/blob/e12bb0b27e16072eb82baa4c7dda1c41c8de7264/source/css/_common/components/post/post-reward.styl
+-->
+<style media="screen">
+  .reward {
+    padding: 5px 0;
+    margin: 20px auto;
+    width: 90%;
+    text-align: center;
+  }
+
+  .rewardButton {
+    background-color: #f44236;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: '微软雅黑';
+    font-size: 18px;
+    padding: 5px 25px;
+    text-decoration: none;
+  }
+
+  .rewardButton:hover {
+    background-color: #F7877F;
+  }
+
+  .wechat:hover p {
+    animation: roll 0.1s infinite linear;
+    -webkit-animation: roll 0.1s infinite linear;
+    -moz-animation: roll 0.1s infinite linear;
+  }
+
+  .alipay:hover p {
+    animation: roll 0.1s infinite linear;
+    -webkit-animation: roll 0.1s infinite linear;
+    -moz-animation: roll 0.1s infinite linear;
+  }
+
+  .QR {
+    padding-top: 20px;
+  }
+
+  .QR a {
+    border: 0;
+  }
+
+  .QR img {
+    width: 180px;
+    max-width: 100%;
+    display: inline-block;
+    margin: 0.8em 2em 0 2em;
+  }
+</style>
+
+<div class="reward">
+  <a class="rewardButton" title="请유용喝杯咖啡？">赞 赏</a>
+
+  <div class="QR" style="display: none;">
+    
+    <div>
+      <span style="font-family: '微软雅黑'; font-size: 18px; "></span>
+    </div>
+    
+
+    
+    <div class="wechat" style="display: inline-block">
+      <img class="wechat_qr" src="/assets/img/wechatpay.jpg" title="用微信请유용喝杯咖啡？" alt="用微信请유용喝杯咖啡？" />
+      <p>微信支付</p>
+    </div>
+    
+
+    
+    <div class="alipay" style="display: inline-block">
+      <img class="alipay_qr" src="/assets/img/alipay.jpg" title="用支付宝请유용喝杯咖啡？" alt="用支付宝请유용喝杯咖啡？" />
+      <p>支付宝</p>
+    </div>
+    
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("a.rewardButton").click(function() {
+      $("div.QR").slideToggle()
+    });
+  });
+</script>
+
+    
+
+    <!-- default share with h20 theme
+     
+    -->
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="/assets/img/profile1.png" alt="">
+      </div>
+      <div class="author-name" rel="author">유용</div>
+      <div class="bio">
+        <p>FoMo</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="mailto:lyfirst@naver.com" target="_blank">
+                    <i class="iconfont icon-email"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//github.com/davidkorea" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//facebook.com/100010686574858" target="_blank">
+                    <i class="iconfont icon-facebook"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2018/01/06/Crawl-data-from-58-com-2nd-hand-products.html" class="read-next-link"></a>
+        <section>
+          <span>Crawl data from 58.com 2nd-hand products</span>
+          <p>0.Workflow</p>
+        </section>
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2018/01/04/How-to-activate-Pycharm-Professional.html" class="read-next-link"></a>
+          <section>
+            <span>How to activate Pycharm Professional </span>
+            <p>1.Get activation code from http://idea.lanyus.com/2.Downl...</p>
+          </section>
+          
+      </div>
+      
+    </section>
+
+    
+    <section class="post-footer-item comment">
+      <div id="disqus_thread"></div>
+    </section>
+    
+
+    
+    <section class="post-footer-item comment">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzk5My8xMDUyOA">
+    </section>
+    
+  </section>
+
+  
+  <!--
+Author: Ray-Eldath
+refer to:
+ - https://github.com/theme-next/hexo-theme-next/blob/master/source/js/src/utils.js
+ - https://jingyan.baidu.com/article/b2c186c83ec846c46ef6ff80.html
+ - http://www.bkjia.com/jQuery/449205.html
+-->
+<style media="screen">
+  .scroll {
+    z-index: 10000;
+    display: none;
+    width: 56px;
+    height: 24px;
+    background: #222;
+    color: #fff;
+    line-height: 24px;
+    text-align: center;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+</style>
+<div class="scroll">
+  <i class="fa fa-arrow-up"></i>
+  <span class="scrollpercent"></span><span> %</span>
+</div>
+
+<script src="/assets/js/util.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    if (utils.isMobile()) {
+      $('.scroll').hide();
+      return;
+    }
+    $(window).scroll(function() {
+      let scrollValue = $(window).scrollTop();
+
+      var scrollPercentRounded = Math.round((scrollValue / utils.getContentVisibilityHeight()) * 100);
+      var scrollPercentMaxed = (scrollPercentRounded > 100) ? 100 : scrollPercentRounded;
+
+      $('.scrollpercent').html(scrollPercentMaxed);
+      scrollValue > 100 ? $('.scroll').fadeIn() : $('.scroll').fadeOut();
+    });
+
+    $('.scroll').click(function() {
+      $('html, body').animate({
+        scrollTop: 0
+      }, 300);
+    })
+  })
+</script>
+
+
+
+<footer class="g-footer">
+  <section>Everyday ©
+  
+  
+    2017
+    -
+  
+  2018
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          ,
+          
+        
+          'twitter'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+
+  <script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document,
+        s = d.createElement('script');
+      /*写入自己的disqus信息*/
+      s.src = 'https://davidkor.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+
+</script>
+
+
+
+<script>
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+
+      if (typeof LivereTower === 'function') {
+        return;
+      }
+
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+
+  </script>
+
+
+  <noscript>为正常使用评论功能请激活JavaScript。</noscript>
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a7bcee5ba9eb132"></script>
+
+</body>
+
+</html>

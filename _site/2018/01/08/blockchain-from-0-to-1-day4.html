@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First Post - Everyday</title>
+    <title>BlockChain from 0 to 1_day4 - Everyday</title>
     <meta name="author"  content="유용">
-    <meta name="description" content="First Post">
-    <meta name="keywords"  content="python, django">
+    <meta name="description" content="BlockChain from 0 to 1_day4">
+    <meta name="keywords"  content="blockchain bitcoin">
     <!-- Open Graph -->
-    <meta property="og:title" content="First Post - Everyday">
+    <meta property="og:title" content="BlockChain from 0 to 1_day4 - Everyday">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://localhost:4000/2018/02/07/first-try.html">
+    <meta property="og:url" content="http://localhost:4000/2018/01/08/blockchain-from-0-to-1-day4.html">
     <meta property="og:description" content="Mostly forgettable, occasionally remarkable">
     <meta property="og:site_name" content="Everyday">
     <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
@@ -54,16 +54,14 @@
       <div class="post-tags">
         
           
-            <a href="http://localhost:4000/tags#python" class="post-tag">python</a>
-          
-            <a href="http://localhost:4000/tags#django" class="post-tag">django</a>
+            <a href="http://localhost:4000/tags#blockchain%20bitcoin" class="post-tag">blockchain bitcoin</a>
           
         
       </div>
-      <h1>First Post</h1>
+      <h1>BlockChain from 0 to 1_day4</h1>
       <div class="post-meta">
         <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">유용</a></></span>
-        <time class="post-meta-item" datetime="18-02-07"><i class="iconfont icon-date"></i>07 Feb 2018</time>
+        <time class="post-meta-item" datetime="18-01-08"><i class="iconfont icon-date"></i>08 Jan 2018</time>
       </div>
     </div>
     
@@ -73,22 +71,134 @@
     
 
     <article class="markdown-body">
-      <h1 id="1-django">1. django</h1>
+      <h1 id="8比特币的中游交易">8.比特币的中游，交易</h1>
 
-<pre><code class="language-Python">
-class Caselog(models.Model):
-  caseid = models.CharField(null=True)
+<h2 id="市场深度">市场深度</h2>
+<ul>
+  <li>市场深度，有在同一价位上所有未成交的买单或者卖单构成</li>
+  <li>是指在交易平台上能够承受多大大额交易时币价不出现大幅波动的能力</li>
+  <li>市场深度越深则该市场越稳定、越成熟</li>
+  <li>bithumb上卖出手中1000个比特币
+    <ul>
+      <li>实时价格，1BTC=10000元</li>
+      <li>bithumb上10000的买单有500</li>
+      <li>9999的买单300个</li>
+      <li>9998的买单200个</li>
+      <li>当卖出这1000个比特币之后，比特币实时价格下跌2元 !!!????????</li>
+      <li>收益为 500<em>10000+300</em>9999+200*9998 = 999300元</li>
+    </ul>
+  </li>
+  <li>假设这个平台深度不好
+    <ul>
+      <li>10000的买单200个，一知道9900的买单才满足了1000个比特币交易的需求</li>
+      <li>这是全部卖出后，价格会下跌100元 !!!???????????</li>
+    </ul>
+  </li>
+</ul>
 
-</code></pre>
+<h2 id="市场流动性">市场流动性</h2>
 
-<pre><code class="language-Python">INSTALLED_APPS = [
-	......
-  'webapp',
-  ]
-</code></pre>
+<ul>
+  <li>在市场迅速购买比特币而不受阻的能力</li>
+  <li>流动性越好，表现在等待交易成交的时间越短</li>
+  <li>bithumb上购买10比特币，交易花了5秒。其它平台花了5分钟，那么将要承受这5分钟内价格波动的风险</li>
+  <li>API用户，类似金融市场里的自动化交易，也称量化交易。交易员根据自己的策略，设置好交易策略好参数，启动程序，就可以自动化交易</li>
+  <li>有的量化交易策略就是套利策略，当策略检测到价格到多少的时候，就会在价高的平台卖出，价低的平台买入</li>
+  <li>量化交易是一个成熟的交易市场的构成部分</li>
+  <li>MTGox，2010年7月成立，后来卖给移居日本的法国人，一度占居全球70%的交易量。2014年2月，遭黑客攻击盗取85万比特币后破产</li>
+  <li>2014上半年-2017年1月，中国成为比特币全球最大的交易市场，不收交易手续费</li>
+  <li>2017年1月，央行等监管部门进驻到交易平台，平台开始收取手续费，进行反洗钱系统升级</li>
+  <li>此后，日本重新成为全球最大交易市场</li>
+  <li>法币排名是，日本，美国，中国，2017年9月后，韩币超过人民币成为第三</li>
+  <li>场内交易
+    <ul>
+      <li>平台检测到实时价格到达你指定的购买价格时，自动匹配卖家和买家完成交易，无需知道交易对方是谁，买卖价格公开，是一种交易撮合机制</li>
+      <li>类似于买股票，交易为“T+0”，没有开盘时间，没有涨跌幅限制，随时买入卖出，提出平台</li>
+    </ul>
+  </li>
+  <li>场外交易
+    <ul>
+      <li>又称作OTC交易市场</li>
+      <li>自行寻周交易对方，商量交易价格</li>
+    </ul>
+  </li>
+</ul>
 
-<p>이미지 추가 테스트
- <img src="http://i1.bvimg.com/631779/4dc55b04d45c20b3.png" alt="Markdown" /></p>
+<h2 id="币币交易">币币交易</h2>
+
+<ul>
+  <li>目前传动法定货币对数字资产的交易已经不能满足人们的投资需求，现在全球一半以上比特币交易来自于币币交易</li>
+  <li>交易对，用一种资产去定义另一种资产
+    <ul>
+      <li>用美元去定价比特币，则形成以一个比特币与美元的交易对</li>
+      <li>用比特币去定价莱特币，形成莱特币与比特币的交易对</li>
+    </ul>
+  </li>
+  <li>币币交易，用一种数字资产去直接换取另一种数字资产，中间不涉及任何一种法定货币的中转或结算</li>
+  <li>币币交易的价格就是交易对的基础货币的计价价格</li>
+</ul>
+
+<h1 id="9比特币的中游存储">9.比特币的中游，存储</h1>
+
+<ul>
+  <li>下载一个比特币钱包，它能生成无数个钱包地址，每个地址都可以存入比特币。每个地址都对应一把私钥，每个私钥对应一个比特币地址。用私钥去花费比特币的方式，就是对这个私钥拥有的未花费UTXO的比特币进行签名，签名的过程也就是加密的过程</li>
+  <li>私钥是随即生成的，那么安全吗？可以穷尽所有的排列组合吗？是否会出现两个完全一样的私钥呢？
+    <ul>
+      <li>密码学上来说，私钥是安全的</li>
+      <li>私钥有32个字节组成，1个字节有8位二进制数，一个二进制数有0和1两个可能性</li>
+      <li>私钥的总数=2^256，这个数字已经超越了全宇宙的原子的总数，耗尽整个太阳的能量也无法穷尽</li>
+      <li>并不是说不可能出现重复的私钥，而是说不可能通过穷尽所有可能来找到私钥</li>
+      <li>如果忘掉私钥，则其对应的比特币将无法花费</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="比特币钱包分类">比特币钱包分类</h2>
+
+<ul>
+  <li>一个管理地址、私钥等的工具</li>
+  <li>比特币钱包 = 实际钱包，每个地址 = 一张银行卡，私钥 = 银行卡密码</li>
+  <li>在线钱包和离线钱包
+    <ul>
+      <li>在线钱包，联网运行的钱包，热钱包</li>
+      <li>离线钱包，零钱包，更为安全，操作复杂，适合有技术背景的人去使用</li>
+    </ul>
+  </li>
+  <li>全节点钱包
+    <ul>
+      <li>包含从第一个区块至今的所有数据，下载比特币网络所有的节点，150G左右</li>
+      <li>完全去中心化的钱包</li>
+      <li>bitcoin core，官方核心钱包</li>
+      <li>需要经常开着电脑去同步全节点数据，否则使用时需要花时间先去同步才能使用</li>
+    </ul>
+  </li>
+  <li>轻钱包
+    <ul>
+      <li>只维护与你有关的交易相关数据，同步其它数据，也是一种去中心化的钱包</li>
+    </ul>
+  </li>
+  <li>中心化钱包
+    <ul>
+      <li>依赖于运行这个钱包的公司，读取的数据均由该公司提供，而不是比特币网络提供的数据，需要留意其历史口碑</li>
+    </ul>
+  </li>
+  <li>硬件钱包</li>
+  <li>有的像优盘，有的像手机</li>
+  <li>具有亲手掌握比特币的安全感</li>
+  <li>现在一个钱包支持多个币种</li>
+  <li>“多重签名”技术在钱包领域得到非常广泛的运用
+    <ul>
+      <li>需要好几把私钥才能动用一个地址上的比特币</li>
+      <li>大大提高了安全性，也是用于企业级的比特币专业，也不影响其速度</li>
+    </ul>
+
+    <blockquote>
+      <p>正规渠道下载比特币钱包
+做好私钥备份，离线保存
+关注技术发展动态，注意钱包知否支持数字资产分叉</p>
+    </blockquote>
+  </li>
+</ul>
 
     </article>
 
@@ -231,10 +341,10 @@ refer to:
     <section class="post-footer-item read-next">
       
       <div class="read-next-item">
-        <a href="/2018/02/08/django-project-blog-awms.html" class="read-next-link"></a>
+        <a href="/2018/01/09/blockchain-from-0-to-1-day5.html" class="read-next-link"></a>
         <section>
-          <span>Django Project - Blog/AWMS</span>
-          <p>1. Create a django project1.1 Command »Deatils</p>
+          <span>BlockChain from 0 to 1_day5</span>
+          <p>10.比特币的扩容与分叉</p>
         </section>
         
      </div>
@@ -242,10 +352,10 @@ refer to:
 
       
       <div class="read-next-item">
-        <a href="/2018/02/02/get-a-month-period.html" class="read-next-link"></a>
+        <a href="/2018/01/07/blockchain-from-0-to-1-day3.html" class="read-next-link"></a>
           <section>
-            <span>Get a Month Period</span>
-            <p>  This article is aiming at getting the first day and the...</p>
+            <span>BlockChain from 0 to 1_day3</span>
+            <p>6. 比特币的上游，挖矿</p>
           </section>
           
       </div>

@@ -78,18 +78,22 @@ As the picture shows, things in the red line box should be removed except the ma
 
 main template: default.html
 ```python
+{% raw %}
 {% block grid %} {% endblock %}
+{% endraw %}
 ```
 
-> ```{% block grid %}```, the ```grid```can be customized.
+> ```{% raw %}{% block grid %}{% endraw %}```, the ```grid```can be customized.
 
 sub template: default_data.html
 ```python
+{% raw %}
 {% extends 'default.html' %}
 
 {% block grid %}
 <div class="ui equal width grid" style=...>
 {% endblock %}
+{% endraw %}
 ```
 
 -----
@@ -105,9 +109,9 @@ correct: ```return render(request, 'default_data.html')```
 
 > Cuz the sub template has already have the full page contents.
 > Thats's why views.py should render the sub template.
-> ```{% extends 'default.html '%}``` means abtain all the main template's contents,
+> ```{% raw %}{% extends 'default.html '%}{% endraw %}``` means abtain all the main template's contents,
 > and the empty block in the main template will be filled with
-> ```{% block grid %}......{% endblock %}```, which belongs to the sub template.
+> ```{% raw %}{% block grid %}......{% endblock %}{% endraw %}```, which belongs to the sub template.
 
 ----
 
@@ -115,11 +119,12 @@ correct: ```return render(request, 'default_data.html')```
 
 1.create default_charts.html
 
-2.fill default_charts.html with {% block grid %} and charts js scripts
+2.fill default_charts.html with ```{% raw %}{% block grid %}{% endraw %}``` and charts js scripts
 
 3.default_charts.html
 
 ```python
+{% raw %}
 {% extends 'default.html' %}
 {% block grid %}
 	<div>... ...</div>
@@ -129,6 +134,7 @@ correct: ```return render(request, 'default_data.html')```
 	<script>... ...</script>
 	<script>... ...</script>
 {% endblock %}
+{% endraw %}
 ```
 
 4.views.py
@@ -184,6 +190,7 @@ def charts(request):
 
 7.dafault_charts.html Again
 ```python
+{% raw %}
 {% extends 'default.html' %}
 
 {% block grid %}
@@ -240,6 +247,7 @@ def charts(request):
   });
 </script>
 {% endblock %}
+{% endraw %}
 ```
 > INPORTANT THING!!!
 > ```{{ chart_adny|safe }}```, ```|safe``` is a must. or the chart will not be shown due to the unicode error.

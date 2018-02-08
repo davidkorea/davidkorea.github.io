@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First Post - Everyday</title>
+    <title>Running a jupyter notebook server on local pc - Everyday</title>
     <meta name="author"  content="유용">
-    <meta name="description" content="First Post">
-    <meta name="keywords"  content="python, django">
+    <meta name="description" content="Running a jupyter notebook server on local pc">
+    <meta name="keywords"  content="jupyter">
     <!-- Open Graph -->
-    <meta property="og:title" content="First Post - Everyday">
+    <meta property="og:title" content="Running a jupyter notebook server on local pc - Everyday">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://localhost:4000/2018/02/07/first-try.html">
+    <meta property="og:url" content="http://localhost:4000/2018/01/10/Running-a-jupyter-notebook-server-on-local-pc.html">
     <meta property="og:description" content="Mostly forgettable, occasionally remarkable">
     <meta property="og:site_name" content="Everyday">
     <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
@@ -54,16 +54,14 @@
       <div class="post-tags">
         
           
-            <a href="http://localhost:4000/tags#python" class="post-tag">python</a>
-          
-            <a href="http://localhost:4000/tags#django" class="post-tag">django</a>
+            <a href="http://localhost:4000/tags#jupyter" class="post-tag">jupyter</a>
           
         
       </div>
-      <h1>First Post</h1>
+      <h1>Running a jupyter notebook server on local pc</h1>
       <div class="post-meta">
         <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">유용</a></></span>
-        <time class="post-meta-item" datetime="18-02-07"><i class="iconfont icon-date"></i>07 Feb 2018</time>
+        <time class="post-meta-item" datetime="18-01-10"><i class="iconfont icon-date"></i>10 Jan 2018</time>
       </div>
     </div>
     
@@ -73,22 +71,34 @@
     
 
     <article class="markdown-body">
-      <h1 id="1-django">1. django</h1>
+      <p>$<code class="highlighter-rouge">jupyter notebook --generate-config</code></p>
 
-<pre><code class="language-Python">
-class Caselog(models.Model):
-  caseid = models.CharField(null=True)
+<blockquote>
+  <p>Writing default config to: /Users/osx/.jupyter/jupyter_notebook_config.py</p>
+</blockquote>
 
-</code></pre>
+<p>$<code class="highlighter-rouge">jupyter notebook password</code></p>
+<blockquote>
+  <p>Enter password:11111
+Verify password:11111
+[NotebookPasswordApp] Wrote hashed password to /Users/osx/.jupyter/jupyter_notebook_config.json</p>
+</blockquote>
 
-<pre><code class="language-Python">INSTALLED_APPS = [
-	......
-  'webapp',
-  ]
-</code></pre>
+<p>$<code class="highlighter-rouge">cd cd /Users/osx/.jupyter/</code>
+$<code class="highlighter-rouge">open .</code>
+open jupyter_notebook_config.py
+delete #, and change values as below
+NotebookApp.password can find at Users/osx/.jupyter/jupyter_notebook_config.json</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>c.NotebookApp.ip = '*'
+c.NotebookApp.open_browser = False
+c.NotebookApp.password = u'sha1:da4fe31bad60:f47e622c45f25a62fe308eaa700578815154f2b3'
+c.NotebookApp.port = 8888
+</code></pre></div></div>
 
-<p>이미지 추가 테스트
- <img src="http://i1.bvimg.com/631779/4dc55b04d45c20b3.png" alt="Markdown" /></p>
+<p>$<code class="highlighter-rouge">jupyter notebook</code>, open a new terminal tab and run the service of jupyter on the server</p>
+
+<p>open url 192.168.0.51/8888 on local pc
+<img src="http://user-image.logdown.io/user/42937/blog/39533/post/4733810/yQpRpAdfQHKvEIAptydU_1.png" alt="1.png" /></p>
 
     </article>
 
@@ -231,10 +241,10 @@ refer to:
     <section class="post-footer-item read-next">
       
       <div class="read-next-item">
-        <a href="/2018/02/08/django-project-blog-awms.html" class="read-next-link"></a>
+        <a href="/2018/01/10/beautifulsoup.html" class="read-next-link"></a>
         <section>
-          <span>Django Project - Blog/AWMS</span>
-          <p>1. Create a django project1.1 Command »Deatils</p>
+          <span>BeautifulSoup</span>
+          <p>0-1.TODAY’S FU*KIN CASE 1if you create a python file name...</p>
         </section>
         
      </div>
@@ -242,10 +252,10 @@ refer to:
 
       
       <div class="read-next-item">
-        <a href="/2018/02/02/get-a-month-period.html" class="read-next-link"></a>
+        <a href="/2018/01/09/blockchain-from-0-to-1-day5.html" class="read-next-link"></a>
           <section>
-            <span>Get a Month Period</span>
-            <p>  This article is aiming at getting the first day and the...</p>
+            <span>BlockChain from 0 to 1_day5</span>
+            <p>10.比特币的扩容与分叉</p>
           </section>
           
       </div>

@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First Post - Everyday</title>
+    <title>Start to use MongoDB - Everyday</title>
     <meta name="author"  content="유용">
-    <meta name="description" content="First Post">
-    <meta name="keywords"  content="python, django">
+    <meta name="description" content="Start to use MongoDB">
+    <meta name="keywords"  content="python, mongodb, pymongo">
     <!-- Open Graph -->
-    <meta property="og:title" content="First Post - Everyday">
+    <meta property="og:title" content="Start to use MongoDB - Everyday">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://localhost:4000/2018/02/07/first-try.html">
+    <meta property="og:url" content="http://localhost:4000/2018/01/03/start-to-use-mongodb.html">
     <meta property="og:description" content="Mostly forgettable, occasionally remarkable">
     <meta property="og:site_name" content="Everyday">
     <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
@@ -56,14 +56,16 @@
           
             <a href="http://localhost:4000/tags#python" class="post-tag">python</a>
           
-            <a href="http://localhost:4000/tags#django" class="post-tag">django</a>
+            <a href="http://localhost:4000/tags#mongodb" class="post-tag">mongodb</a>
+          
+            <a href="http://localhost:4000/tags#pymongo" class="post-tag">pymongo</a>
           
         
       </div>
-      <h1>First Post</h1>
+      <h1>Start to use MongoDB</h1>
       <div class="post-meta">
         <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">유용</a></></span>
-        <time class="post-meta-item" datetime="18-02-07"><i class="iconfont icon-date"></i>07 Feb 2018</time>
+        <time class="post-meta-item" datetime="18-01-03"><i class="iconfont icon-date"></i>03 Jan 2018</time>
       </div>
     </div>
     
@@ -73,22 +75,91 @@
     
 
     <article class="markdown-body">
-      <h1 id="1-django">1. django</h1>
+      <h1 id="1split-content-in-lines">1.split content in lines</h1>
+<p>walden.txt
+create new file in pycharm named walden.txt and copy the content</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">path</span> <span class="o">=</span> <span class="s">'/Users/osx/PycharmProjects/lesson2/waldenn.txt'</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">'index'</span><span class="p">:</span><span class="n">index</span><span class="p">,</span>
+            <span class="s">'line'</span> <span class="p">:</span><span class="n">line</span><span class="p">,</span>
+            <span class="s">'words'</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+        <span class="p">}</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></div>
 
-<pre><code class="language-Python">
-class Caselog(models.Model):
-  caseid = models.CharField(null=True)
+<p>if open a text file with ascii or unicode or utf8 python can not decode</p>
 
-</code></pre>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; Error:
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xff in position 0: ordinal not in range(128)
+Process finished with exit code 1
+</code></pre></div></div>
 
-<pre><code class="language-Python">INSTALLED_APPS = [
-	......
-  'webapp',
-  ]
-</code></pre>
+<h1 id="2-save-splited-lines-into-mongodb">2. Save splited lines into Mongodb</h1>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pymongo</span>
 
-<p>이미지 추가 테스트
- <img src="http://i1.bvimg.com/631779/4dc55b04d45c20b3.png" alt="Markdown" /></p>
+<span class="n">client</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">(</span><span class="s">'localhost'</span><span class="p">,</span> <span class="mi">27017</span><span class="p">)</span>
+<span class="n">workbook</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s">'workbook'</span><span class="p">]</span>
+<span class="n">sheet_tab</span> <span class="o">=</span> <span class="n">workbook</span><span class="p">[</span><span class="s">'sheet_tab'</span><span class="p">]</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s">'/Users/osx/PycharmProjects/lesson2/waldenn.txt'</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">'index'</span><span class="p">:</span><span class="n">index</span><span class="p">,</span>
+            <span class="s">'line'</span> <span class="p">:</span><span class="n">line</span><span class="p">,</span>
+            <span class="s">'words'</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+        <span class="p">}</span>
+        <span class="n">sheet_tab</span><span class="o">.</span><span class="n">insert_one</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></div>
+<p>if no pymongo package in this project, add it as follow</p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4716513/5HG7fzZTRg2M3j5VF6GF_3.png" alt="3.png" /></p>
+
+<p>still, important thing! turn on mongodb service as follow command in iTerm</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mongod
+</code></pre></div></div>
+
+<h1 id="3check-the-data-saved-in-db">3.check the data saved in db</h1>
+<h2 id="31-use-code">3.1 use code</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pymongo</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">(</span><span class="s">'localhost'</span><span class="p">,</span> <span class="mi">27017</span><span class="p">)</span>
+<span class="n">workbook</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s">'workbook'</span><span class="p">]</span>
+<span class="n">sheet_tab</span> <span class="o">=</span> <span class="n">workbook</span><span class="p">[</span><span class="s">'sheet_tab'</span><span class="p">]</span>
+
+<span class="c"># path = '/Users/osx/PycharmProjects/lesson2/waldenn.txt'</span>
+<span class="c"># with open(path, 'r') as f:</span>
+<span class="c">#     lines = f.readlines()</span>
+<span class="c">#     for index, line in enumerate(lines):</span>
+<span class="c">#         data = {</span>
+<span class="c">#             'index':index,</span>
+<span class="c">#             'line' :line,</span>
+<span class="c">#             'words':len(line.split())</span>
+<span class="c">#         }</span>
+<span class="c">#         sheet_tab.insert_one(data)</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sheet_tab</span><span class="o">.</span><span class="n">find</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</code></pre></div></div>
+<h2 id="32-use-plug-in-tool-in-pycharm">3.2 use plug-in tool in pycharm</h2>
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4716513/77ixpyQ8Soa0zDscR6r1_4.png" alt="4.png" /></p>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4716513/hRCiltuQPCs0AcQ5AQsw_5.png" alt="5.png" /></p>
+
+<blockquote>
+  <p>it seems that the plug-in tool can only show 300 line records????????????
+using command can find all the records in mongodb
+2018-1-10</p>
+</blockquote>
+
+<h1 id="4-orgnize-data-in-order">4 orgnize data in order</h1>
+<h2 id="41-fliter-commandsquery-db">4.1 fliter commands/query db</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;  $lt/$lte/$gt/$gte/$ne，依次等价于&lt;/&lt;=/&gt;/&gt;=/!=。（l表示less g表示greater e表示equal n表示not ） example: ```python for item in sheet_tab.find({'words':{'$lt':5}}): print(item) #find the words of a line is less than 5 words ```
+</code></pre></div></div>
 
     </article>
 
@@ -231,10 +302,10 @@ refer to:
     <section class="post-footer-item read-next">
       
       <div class="read-next-item">
-        <a href="/2018/02/08/django-project-blog-awms.html" class="read-next-link"></a>
+        <a href="/2018/01/04/How-to-activate-Pycharm-Professional.html" class="read-next-link"></a>
         <section>
-          <span>Django Project - Blog/AWMS</span>
-          <p>1. Create a django project1.1 Command »Deatils</p>
+          <span>How to activate Pycharm Professional </span>
+          <p>1.Get activation code from http://idea.lanyus.com/2.Downl...</p>
         </section>
         
      </div>
@@ -242,10 +313,10 @@ refer to:
 
       
       <div class="read-next-item">
-        <a href="/2018/02/02/get-a-month-period.html" class="read-next-link"></a>
+        <a href="/2018/01/03/django-web-created-by-pycharm-and-command.html" class="read-next-link"></a>
           <section>
-            <span>Get a Month Period</span>
-            <p>  This article is aiming at getting the first day and the...</p>
+            <span>Django Web created by Pycharm & Command</span>
+            <p>1.Pycharm - Community Edition</p>
           </section>
           
       </div>

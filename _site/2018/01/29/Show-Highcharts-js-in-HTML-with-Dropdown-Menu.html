@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Highcharts.js in HTML with Dropdown Menu - Everyday</title>
+    <meta name="author"  content="유용">
+    <meta name="description" content="Show Highcharts.js in HTML with Dropdown Menu">
+    <meta name="keywords"  content="highcharts">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Show Highcharts.js in HTML with Dropdown Menu - Everyday">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2018/01/29/Show-Highcharts-js-in-HTML-with-Dropdown-Menu.html">
+    <meta property="og:description" content="Mostly forgettable, occasionally remarkable">
+    <meta property="og:site_name" content="Everyday">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+
+<style type="text/css">
+  #my_centered_buttons { display: flex; justify-content: center; }
+  #my_centered_buttons_older { margin: 0 auto; width: 380px;}
+</style>
+  
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
+    <div>
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header class="g-banner post-header post-pattern-circuitBoard bgcolor-default post-no-cover" data-theme="default">
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#highcharts" class="post-tag">highcharts</a>
+          
+        
+      </div>
+      <h1>Show Highcharts.js in HTML with Dropdown Menu</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">유용</a></></span>
+        <time class="post-meta-item" datetime="18-01-29"><i class="iconfont icon-date"></i>29 Jan 2018</time>
+      </div>
+    </div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <blockquote>
+  <p>All the css style provided by Semantic UI.</p>
+</blockquote>
+
+<h1 id="1-ui-equal-width-grid">1. ui equal width grid</h1>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui equal width grid"</span> <span class="na">style=</span><span class="s">"width:75%;margin:5px 5px 5px 5px;"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column"</span><span class="nt">&gt;</span>1  <span class="nt">&lt;/div&gt;</span>    
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column"</span><span class="nt">&gt;</span>2  <span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;/div&gt;</span>
+
+	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column"</span><span class="nt">&gt;</span>3  <span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5404393/yTymOEBLSlGon69nn4QA_1.png" alt="1.png" /></p>
+
+<h1 id="2-statistic">2. Statistic</h1>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui red segment"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui statistic"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"value"</span><span class="nt">&gt;</span>
+    5000
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"label"</span><span class="nt">&gt;</span>
+    in total
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5404393/rA0g4zOUScmWhl149r8L_2.png" alt="2.png" /></p>
+
+<h1 id="3-devided-items">3. Devided items</h1>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui segment"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui divided items"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"content"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"header"</span><span class="nt">&gt;</span>title<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"description"</span><span class="nt">&gt;</span>description<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"extra"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui label"</span><span class="nt">&gt;</span>tag1<span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui label"</span><span class="nt">&gt;</span>tag2<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;</span>
+    	... ...
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5404393/aW6rKtN6TSMoTuYhRAvp_3.png" alt="3.png" /></p>
+
+<h1 id="4highchartsjs---demo">4.Highcharts.js - <a href="https://www.highcharts.com/demo">Demo</a></h1>
+
+<blockquote>
+  <p>JS Scripts the offical site offered is kinda confusing.
+It would be better to use the video code directly</p>
+</blockquote>
+
+<ul>
+  <li>
+    <ol>
+      <li>html framework</li>
+    </ol>
+  </li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui equal width grid"</span> <span class="na">style=</span><span class="s">"width:75%;margin:5px 5px 5px 5px;"</span><span class="nt">&gt;</span>
+	... ...
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui divider"</span><span class="nt">&gt;</span> <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui equal width grid"</span> <span class="na">style=</span><span class="s">"width:75%;margin:5px 5px 5px 5px;"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui container segment"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span> <span class="na">id=</span><span class="s">"chart1"</span><span class="nt">&gt;</span>
+        	charts       
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5404393/4v8j7Xc6QBqCfjkQQbbX_4.png" alt="4.png" /></p>
+
+<ul>
+  <li>
+    <ol>
+      <li>import relevant js labraries &amp; js script</li>
+    </ol>
+  </li>
+</ul>
+
+<p>The following highcharts js files can be copied from teh video code.</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;head&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"js/exporting.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"js/highcharts-more.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"js/highcharts.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+</code></pre></div></div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui equal width grid"</span> <span class="na">style=</span><span class="s">"width:75%;margin:5px 5px 5px 5px;"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui container segment"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span> <span class="na">id=</span><span class="s">"chart1"</span><span class="nt">&gt;</span>
+        	charts       
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="nx">$</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#chart1'</span><span class="p">).</span><span class="nx">highcharts</span><span class="p">({</span>
+<span class="na">chart</span><span class="p">:</span> <span class="p">{</span>
+<span class="na">type</span><span class="p">:</span> <span class="s1">'bar'</span>
+<span class="p">},</span>
+<span class="na">credits</span><span class="p">:{</span>
+<span class="na">enabled</span><span class="p">:</span><span class="kc">false</span>
+<span class="p">},</span>
+<span class="na">title</span><span class="p">:</span> <span class="p">{</span>
+<span class="na">text</span><span class="p">:</span> <span class="s1">'Fruit Consumption'</span>
+<span class="p">},</span>
+<span class="na">xAxis</span><span class="p">:</span> <span class="p">{</span>
+<span class="na">categories</span><span class="p">:</span> <span class="p">[</span><span class="s1">'Apples'</span><span class="p">,</span> <span class="s1">'Bananas'</span><span class="p">,</span> <span class="s1">'Oranges'</span><span class="p">]</span>
+<span class="p">},</span>
+<span class="na">yAxis</span><span class="p">:</span> <span class="p">{</span>
+<span class="na">title</span><span class="p">:</span> <span class="p">{</span>
+<span class="na">text</span><span class="p">:</span> <span class="s1">'Fruit eaten'</span>
+<span class="p">}</span>
+<span class="p">},</span>
+<span class="na">series</span><span class="p">:</span> <span class="p">[{</span>
+<span class="na">name</span><span class="p">:</span> <span class="s1">'Jane'</span><span class="p">,</span>
+<span class="na">data</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="p">},</span> <span class="p">{</span>
+<span class="na">name</span><span class="p">:</span> <span class="s1">'John'</span><span class="p">,</span>
+<span class="na">data</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="p">}]</span>
+<span class="p">});</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</code></pre></div></div>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5404393/FEnm610OT0uJQfdsa62O_5.png" alt="5.png" /></p>
+
+<h1 id="5-dropdown-menu">5. Dropdown Menu</h1>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui equal width grid"</span> <span class="na">style=</span><span class="s">"width:75%;margin:5px 5px 5px 5px;"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column"</span><span class="nt">&gt;</span>
+
+      <span class="c">&lt;!-- dropdown item--&gt;</span>    
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui simple dropdown item"</span><span class="nt">&gt;</span>
+        Menber
+        <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"dropdown icon"</span><span class="nt">&gt;&lt;/i&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"menu"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span> <span class="na">id=</span><span class="s">"andy"</span><span class="nt">&gt;</span>Andy<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span> <span class="na">id=</span><span class="s">"david"</span><span class="nt">&gt;</span>David<span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="c">&lt;!-- dropdown item--&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui container segment"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span> <span class="na">id=</span><span class="s">"chart1"</span><span class="nt">&gt;</span>
+            charts       
+        <span class="nt">&lt;/div&gt;</span>
+    	<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5404393/1RLenU7kSmirEdXTO6rA_6.png" alt="6.png" /></p>
+
+<h1 id="6-dropdown-menu--highchartsjs">6. Dropdown Menu + HighCharts.js</h1>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui simple dropdown item"</span><span class="nt">&gt;</span>
+  Menber
+  <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"dropdown icon"</span><span class="nt">&gt;&lt;/i&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"menu"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span> <span class="na">id=</span><span class="s">"andy"</span><span class="nt">&gt;</span>Andy<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span> <span class="na">id=</span><span class="s">"david"</span><span class="nt">&gt;</span>David<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#andy'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#chart1'</span><span class="p">).</span><span class="nx">highcharts</span><span class="p">({</span>
+<span class="na">chart</span><span class="p">:</span> <span class="p">{</span>
+<span class="na">type</span><span class="p">:</span> <span class="s1">'bar'</span>
+<span class="p">},</span>
+<span class="na">credits</span><span class="p">:{</span>
+<span class="na">enabled</span><span class="p">:</span><span class="kc">false</span>
+<span class="p">},</span>
+<span class="na">title</span><span class="p">:</span> <span class="p">{</span>
+<span class="na">text</span><span class="p">:</span> <span class="s1">'ANDY'</span>
+<span class="p">},</span>
+<span class="na">xAxis</span><span class="p">:</span> <span class="p">{</span>
+<span class="na">categories</span><span class="p">:</span> <span class="p">[</span><span class="s1">'Apples'</span><span class="p">,</span> <span class="s1">'Bananas'</span><span class="p">,</span> <span class="s1">'Oranges'</span><span class="p">]</span>
+<span class="p">},</span>
+<span class="na">yAxis</span><span class="p">:</span> <span class="p">{</span>
+<span class="na">title</span><span class="p">:</span> <span class="p">{</span>
+<span class="na">text</span><span class="p">:</span> <span class="s1">'Fruit eaten'</span>
+<span class="p">}</span>
+<span class="p">},</span>
+<span class="na">series</span><span class="p">:</span> <span class="p">[{</span>
+<span class="na">name</span><span class="p">:</span> <span class="s1">'Jane'</span><span class="p">,</span>
+<span class="na">data</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="p">},</span> <span class="p">{</span>
+<span class="na">name</span><span class="p">:</span> <span class="s1">'John'</span><span class="p">,</span>
+<span class="na">data</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="p">}]</span>
+<span class="p">});</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+<blockquote>
+  <p><code class="highlighter-rouge">$('#andy').click(function () {</code>
+	<code class="highlighter-rouge">$('#chart1').highcharts({</code>
+<code class="highlighter-rouge">... ...</code>
+<code class="highlighter-rouge">});</code>
+<code class="highlighter-rouge">});</code>
+It means when you click <code class="highlighter-rouge">&lt;div id="andy"&gt;</code>,
+the <code class="highlighter-rouge">&lt;div id="chart1"&gt;</code>will be activated(showed).</p>
+</blockquote>
+
+<p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5404393/FmnWhA8fSNSfWdZRx7uN_7.png" alt="7.png" /></p>
+
+    </article>
+
+    
+      <!--
+Author: Ray-Eldath
+refer to:
+ - https://github.com/theme-next/hexo-theme-next/blob/4bfbd67b3edc6f11b00357da6e509e5281a896f1/layout/_macro/reward.swig and
+ - https://github.com/theme-next/hexo-theme-next/blob/e12bb0b27e16072eb82baa4c7dda1c41c8de7264/source/css/_common/components/post/post-reward.styl
+-->
+<style media="screen">
+  .reward {
+    padding: 5px 0;
+    margin: 20px auto;
+    width: 90%;
+    text-align: center;
+  }
+
+  .rewardButton {
+    background-color: #f44236;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: '微软雅黑';
+    font-size: 18px;
+    padding: 5px 25px;
+    text-decoration: none;
+  }
+
+  .rewardButton:hover {
+    background-color: #F7877F;
+  }
+
+  .wechat:hover p {
+    animation: roll 0.1s infinite linear;
+    -webkit-animation: roll 0.1s infinite linear;
+    -moz-animation: roll 0.1s infinite linear;
+  }
+
+  .alipay:hover p {
+    animation: roll 0.1s infinite linear;
+    -webkit-animation: roll 0.1s infinite linear;
+    -moz-animation: roll 0.1s infinite linear;
+  }
+
+  .QR {
+    padding-top: 20px;
+  }
+
+  .QR a {
+    border: 0;
+  }
+
+  .QR img {
+    width: 180px;
+    max-width: 100%;
+    display: inline-block;
+    margin: 0.8em 2em 0 2em;
+  }
+</style>
+
+<div class="reward">
+  <a class="rewardButton" title="请유용喝杯咖啡？">赞 赏</a>
+
+  <div class="QR" style="display: none;">
+    
+    <div>
+      <span style="font-family: '微软雅黑'; font-size: 18px; "></span>
+    </div>
+    
+
+    
+    <div class="wechat" style="display: inline-block">
+      <img class="wechat_qr" src="/assets/img/wechatpay.jpg" title="用微信请유용喝杯咖啡？" alt="用微信请유용喝杯咖啡？" />
+      <p>微信支付</p>
+    </div>
+    
+
+    
+    <div class="alipay" style="display: inline-block">
+      <img class="alipay_qr" src="/assets/img/alipay.jpg" title="用支付宝请유용喝杯咖啡？" alt="用支付宝请유용喝杯咖啡？" />
+      <p>支付宝</p>
+    </div>
+    
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("a.rewardButton").click(function() {
+      $("div.QR").slideToggle()
+    });
+  });
+</script>
+
+    
+
+    <!-- default share with h20 theme
+     
+    -->
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="/assets/img/profile1.png" alt="">
+      </div>
+      <div class="author-name" rel="author">유용</div>
+      <div class="bio">
+        <p>FoMo</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="mailto:lyfirst@naver.com" target="_blank">
+                    <i class="iconfont icon-email"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//github.com/davidkorea" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//facebook.com/100010686574858" target="_blank">
+                    <i class="iconfont icon-facebook"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2018/01/30/django-template-inheritance.html" class="read-next-link"></a>
+        <section>
+          <span>Django Template Inheritance</span>
+          <p>  Command + K 서버에 연결, 윈도우 쉐어 플더 연결At the very beginning, ...</p>
+        </section>
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2018/01/28/5403910.html" class="read-next-link"></a>
+          <section>
+            <span>나답지않게</span>
+            <p>이글을 쓰려고 날자를보니까 벌써 29일이네ㅠ 2018년 첫째달 걍 이렇게 지냈네 세월이 엄청 빨리 흐르...</p>
+          </section>
+          
+      </div>
+      
+    </section>
+
+    
+    <section class="post-footer-item comment">
+      <div id="disqus_thread"></div>
+    </section>
+    
+
+    
+    <section class="post-footer-item comment">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzk5My8xMDUyOA">
+    </section>
+    
+  </section>
+
+  
+  <!--
+Author: Ray-Eldath
+refer to:
+ - https://github.com/theme-next/hexo-theme-next/blob/master/source/js/src/utils.js
+ - https://jingyan.baidu.com/article/b2c186c83ec846c46ef6ff80.html
+ - http://www.bkjia.com/jQuery/449205.html
+-->
+<style media="screen">
+  .scroll {
+    z-index: 10000;
+    display: none;
+    width: 56px;
+    height: 24px;
+    background: #222;
+    color: #fff;
+    line-height: 24px;
+    text-align: center;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+</style>
+<div class="scroll">
+  <i class="fa fa-arrow-up"></i>
+  <span class="scrollpercent"></span><span> %</span>
+</div>
+
+<script src="/assets/js/util.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    if (utils.isMobile()) {
+      $('.scroll').hide();
+      return;
+    }
+    $(window).scroll(function() {
+      let scrollValue = $(window).scrollTop();
+
+      var scrollPercentRounded = Math.round((scrollValue / utils.getContentVisibilityHeight()) * 100);
+      var scrollPercentMaxed = (scrollPercentRounded > 100) ? 100 : scrollPercentRounded;
+
+      $('.scrollpercent').html(scrollPercentMaxed);
+      scrollValue > 100 ? $('.scroll').fadeIn() : $('.scroll').fadeOut();
+    });
+
+    $('.scroll').click(function() {
+      $('html, body').animate({
+        scrollTop: 0
+      }, 300);
+    })
+  })
+</script>
+
+
+
+<footer class="g-footer">
+  <section>Everyday ©
+  
+  
+    2017
+    -
+  
+  2018
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          ,
+          
+        
+          'twitter'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+
+  <script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document,
+        s = d.createElement('script');
+      /*写入自己的disqus信息*/
+      s.src = 'https://davidkor.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+
+</script>
+
+
+
+<script>
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+
+      if (typeof LivereTower === 'function') {
+        return;
+      }
+
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+
+  </script>
+
+
+  <noscript>为正常使用评论功能请激活JavaScript。</noscript>
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a7bcee5ba9eb132"></script>
+
+</body>
+
+</html>
