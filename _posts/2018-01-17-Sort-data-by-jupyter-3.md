@@ -2,7 +2,7 @@
 layout: post
 title: 'Sort data by jupyter 3'
 date: 2018-01-17
-tags: jupyter aggregate pipeline
+tags: jupyter aggregate pipeline mongodb
 ---
 ### Sort data by using [aggregate(pipeline)->user guide](https://docs.mongodb.com/manual/reference/operator/aggregation/)
 

@@ -2,7 +2,7 @@
 layout: post
 title: 'Django Project Created by Pycharm Community + Command'
 date: 2018-01-24
-tags: django
+tags: django python
 ---
 > This is an updated approach to create Django project by Pycharm community version which is much easier and more reasonable than the former one: [ Django Web created by Pycharm+Command](http://davidkor.logdown.com/posts/4716406)
 

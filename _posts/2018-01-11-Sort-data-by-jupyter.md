@@ -2,7 +2,7 @@
 layout: post
 title: 'Sort data by jupyter'
 date: 2018-01-11
-tags: jupyter chart
+tags: jupyter highcharts mongodb
 ---
 # 1. make a backup of database
 1st, open a terminal in jupyter

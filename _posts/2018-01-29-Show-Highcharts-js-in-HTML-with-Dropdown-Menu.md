@@ -2,7 +2,7 @@
 layout: post
 title: 'Show Highcharts.js in HTML with Dropdown Menu'
 date: 2018-01-29
-tags: highcharts
+tags: highcharts html semanticui css
 ---
 > All the css style provided by Semantic UI.
 

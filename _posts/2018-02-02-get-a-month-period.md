@@ -2,7 +2,7 @@
 layout: post
 title: 'Get a Month Period'
 date: 2018-02-02
-tags: python
+tags: python datetime calendar
 ---
 > This article is aiming at getting the first day and the last day of current week and last week.
 > ```from datetime import *```

@@ -2,7 +2,7 @@
 layout: post
 title: 'BlockChain from 0 to 1_day4'
 date: 2018-01-08
-tag: blockchain bitcoin
+tags: blockchain bitcoin
 ---
 # 8.比特币的中游，交易
 

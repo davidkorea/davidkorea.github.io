@@ -2,7 +2,7 @@
 layout: post
 title: 'Sort data by jupyter 2'
 date: 2018-01-13
-tags: jupyter chart
+tags: jupyter highcharts
 ---
 # 1.get the data we need by .find({},{})
 to find the only data that i need through monggodb find() ,find(),will not change database.

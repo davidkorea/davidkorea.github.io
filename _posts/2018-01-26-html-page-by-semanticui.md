@@ -2,7 +2,7 @@
 layout: post
 title: 'HTML Page by SemanticUI'
 date: 2018-01-26
-tags: semanticui
+tags: semanticui html css
 ---
 # 1. Preparation
 
