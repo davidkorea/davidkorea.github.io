@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Django Project - Blog/AWMS'
-date: 2018-02-07
+date: 2018-02-08
 #cover: 'http://on2171g4d.bkt.clouddn.com/jekyll-banner.png'
 tags: django
 ---

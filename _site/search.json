@@ -1,15 +1,15 @@
 [
   
     {
-      "title"    : "First Post",
-      "tags"     : "python django",
-      "url"      : "/2018/02/07/first-try.html"
+      "title"    : "Django Project - Blog/AWMS",
+      "tags"     : "django",
+      "url"      : "/2018/02/08/django-project-blog-awms.html"
     } ,
   
     {
-      "title"    : "Django Project - Blog/AWMS",
-      "tags"     : "django",
-      "url"      : "/2018/02/07/django-project-blog-awms.html"
+      "title"    : "First Post",
+      "tags"     : "python django",
+      "url"      : "/2018/02/07/first-try.html"
     } ,
   
     {
