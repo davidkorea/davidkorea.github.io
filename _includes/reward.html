@@ -59,7 +59,7 @@ refer to:
 </style>
 
 <div class="reward">
-  <a class="rewardButton" title="请{{ site.author }}喝杯咖啡？">赞 赏</a>
+  <a class="rewardButton" title="Buy{{ site.author }} a cup of coffee？">Tipping</a>
 
   <div class="QR" style="display: none;">
     {% if site.reward.reward_comment %}
@@ -71,14 +71,14 @@ refer to:
     {% if site.reward.wechatpay %}
     <div class="wechat" style="display: inline-block">
       <img class="wechat_qr" src="{{ site.reward.wechatpay }}" title="用微信请{{ site.author }}喝杯咖啡？" alt="用微信请{{ site.author }}喝杯咖啡？" />
-      <p>微信支付</p>
+      <p>Wechatpay</p>
     </div>
     {% endif %}
 
     {% if site.reward.alipay %}
     <div class="alipay" style="display: inline-block">
       <img class="alipay_qr" src="{{ site.reward.alipay }}" title="用支付宝请{{ site.author }}喝杯咖啡？" alt="用支付宝请{{ site.author }}喝杯咖啡？" />
-      <p>支付宝</p>
+      <p>Alipay</p>
     </div>
     {% endif %}
   </div>
