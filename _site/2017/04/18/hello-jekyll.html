@@ -33,7 +33,7 @@
 <div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
 <![endif]-->
   <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
-    <div class="g-logo">
+    <div>
       <a href="/"></a>
     </div>
     <i id="menu-toggle" class="iconfont icon-menu"></i>
@@ -163,20 +163,20 @@ refer to:
   <div class="QR" style="display: none;">
     
     <div>
-      <span style="font-family: '微软雅黑'; font-size: 18px; ">真诚赞赏 手有余香</span>
+      <span style="font-family: '微软雅黑'; font-size: 18px; "></span>
     </div>
     
 
     
     <div class="wechat" style="display: inline-block">
-      <img class="wechat_qr" src="http://ray-eldath.image.alimmdn.com/basic/wechatpay.jpg" title="用微信请유용喝杯咖啡？" alt="用微信请유용喝杯咖啡？" />
+      <img class="wechat_qr" src="/assets/img/wechatpay.jpg" title="用微信请유용喝杯咖啡？" alt="用微信请유용喝杯咖啡？" />
       <p>微信支付</p>
     </div>
     
 
     
     <div class="alipay" style="display: inline-block">
-      <img class="alipay_qr" src="http://ray-eldath.image.alimmdn.com/basic/alipay.jpg" title="用支付宝请유용喝杯咖啡？" alt="用支付宝请유용喝杯咖啡？" />
+      <img class="alipay_qr" src="/assets/img/alipay.jpg" title="用支付宝请유용喝杯咖啡？" alt="用支付宝请유용喝杯咖啡？" />
       <p>支付宝</p>
     </div>
     
@@ -194,10 +194,6 @@ refer to:
     
 
     <!-- default share with h20 theme
-    
-    <div class="social-share-wrapper">
-      <div class="social-share"></div>
-    </div>
      
     -->
     
@@ -206,7 +202,7 @@ refer to:
   <section class="author-detail">
     <section class="post-footer-item author-card">
       <div class="avatar">
-        <img src="/assets/img/profile.png" alt="">
+        <img src="/assets/img/profile1.png" alt="">
       </div>
       <div class="author-name" rel="author">유용</div>
       <div class="bio">
@@ -224,6 +220,12 @@ refer to:
         <li>
           <a href="//github.com/davidkorea" target="_blank">
                     <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//facebook.com/100010686574858" target="_blank">
+                    <i class="iconfont icon-facebook"></i>
                 </a>
         </li>
         
@@ -249,10 +251,14 @@ refer to:
     </section>
 
     
+    <section class="post-footer-item comment">
+      <div id="disqus_thread"></div>
+    </section>
+    
 
     
     <section class="post-footer-item comment">
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODEwMC80Njcz">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzk5My8xMDUyOA">
     </section>
     
   </section>
@@ -353,6 +359,27 @@ refer to:
     });
   </script>
 
+
+  <script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document,
+        s = d.createElement('script');
+      /*写入自己的disqus信息*/
+      s.src = 'https://davidkor.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+
+</script>
 
 
 

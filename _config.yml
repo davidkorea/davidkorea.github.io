@@ -38,7 +38,7 @@ livere_uid: MTAyMC8zMzk5My8xMDUyOA
 # Reward 赞赏功能 by Ray-Eldath
 reward:
   enable: true
-  reward_comment: 'The rose's in her mind, the flavor in mine.'
+  reward_comment: ''
   wechatpay: '/assets/img/wechatpay.jpg'
   alipay: '/assets/img/alipay.jpg'
 
