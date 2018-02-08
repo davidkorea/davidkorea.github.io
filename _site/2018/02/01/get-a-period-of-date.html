@@ -82,146 +82,146 @@ data.isoweekday()：Return weekday，Monday，return 1；Tuesday，return 2
 
 <h1 id="1-today">1. Today</h1>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="o">*</span>
+<pre><code class="language-Python">from datetime import *
 
-<span class="k">def</span> <span class="nf">current_week</span><span class="p">(</span><span class="n">today</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()):</span>
-    <span class="n">weekday</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">isoweekday</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
+def current_week(today=date.today()):
+    weekday = today.isoweekday()
+    if weekday == 7:
+        first_day = today - timedelta(days=6)
+        last_day = today - timedelta(days=2)
+        print(first_day, last_day)
+    if weekday == 6:
+        first_day = today - timedelta(days=5)
+        last_day = today - timedelta(days=1)
+        print(first_day, last_day)
+    if weekday == 5:
+        first_day = today - timedelta(days=4)
+        last_day = today
+        print(first_day, last_day)
+    if weekday == 4:
+        first_day = today - timedelta(days=3)
+        last_day = today + timedelta(days=1)
+        print(first_day,last_day)
+    if weekday == 3:
+        first_day = today - timedelta(days=2)
+        last_day = today + timedelta(days=2)
+        print(first_day,last_day)
+    if weekday == 2:
+        first_day = today - timedelta(days=1)
+        last_day = today + timedelta(days=3)
+        print(first_day,last_day)
+    if weekday == 1:
+        first_day = today
+        last_day = today + timedelta(days=4)
+        print(first_day,last_day)
 
-<span class="k">def</span> <span class="nf">last_week</span><span class="p">(</span><span class="n">today</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()):</span>
-    <span class="n">weekday</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">isoweekday</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
+def last_week(today=date.today()):
+    weekday = today.isoweekday()
+    if weekday == 7:
+        first_day = today - timedelta(days=13)
+        last_day = today - timedelta(days=9)
+        print(first_day, last_day)
+    if weekday == 6:
+        first_day = today - timedelta(days=12)
+        last_day = today - timedelta(days=8)
+        print(first_day, last_day)
+    if weekday == 5:
+        first_day = today - timedelta(days=11)
+        last_day = today - timedelta(days=7)
+        print(first_day, last_day)
+    if weekday == 4:
+        first_day = today - timedelta(days=10)
+        last_day = today - timedelta(days=6)
+        print(first_day,last_day)
+    if weekday == 3:
+        first_day = today - timedelta(days=9)
+        last_day = today - timedelta(days=5)
+        print(first_day,last_day)
+    if weekday == 2:
+        first_day = today - timedelta(days=8)
+        last_day = today - timedelta(days=4)
+        print(first_day,last_day)
+    if weekday == 1:
+        first_day = today - timedelta(days=7)
+        last_day = today - timedelta(days=3)
+        print(first_day,last_day)
 
-<span class="n">current_week</span><span class="p">()</span>
-<span class="n">last_week</span><span class="p">()</span>
-</code></pre></div></div>
+current_week()
+last_week()
+</code></pre>
 
 <h1 id="2-oneday">2. Oneday</h1>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="o">*</span>
+<pre><code class="language-Python">from datetime import *
 
-<span class="k">def</span> <span class="nf">current_week</span><span class="p">(</span><span class="n">day</span><span class="p">):</span>
-    <span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">2</span><span class="p">]))</span>
-    <span class="n">weekday</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">isoweekday</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
+def current_week(day):
+    today = date(int(day.split('/')[0]),int(day.split('/')[1]),int(day.split('/')[2]))
+    weekday = today.isoweekday()
+    if weekday == 7:
+        first_day = today - timedelta(days=6)
+        last_day = today - timedelta(days=2)
+        print(first_day, last_day)
+    if weekday == 6:
+        first_day = today - timedelta(days=5)
+        last_day = today - timedelta(days=1)
+        print(first_day, last_day)
+    if weekday == 5:
+        first_day = today - timedelta(days=4)
+        last_day = today
+        print(first_day, last_day)
+    if weekday == 4:
+        first_day = today - timedelta(days=3)
+        last_day = today + timedelta(days=1)
+        print(first_day,last_day)
+    if weekday == 3:
+        first_day = today - timedelta(days=2)
+        last_day = today + timedelta(days=2)
+        print(first_day,last_day)
+    if weekday == 2:
+        first_day = today - timedelta(days=1)
+        last_day = today + timedelta(days=3)
+        print(first_day,last_day)
+    if weekday == 1:
+        first_day = today
+        last_day = today + timedelta(days=4)
+        print(first_day,last_day)
 
 
-<span class="k">def</span> <span class="nf">last_week</span><span class="p">(</span><span class="n">day</span><span class="p">):</span>
-    <span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">2</span><span class="p">]))</span>
-    <span class="n">weekday</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">isoweekday</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
+def last_week(day):
+    today = date(int(day.split('/')[0]),int(day.split('/')[1]),int(day.split('/')[2]))
+    weekday = today.isoweekday()
+    if weekday == 7:
+        first_day = today - timedelta(days=13)
+        last_day = today - timedelta(days=9)
+        print(first_day, last_day)
+    if weekday == 6:
+        first_day = today - timedelta(days=12)
+        last_day = today - timedelta(days=8)
+        print(first_day, last_day)
+    if weekday == 5:
+        first_day = today - timedelta(days=11)
+        last_day = today - timedelta(days=7)
+        print(first_day, last_day)
+    if weekday == 4:
+        first_day = today - timedelta(days=10)
+        last_day = today - timedelta(days=6)
+        print(first_day,last_day)
+    if weekday == 3:
+        first_day = today - timedelta(days=9)
+        last_day = today - timedelta(days=5)
+        print(first_day,last_day)
+    if weekday == 2:
+        first_day = today - timedelta(days=8)
+        last_day = today - timedelta(days=4)
+        print(first_day,last_day)
+    if weekday == 1:
+        first_day = today - timedelta(days=7)
+        last_day = today - timedelta(days=3)
+        print(first_day,last_day)
 
-<span class="n">current_week</span><span class="p">(</span><span class="s">'2018/02/18'</span><span class="p">)</span>
-<span class="n">last_week</span><span class="p">(</span><span class="s">'2018/02/18'</span><span class="p">)</span>
-</code></pre></div></div>
+current_week('2018/02/18')
+last_week('2018/02/18')
+</code></pre>
 
     </article>
 

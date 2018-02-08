@@ -17,7 +17,7 @@ $ ```show tables```
 $ ```db.createCollection('loginfo_backup')```
 $ ```db.loginfo.copyTo('logdata_backup')```
 5th, use backup db when sort data
-```python
+```Python
 import pymongo
 client = pymongo.MongoClient('localhost', 27017)
 awms = client['awms']
@@ -28,7 +28,7 @@ loginfo = awms['loginfo_backup']
 
 ![1.png](http://user-image.logdown.io/user/42937/blog/39533/post/4734411/FlGFz0ZTQmFaPfkbU1p7_1.png)
 1st, use this codes to find out which one has '\xa0'
-```python
+```Python
 for i in loginfo.find():
     if '\xa0' in i['caseid']:
         print(i['caseid'])
@@ -38,7 +38,7 @@ for i in loginfo.find():
 
 2nd, delete this string of data, you need to ```j = "".join(j.split())```,or ```j = ''.join(j.split())```
 refer to :[https://www.cnblogs.com/yqpy/p/8203783.html](https://www.cnblogs.com/yqpy/p/8203783.html)
-```python
+```Python
 for i in loginfo.find():
     if '\xa0' in i['caseid']:
         j = i['caseid']
@@ -52,7 +52,7 @@ for i in loginfo.find():
 ![3.png](http://user-image.logdown.io/user/42937/blog/39533/post/4734411/ygx6Co5RWexSkayag1CJ_3.png)
 
 3rd, update the refreshed data to db
-```python
+```Python
 for i in loginfo.find():
     if '\xa0' in i['caseid']:
         j = i['caseid']
@@ -64,14 +64,14 @@ for i in loginfo.find():
 # 3. Make data visible by highcharts
 
 import charts package
-```python
+```Python
 import charts
 ```
 shift + enter, it runs well if the following come out‘Server running in the folder /Users/osx at 127.0.0.1:65060’
 
 firstly, let's see a sample
 
-```python
+```Python
 series = [{
     'name': 'OS X',
     'data': [11],
@@ -92,7 +92,7 @@ charts.plot(series, show='inline', options=dict(title=dict(text='charts are nice
 
 NOW, let's start to make a chart to show the volume of each city
 1st, unduplicated city names
-```python
+```Python
 city_list = []
 for i in loginfo.find():
     city_list.append(i['city'])
@@ -103,7 +103,7 @@ print(city_index)
 ![3.png](http://user-image.logdown.io/user/42937/blog/39533/post/4734411/i4cAurYwR3GMDsjSbT4U_3.png)
 
 2nd, volumes of each unduplicated city
-```python
+```Python
 post_times = []
 for index in city_index:
     post_times.append(city_list.count(index))
@@ -114,7 +114,7 @@ print(post_times)
 ![4.jpg](http://user-image.logdown.io/user/42937/blog/39533/post/4734411/hDSSv4gMTSOsA4ci2viQ_4.jpg)
 
  3rd, make a data generator for making a chart
-```python
+```Python
 def data_gen(types):
     length = 0
     if length <= len(city_index):
@@ -130,7 +130,7 @@ def data_gen(types):
 ![5.jpg](http://user-image.logdown.io/user/42937/blog/39533/post/4734411/gL5IFhd8TEauzgBQ4FuR_5.jpg)
 
 4th, make the chart
-```python
+```Python
 series = [data for data in data_gen('column')]
 charts.plot(series, show='inline', options=dict(title=dict(text='case city')))
 ```

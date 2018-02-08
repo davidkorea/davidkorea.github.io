@@ -13,7 +13,7 @@ tags: pycharm django
  iTerm
 
 ![2.jpg](http://user-image.logdown.io/user/42937/blog/39533/post/4716406/xhJsDAEITsGm9xdeKXnY_2.jpg)
-```
+```Python
   cd 180103
   mkdir david
   cd david
@@ -33,7 +33,7 @@ tags: pycharm django
  이어서 계속 iTerm에서 코딩해도 됩니다만 Pycharm Terminal을 이용하려면 추가로 다시 한번 venv를 껴놔야 됩니다.
 
 ![3.jpg](http://user-image.logdown.io/user/42937/blog/39533/post/4716406/sFVmeO8vRDWQRmbbZQKZ_3.jpg)
-```
+```Python
  cd david
  cd my_venv
  source bin/activate

@@ -21,7 +21,7 @@ To open default.html in django web, view functions and url should be defined
 
 * views.py
 
-```python
+```Python
 def default(request):
 	return render(request, 'default.html')               X
   <!-- return render(request, 'default_data.html') -->   O
@@ -29,7 +29,7 @@ def default(request):
 
 * urls.py
 
-```python
+```Python
 from django_web.views import index
 from django_web.views import default
 urlpatterns = [
@@ -41,7 +41,7 @@ urlpatterns = [
 
 * Rewrite dafault.html by Template Language
 
-```python
+```Python
 {% raw %}
 {% load static %}
 <!DOCTYPE html>
@@ -77,7 +77,7 @@ As the picture shows, things in the red line box should be removed except the ma
 * relate main template with sub template
 
 main template: default.html
-```python
+```Python
 {% raw %}
 {% block grid %} {% endblock %}
 {% endraw %}
@@ -86,7 +86,7 @@ main template: default.html
 > ```{% raw %}{% block grid %}{% endraw %}```, the ```grid```can be customized.
 
 sub template: default_data.html
-```python
+```Python
 {% raw %}
 {% extends 'default.html' %}
 
@@ -123,7 +123,7 @@ correct: ```return render(request, 'default_data.html')```
 
 3.default_charts.html
 
-```python
+```Python
 {% raw %}
 {% extends 'default.html' %}
 {% block grid %}
@@ -139,14 +139,14 @@ correct: ```return render(request, 'default_data.html')```
 
 4.views.py
 
-```python
+```Python
 def charts(request):
     return render(request, 'default_charts.html')
 ```
 
 5.urls.py
 
-```python
+```Python
 from django_web.views import index, default, charts
 urlpatterns = [
 	... ...
@@ -158,7 +158,7 @@ urlpatterns = [
 
 > Reference:  [Sort data by jupyter 3](http://davidkor.logdown.com/posts/4773093)
 
-```python
+```Python
 # =====Data Generator=====
 def topx_data_gen(date1, date2, member, limit):
     pipeline = [
@@ -189,7 +189,7 @@ def charts(request):
 
 
 7.dafault_charts.html Again
-```python
+```Python
 {% raw %}
 {% extends 'default.html' %}
 
@@ -257,7 +257,7 @@ def charts(request):
 
 8.NOT Necessery, BUt can test in models.py
 
-```python
+```Python
 pipeline = [
     {'$match': {'$and': [{'date':{'$gte':'2017/01/01','$lte':'2018/01/09'}},{'handle_by':'Andy Tsao'}]}},
     {'$group': {'_id':'$city', 'counts': {'$sum': 1}}},

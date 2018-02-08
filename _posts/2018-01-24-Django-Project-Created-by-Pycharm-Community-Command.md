@@ -58,7 +58,7 @@ copy index.html to templates folder
 
 django_web/views.py
 
-```python
+```Python
 def index(request):
     return render(request, 'index.html')
 ```
@@ -107,7 +107,7 @@ change all the css styles and image paths by using ```{% raw %}{% static 'oringi
 ![1.png](http://user-image.logdown.io/user/42937/blog/39533/post/5298745/L90aIjAHSrGWwzv7U2YX_1.png)
 
 but, the "static files" may not be found by codes, so we need to set the absolute path in settings.py
-```python
+```Python
 {% raw %}
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 {% endraw %}

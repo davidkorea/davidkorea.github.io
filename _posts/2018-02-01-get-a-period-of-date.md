@@ -11,7 +11,7 @@ data.isoweekday()：Return weekday，Monday，return 1；Tuesday，return 2
 
 # 1. Today
 
-```python
+```Python
 from datetime import *
 
 def current_week(today=date.today()):
@@ -82,7 +82,7 @@ last_week()
 
 # 2. Oneday
 
-```python
+```Python
 from datetime import *
 
 def current_week(day):

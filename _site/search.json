@@ -7,12 +7,6 @@
     } ,
   
     {
-      "title"    : "First Post",
-      "tags"     : "python django",
-      "url"      : "/2018/02/07/first-try.html"
-    } ,
-  
-    {
       "title"    : "Get a Month Period",
       "tags"     : "python",
       "url"      : "/2018/02/02/get-a-month-period.html"

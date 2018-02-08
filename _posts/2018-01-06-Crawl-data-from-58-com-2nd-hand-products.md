@@ -21,7 +21,7 @@ tags: python mongodb
 ![1.png](http://user-image.logdown.io/user/42937/blog/39533/post/4724433/C9ENwRShRFWHiLUquErF_1.png)
 
 ## 2.1 check css select path
-```python
+```Python
 from bs4 import BeautifulSoup
 import requests
 
@@ -41,7 +41,7 @@ get_channel_urls(start_url)
 
 ## 2.2 Crawl channel links and save it as a list
 
-```python
+```Python
 from bs4 import BeautifulSoup
 import requests
 
@@ -75,7 +75,7 @@ get_channel_urls(start_url)
 
 ## 3.1 check css select path
 
-```python
+```Python
 from bs4 import BeautifulSoup
 import requests
 import time
@@ -102,7 +102,7 @@ get_product_links_from('http://jn.58.com/shouji/', 2)
 ![1.png](http://user-image.logdown.io/user/42937/blog/39533/post/4724433/Riyyw2FGTra3DIpEucnW_1.png)
 
 ## 3.2 Get product's link
-```pythons
+```Pythons
 from bs4 import BeautifulSoup
 import requests
 import time
@@ -144,7 +144,7 @@ BeautifulSoup's find() may a little different from select()
 we can just input tab div and class noinfotishi with , divided to find the css selector path,like find('div', 'noinfotishi')
 if use select(), we need to use select('div.nothfotishi')
 
-```python
+```Python
 soup = BeautifulSoup(wb_data.text, 'lxml')
     if soup.find('td','t'):
         print('info')
@@ -152,7 +152,7 @@ soup = BeautifulSoup(wb_data.text, 'lxml')
         print('noinfo')
 ```
 or
-```python
+```Python
 soup = BeautifulSoup(wb_data.text, 'lxml')
     if soup.find('div', 'noinfotishi'):
         pass
@@ -163,7 +163,7 @@ soup = BeautifulSoup(wb_data.text, 'lxml')
 ```
 
 ### 3.3.2 we need to ignore the first several advs by its link that contains 'jump'
-```python
+```Python
         for link in soup.select('td.t a.t'):
             item_link = link.get('href').split('?')[0]
             if 'jump' in item_link.split('/'):
@@ -177,7 +177,7 @@ soup = BeautifulSoup(wb_data.text, 'lxml')
 mongod
 ```
 ### 3.3.4  page_parsing.py
-```python
+```Python
 from bs4 import BeautifulSoup
 import requests
 import time
@@ -225,12 +225,12 @@ eg: http://zhuanzhuan.58.com/detail/938627420277926918z.shtml
 3. ```area = list(soup.select('div.palce_li > span > i')[0].stripped_strings)```
 
 ## 4.3 if the tag is in this page then get it otherwise ignore
-```python
+```Python
  area = list(soup.select('div.palce_li > span > i')[0].stripped_strings) if soup.find_all('div', 'palce_li') else None
 ```
 
 
-```python
+```Python
 def get_item_info(url):
     wb_data = requests.get(url)
     soup = BeautifulSoup(wb_data.text, 'lxml')

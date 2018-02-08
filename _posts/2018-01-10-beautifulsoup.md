@@ -33,7 +33,7 @@ ModuleNotFoundError: No module named 'html.entities'; 'html' is not a package
 error occurred everytime when the local html file has too many codes```UnicodeDecodeError: 'ascii' codec can't decode byte 0xe5 in position 1652: ordinal not in range(128)```
 
 source as below
-```python
+```Python
 from bs4 import BeautifulSoup
 
 path = '/Users/osx/Desktop/landing_page.html'
@@ -52,7 +52,7 @@ with open(path, 'r') as wb_data:
 
 # 1.html as a variable
 
-```python
+```Python
 from bs4 import BeautifulSoup
 
 html = '''
@@ -74,7 +74,7 @@ print(soup)
 
 # 2. local html page
 
-```python
+```Python
 from bs4 import BeautifulSoup
 
 path = '/Users/osx/Desktop/landing_page.html'
@@ -85,7 +85,7 @@ with open(path, 'r', encoding='utf-8') as wb_data:
 
 # 3.web page
 
-```python
+```Python
 from bs4 import BeautifulSoup
 import requests
 

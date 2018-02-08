@@ -46,7 +46,7 @@ Refer to : [djangogirls](https://djangogirlstaipei.gitbooks.io/django-girls-taip
 # 4. add app to my_project/settings.py
 
 my_project/settings.py
-```python
+```Python
 INSTALLED-APPS = [
 	...
 	'django_web'
@@ -80,7 +80,7 @@ Add ```STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)``` to settings.py
 # 7. django_web/views.py
 
 django_web/views.py
-```python
+```Python
 def index(request):
     return render(request, 'index.html')
 ```
@@ -91,7 +91,7 @@ def index(request):
 
 my_project/urls.py
 
-```python
+```Python
 from django_web.views import index
 
 urlpatterns = [

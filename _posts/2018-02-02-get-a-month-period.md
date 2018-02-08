@@ -18,7 +18,7 @@ Be careful when you use the attribute y by using ```month_range[1]```
 
 # 1. today
 
-```python
+```Python
 from datetime import *
 import calendar
 
@@ -50,7 +50,7 @@ last_month()
 
 # 2. oneday
 
-```python
+```Python
 from datetime import *
 import calendar
 

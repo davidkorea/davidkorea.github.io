@@ -9,7 +9,7 @@ tags: jupyter aggregate pipeline
 # 1.Overview of aggregate
 Aggregate function need the pipeline to sort data where it contains all the conditions we need.
 first, let's get to know how to write the sort conditions.
-```python
+```Python
 pipeline = [
     {'$match': {'$and':[{'date':'2018/01/09'},{'handle_by':'David Liu'}]}},
     {'$group': {'_id':'$city','counts':{'$sum':1}}},
@@ -32,7 +32,7 @@ for i in loginfo.aggregate(pipeline):
 > city column chart top 10
 
 # 2.Transfer it to be a data generator for pie charts
-```python
+```Python
  def data_gen(date, member):
     pipeline = [
         {'$match':{'$and':[{'date':date},{'handle_by':member}]}},
@@ -46,7 +46,7 @@ when we use ```yield```, a list could be yield by puting data in '```[]```',like
 ![2.jpg](http://user-image.logdown.io/user/42937/blog/39533/post/4773093/31dZ16OqQ8WJgeVYfGP7_2.jpg)
 
 # 3. Make a pie chart
-```python
+```Python
 options = {
     'chart':{'zoomType':'xy'},
     'title':{'text':'city on one day'}
@@ -66,7 +66,7 @@ charts.plot(series, options=options, show='inline')
 > ### More...
 # Q: 2018/01/01-2018/01/09 city volume in a period
 
-```python
+```Python
 pipeline = [
     {'$match': {'$and': [{'date':{'$gte':'2017/01/01','$lte':'2018/01/09'}},{'handle_by':'David Liu'}]}},
     {'$group': {'_id':'$city', 'counts': {'$sum': 1}}},
@@ -81,7 +81,7 @@ grouping means take duplicated data in order and make it unduplicated.
 
 ![2.jpg](http://user-image.logdown.io/user/42937/blog/39533/post/4773093/fyHR4bURfabsCNCZ17iy_2.jpg)
 create a data generator to yiled the data that column chart needs.
-```python
+```Python
 def data_gen(date1, date2, member, limit):
     pipeline = [
     {'$match': {'$and': [{'date':{'$gte':date1,'$lte':date2}},{'handle_by':member}]}},
@@ -98,7 +98,7 @@ def data_gen(date1, date2, member, limit):
         yield data
 ```
 then use the data yielded above to generate the chart
-```python
+```Python
 series = [i for i in data_gen('2017/01/01','2017/12/31','David Liu',10) ]
 options = {
     'chart':{'zoomType':'xy'},

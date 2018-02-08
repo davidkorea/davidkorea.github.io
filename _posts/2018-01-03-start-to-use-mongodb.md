@@ -7,7 +7,7 @@ tags: python mongodb pymongo
 # 1.split content in lines
 walden.txt
 create new file in pycharm named walden.txt and copy the content
-```python
+```Python
 path = '/Users/osx/PycharmProjects/lesson2/waldenn.txt'
 with open(path, 'r') as f:
     lines = f.readlines()
@@ -22,13 +22,13 @@ with open(path, 'r') as f:
 
 if open a text file with ascii or unicode or utf8 python can not decode
 
-    > Error:
+> Error:
 	UnicodeDecodeError: 'ascii' codec can't decode byte 0xff in position 0: ordinal not in range(128)
 	Process finished with exit code 1
 
 
 # 2. Save splited lines into Mongodb
-```python
+```Python
 import pymongo
 
 client = pymongo.MongoClient('localhost', 27017)
@@ -57,7 +57,7 @@ mongod
 
 # 3.check the data saved in db
 ## 3.1 use code
-```python
+```Python
 import pymongo
 
 client = pymongo.MongoClient('localhost', 27017)
@@ -92,7 +92,7 @@ for item in sheet_tab.find():
 ## 4.1 fliter commands/query db
     >  $lt/$lte/$gt/$gte/$ne，依次等价于</<=/>/>=/!=。（l表示less g表示greater e表示equal n表示not ）
 example:
-```python
+```Python
 for item in sheet_tab.find({'words':{'$lt':5}}):
 print(item)
 #find the words of a line is less than 5 words

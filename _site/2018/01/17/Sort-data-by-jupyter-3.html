@@ -80,15 +80,15 @@
 <h1 id="1overview-of-aggregate">1.Overview of aggregate</h1>
 <p>Aggregate function need the pipeline to sort data where it contains all the conditions we need.
 first, let’s get to know how to write the sort conditions.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pipeline</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="s">'$match'</span><span class="p">:</span> <span class="p">{</span><span class="s">'$and'</span><span class="p">:[{</span><span class="s">'date'</span><span class="p">:</span><span class="s">'2018/01/09'</span><span class="p">},{</span><span class="s">'handle_by'</span><span class="p">:</span><span class="s">'David Liu'</span><span class="p">}]}},</span>
-    <span class="p">{</span><span class="s">'$group'</span><span class="p">:</span> <span class="p">{</span><span class="s">'_id'</span><span class="p">:</span><span class="s">'$city'</span><span class="p">,</span><span class="s">'counts'</span><span class="p">:{</span><span class="s">'$sum'</span><span class="p">:</span><span class="mi">1</span><span class="p">}}},</span>
-    <span class="p">{</span><span class="s">'$sort'</span><span class="p">:</span> <span class="p">{</span><span class="s">'counts'</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">}},</span>
-    <span class="p">{</span><span class="s">'$limit'</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
-<span class="p">]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">pipeline</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">pipeline = [
+    {'$match': {'$and':[{'date':'2018/01/09'},{'handle_by':'David Liu'}]}},
+    {'$group': {'_id':'$city','counts':{'$sum':1}}},
+    {'$sort': {'counts':-1}},
+    {'$limit': 3}
+]
+for i in loginfo.aggregate(pipeline):
+    print(i)
+</code></pre>
 
 <ul>
   <li>
@@ -111,31 +111,31 @@ first, let’s get to know how to write the sort conditions.</p>
 </blockquote>
 
 <h1 id="2transfer-it-to-be-a-data-generator-for-pie-charts">2.Transfer it to be a data generator for pie charts</h1>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">data_gen</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">member</span><span class="p">):</span>
-    <span class="n">pipeline</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">{</span><span class="s">'$match'</span><span class="p">:{</span><span class="s">'$and'</span><span class="p">:[{</span><span class="s">'date'</span><span class="p">:</span><span class="n">date</span><span class="p">},{</span><span class="s">'handle_by'</span><span class="p">:</span><span class="n">member</span><span class="p">}]}},</span>
-        <span class="p">{</span><span class="s">'$group'</span><span class="p">:{</span><span class="s">'_id'</span><span class="p">:</span><span class="s">'$city'</span><span class="p">,</span> <span class="s">'counts'</span><span class="p">:{</span><span class="s">'$sum'</span><span class="p">:</span><span class="mi">1</span><span class="p">}}},</span>
-        <span class="p">{</span><span class="s">'$sort'</span><span class="p">:</span> <span class="p">{</span><span class="s">'counts'</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">}},</span>
-    <span class="p">]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">pipeline</span><span class="p">):</span>
-        <span class="k">yield</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="s">'_id'</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="s">'counts'</span><span class="p">]]</span>
-</code></pre></div></div>
+<pre><code class="language-Python"> def data_gen(date, member):
+    pipeline = [
+        {'$match':{'$and':[{'date':date},{'handle_by':member}]}},
+        {'$group':{'_id':'$city', 'counts':{'$sum':1}}},
+        {'$sort': {'counts':-1}},
+    ]
+    for i in loginfo.aggregate(pipeline):
+        yield [i['_id'], i['counts']]
+</code></pre>
 <p>when we use <code class="highlighter-rouge">yield</code>, a list could be yield by puting data in ‘<code class="highlighter-rouge">[]</code>‘,like <code class="highlighter-rouge">yield [i['_id'], i['counts']]</code>
 <img src="http://user-image.logdown.io/user/42937/blog/39533/post/4773093/31dZ16OqQ8WJgeVYfGP7_2.jpg" alt="2.jpg" /></p>
 
 <h1 id="3-make-a-pie-chart">3. Make a pie chart</h1>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'chart'</span><span class="p">:{</span><span class="s">'zoomType'</span><span class="p">:</span><span class="s">'xy'</span><span class="p">},</span>
-    <span class="s">'title'</span><span class="p">:{</span><span class="s">'text'</span><span class="p">:</span><span class="s">'city on one day'</span><span class="p">}</span>
-<span class="p">}</span>
-<span class="n">series</span> <span class="o">=</span> <span class="p">[{</span>
-    <span class="s">'type'</span><span class="p">:</span> <span class="s">'pie'</span><span class="p">,</span>
-    <span class="s">'name'</span><span class="p">:</span> <span class="s">'volume'</span><span class="p">,</span>
-    <span class="s">'data'</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data_gen</span><span class="p">(</span><span class="s">'2018/01/09'</span><span class="p">,</span><span class="s">'David Liu'</span><span class="p">)]</span>
-<span class="p">}]</span>
+<pre><code class="language-Python">options = {
+    'chart':{'zoomType':'xy'},
+    'title':{'text':'city on one day'}
+}
+series = [{
+    'type': 'pie',
+    'name': 'volume',
+    'data': [i for i in data_gen('2018/01/09','David Liu')]
+}]
 
-<span class="n">charts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="s">'inline'</span><span class="p">)</span>
-</code></pre></div></div>
+charts.plot(series, options=options, show='inline')
+</code></pre>
 
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4773093/SAQX7PO8T3KsT40yUp3m_3.jpg" alt="3.jpg" /></p>
 
@@ -145,44 +145,44 @@ first, let’s get to know how to write the sort conditions.</p>
   <h1 id="q-20180101-20180109-city-volume-in-a-period">Q: 2018/01/01-2018/01/09 city volume in a period</h1>
 </blockquote>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pipeline</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="s">'$match'</span><span class="p">:</span> <span class="p">{</span><span class="s">'$and'</span><span class="p">:</span> <span class="p">[{</span><span class="s">'date'</span><span class="p">:{</span><span class="s">'$gte'</span><span class="p">:</span><span class="s">'2017/01/01'</span><span class="p">,</span><span class="s">'$lte'</span><span class="p">:</span><span class="s">'2018/01/09'</span><span class="p">}},{</span><span class="s">'handle_by'</span><span class="p">:</span><span class="s">'David Liu'</span><span class="p">}]}},</span>
-    <span class="p">{</span><span class="s">'$group'</span><span class="p">:</span> <span class="p">{</span><span class="s">'_id'</span><span class="p">:</span><span class="s">'$city'</span><span class="p">,</span> <span class="s">'counts'</span><span class="p">:</span> <span class="p">{</span><span class="s">'$sum'</span><span class="p">:</span> <span class="mi">1</span><span class="p">}}},</span>
-    <span class="p">{</span><span class="s">'$sort'</span><span class="p">:{</span><span class="s">'counts'</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">}},</span>
-    <span class="p">{</span><span class="s">'$limit'</span><span class="p">:</span><span class="mi">10</span><span class="p">}</span>
-<span class="p">]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">pipeline</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">pipeline = [
+    {'$match': {'$and': [{'date':{'$gte':'2017/01/01','$lte':'2018/01/09'}},{'handle_by':'David Liu'}]}},
+    {'$group': {'_id':'$city', 'counts': {'$sum': 1}}},
+    {'$sort':{'counts':-1}},
+    {'$limit':10}
+]
+for i in loginfo.aggregate(pipeline):
+    print(i)
+</code></pre>
 <p>unduplicated data can be sorted through <code class="highlighter-rouge">$grooup</code>, cuz it means that find the same city and add 1.
 grouping means take duplicated data in order and make it unduplicated.</p>
 
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4773093/fyHR4bURfabsCNCZ17iy_2.jpg" alt="2.jpg" />
 create a data generator to yiled the data that column chart needs.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">data_gen</span><span class="p">(</span><span class="n">date1</span><span class="p">,</span> <span class="n">date2</span><span class="p">,</span> <span class="n">member</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
-    <span class="n">pipeline</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="s">'$match'</span><span class="p">:</span> <span class="p">{</span><span class="s">'$and'</span><span class="p">:</span> <span class="p">[{</span><span class="s">'date'</span><span class="p">:{</span><span class="s">'$gte'</span><span class="p">:</span><span class="n">date1</span><span class="p">,</span><span class="s">'$lte'</span><span class="p">:</span><span class="n">date2</span><span class="p">}},{</span><span class="s">'handle_by'</span><span class="p">:</span><span class="n">member</span><span class="p">}]}},</span>
-    <span class="p">{</span><span class="s">'$group'</span><span class="p">:</span> <span class="p">{</span><span class="s">'_id'</span><span class="p">:</span><span class="s">'$city'</span><span class="p">,</span> <span class="s">'counts'</span><span class="p">:</span> <span class="p">{</span><span class="s">'$sum'</span><span class="p">:</span> <span class="mi">1</span><span class="p">}}},</span>
-    <span class="p">{</span><span class="s">'$sort'</span><span class="p">:</span> <span class="p">{</span><span class="s">'counts'</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">}},</span>
-    <span class="p">{</span><span class="s">'$limit'</span><span class="p">:</span> <span class="n">limit</span><span class="p">}</span>
-<span class="p">]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">pipeline</span><span class="p">):</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s">'name'</span><span class="p">:</span> <span class="n">i</span><span class="p">[</span><span class="s">'_id'</span><span class="p">],</span>
-            <span class="s">'data'</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="s">'counts'</span><span class="p">]],</span>
-            <span class="s">'type'</span><span class="p">:</span> <span class="s">'column'</span>
-        <span class="p">}</span>
-        <span class="k">yield</span> <span class="n">data</span>
-</code></pre></div></div>
+<pre><code class="language-Python">def data_gen(date1, date2, member, limit):
+    pipeline = [
+    {'$match': {'$and': [{'date':{'$gte':date1,'$lte':date2}},{'handle_by':member}]}},
+    {'$group': {'_id':'$city', 'counts': {'$sum': 1}}},
+    {'$sort': {'counts':-1}},
+    {'$limit': limit}
+]
+    for i in loginfo.aggregate(pipeline):
+        data = {
+            'name': i['_id'],
+            'data': [i['counts']],
+            'type': 'column'
+        }
+        yield data
+</code></pre>
 <p>then use the data yielded above to generate the chart</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data_gen</span><span class="p">(</span><span class="s">'2017/01/01'</span><span class="p">,</span><span class="s">'2017/12/31'</span><span class="p">,</span><span class="s">'David Liu'</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="p">]</span>
-<span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'chart'</span><span class="p">:{</span><span class="s">'zoomType'</span><span class="p">:</span><span class="s">'xy'</span><span class="p">},</span>
-    <span class="s">'title'</span><span class="p">:{</span><span class="s">'text'</span><span class="p">:</span><span class="s">'Top 10 Citys Handled by David in 2017'</span><span class="p">},</span>
-    <span class="s">'yAxis'</span><span class="p">:{</span><span class="s">'title'</span><span class="p">:{</span><span class="s">'text'</span><span class="p">:</span><span class="s">'volume'</span><span class="p">}},</span>
-    <span class="p">}</span>
-<span class="n">charts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="s">'inline'</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">series = [i for i in data_gen('2017/01/01','2017/12/31','David Liu',10) ]
+options = {
+    'chart':{'zoomType':'xy'},
+    'title':{'text':'Top 10 Citys Handled by David in 2017'},
+    'yAxis':{'title':{'text':'volume'}},
+    }
+charts.plot(series, options=options, show='inline')
+</code></pre>
 
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4773093/lppeh9SiRHGDIfJDAsQw_3.jpg" alt="3.jpg" /></p>
 
@@ -341,7 +341,7 @@ refer to:
         <a href="/2018/01/16/4772427.html" class="read-next-link"></a>
           <section>
             <span>돌을 옮기다가 발등에 떨어졌다!!!!!</span>
-            <p>비트코인 다시 오르겠지??? 당연히 오르길 바래 ㅠ많이 밑졌는데 아직도 정산할 용기가 없어서… 내일 다...</p>
+            <p>&lt;!– 비트코인 다시 오르겠지??? 당연히 오르길 바래 ㅠ많이 밑졌는데 아직도 정산할 용기가 없어...</p>
           </section>
           
       </div>

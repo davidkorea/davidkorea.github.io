@@ -18,7 +18,7 @@ $```open .```
 open jupyter_notebook_config.py
 delete #, and change values as below
 NotebookApp.password can find at Users/osx/.jupyter/jupyter_notebook_config.json
-```
+```Python
 c.NotebookApp.ip = '*'
 c.NotebookApp.open_browser = False
 c.NotebookApp.password = u'sha1:da4fe31bad60:f47e622c45f25a62fe308eaa700578815154f2b3'

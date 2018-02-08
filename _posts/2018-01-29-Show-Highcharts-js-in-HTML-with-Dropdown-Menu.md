@@ -8,7 +8,7 @@ tags: highcharts
 
 # 1. ui equal width grid
 
-```html
+```HTML
 <div class="ui equal width grid" style="width:75%;margin:5px 5px 5px 5px;">
 	<div class="row">
 		<div class="column">1  </div>    
@@ -26,7 +26,7 @@ tags: highcharts
 
 # 2. Statistic
 
-```html
+```HTML
 <div class="ui red segment">
   <div class="ui statistic">
     <div class="value">
@@ -43,7 +43,7 @@ tags: highcharts
 
 # 3. Devided items
 
-```html
+```HTML
 <div class="ui segment">
   <div class="ui divided items">
     <div class="item">
@@ -73,7 +73,7 @@ tags: highcharts
 
 * 1. html framework
 
-```html
+```HTML
 <div class="ui equal width grid" style="width:75%;margin:5px 5px 5px 5px;">
 	... ...
 </div>
@@ -97,14 +97,14 @@ tags: highcharts
 * 2. import relevant js labraries & js script
 
 The following highcharts js files can be copied from teh video code.
-```html
+```HTML
 <head>
 <script src="js/exporting.js"></script>
 <script src="js/highcharts-more.js"></script>
 <script src="js/highcharts.js"></script>
 </head>
 ```
-```html
+```HTML
 <body>
 <div class="ui equal width grid" style="width:75%;margin:5px 5px 5px 5px;">
   <div class="row">
@@ -153,7 +153,7 @@ data: [5, 7, 3]
 ![5.png](http://user-image.logdown.io/user/42937/blog/39533/post/5404393/FEnm610OT0uJQfdsa62O_5.png)
 
 # 5. Dropdown Menu
-```html
+```HTML
 <div class="ui equal width grid" style="width:75%;margin:5px 5px 5px 5px;">
   <div class="row">
     <div class="column">
@@ -182,7 +182,7 @@ data: [5, 7, 3]
 
 # 6. Dropdown Menu + HighCharts.js
 
-```html
+```HTML
 <div class="ui simple dropdown item">
   Menber
   <i class="dropdown icon"></i>

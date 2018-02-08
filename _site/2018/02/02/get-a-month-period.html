@@ -88,68 +88,68 @@ Be careful when you use the attribute y by using <code class="highlighter-rouge"
 
 <h1 id="1-today">1. today</h1>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">calendar</span>
+<pre><code class="language-Python">from datetime import *
+import calendar
 
-<span class="k">def</span> <span class="nf">current_month</span><span class="p">(</span><span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()):</span>
-    <span class="n">year</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">year</span>
-    <span class="n">month</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span>
-    <span class="n">month_range</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="n">monthrange</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="n">month</span><span class="p">)</span>
-    <span class="n">first_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">last_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="n">month_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
+def current_month(today = date.today()):
+    year = today.year
+    month = today.month
+    month_range = calendar.monthrange(year,month)
+    first_day = date(year, month, day=1)
+    last_day = date(year, month, day=month_range[1])
+    print(first_day,last_day)
 
-<span class="k">def</span> <span class="nf">last_month</span><span class="p">(</span><span class="n">today</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()):</span>
-    <span class="n">year</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">year</span>
-    <span class="n">month</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span>
-    <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">last_year</span> <span class="o">=</span> <span class="n">year</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">last_year</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">last_year</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">month_range</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="n">monthrange</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="n">month</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">month_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
+def last_month(today=date.today()):
+    year = today.year
+    month = today.month
+    if month == 1:
+        last_year = year -1
+        first_day = date(last_year, 12, 1)
+        last_day = date(last_year, 12, 31)
+        print(first_day, last_day)
+    else:
+        month_range = calendar.monthrange(year, month-1)
+        first_day = date(year,month-1, 1)
+        last_day = date(year, month-1, month_range[1])
+        print(first_day, last_day)
 
-<span class="n">current_month</span><span class="p">()</span>
-<span class="n">last_month</span><span class="p">()</span>
-</code></pre></div></div>
+current_month()
+last_month()
+</code></pre>
 
 <h1 id="2-oneday">2. oneday</h1>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">calendar</span>
+<pre><code class="language-Python">from datetime import *
+import calendar
 
-<span class="k">def</span> <span class="nf">current_month</span><span class="p">(</span><span class="n">day</span><span class="p">):</span>
-    <span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">2</span><span class="p">]))</span>
-    <span class="n">year</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">year</span>
-    <span class="n">month</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span>
-    <span class="n">month_range</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="n">monthrange</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="n">month</span><span class="p">)</span>
-    <span class="n">first_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">last_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="n">month_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span><span class="n">last_day</span><span class="p">)</span>
+def current_month(day):
+    today = date(int(day.split('/')[0]),int(day.split('/')[1]),int(day.split('/')[2]))
+    year = today.year
+    month = today.month
+    month_range = calendar.monthrange(year,month)
+    first_day = date(year, month, day=1)
+    last_day = date(year, month, day=month_range[1])
+    print(first_day,last_day)
 
-<span class="k">def</span> <span class="nf">last_month</span><span class="p">(</span><span class="n">day</span><span class="p">):</span>
-    <span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">2</span><span class="p">]))</span>
-    <span class="n">year</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">year</span>
-    <span class="n">month</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span>
-    <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">last_year</span> <span class="o">=</span> <span class="n">year</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">last_year</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">last_year</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">month_range</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="n">monthrange</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">first_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="n">month</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">last_day</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">month_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">first_day</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
+def last_month(day):
+    today = date(int(day.split('/')[0]),int(day.split('/')[1]),int(day.split('/')[2]))
+    year = today.year
+    month = today.month
+    if month == 1:
+        last_year = year -1
+        first_day = date(last_year, 12, 1)
+        last_day = date(last_year, 12, 31)
+        print(first_day, last_day)
+    else:
+        month_range = calendar.monthrange(year, month-1)
+        first_day = date(year,month-1, 1)
+        last_day = date(year, month-1, month_range[1])
+        print(first_day, last_day)
 
 
-<span class="n">current_month</span><span class="p">(</span><span class="s">'2018/01/03'</span><span class="p">)</span>
-<span class="n">last_month</span><span class="p">(</span><span class="s">'2018/01/11'</span><span class="p">)</span>
-</code></pre></div></div>
+current_month('2018/01/03')
+last_month('2018/01/11')
+</code></pre>
 
     </article>
 
@@ -292,10 +292,10 @@ refer to:
     <section class="post-footer-item read-next">
       
       <div class="read-next-item">
-        <a href="/2018/02/07/first-try.html" class="read-next-link"></a>
+        <a href="/2018/02/08/django-project-blog-awms.html" class="read-next-link"></a>
         <section>
-          <span>First Post</span>
-          <p>1. django</p>
+          <span>Django Project - Blog/AWMS</span>
+          <p>1. Create a django project1.1 Command »Deatils</p>
         </section>
         
      </div>

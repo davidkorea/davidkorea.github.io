@@ -16,7 +16,7 @@ to find data in a range,use $in,``` loginfo.find({'date',{'$in':['2018/01/08','2
 ![2.png](http://user-image.logdown.io/user/42937/blog/39533/post/4739924/w5JgGHn6QaoOf29r7XAw_2.png)
 
 the different format of data,yy-mm-dd,yy.mm.dd,yy/mm/dd
-```python
+```Python
 for i in loginfo.find():
     frags = i['date'].split('/')
     if len(frags) == 1:
@@ -32,11 +32,11 @@ for i in loginfo.find():
 
 import the libraries, ```from datetime import timedelta, date```
 firstly, let's ge to know how date and datedelta work
-```python
+```Python
 a = date(2018,1,13)
 print(a)
 ```
-```python
+```Python
 a = timedelta(days=1)
 print(a)
 ```
@@ -48,7 +48,7 @@ unfortunately, this is a wrong case to remind me not to do it again
 we will input the date like '2018-01-01' into the get_all_dates(). and for comparing the 2 dates, we need to split it first, and the combine them together by date() so that our code could compare them and give us a date period. BUT, when use date() to combine, transfer it into ```int(date1.split('-'))```.
 
 you may think why not use date2 minus date1???. the problem is how to minus them and give us how many days between them???
-```python
+```Python
 def get_all_dates(date1, date2):
     start_date = date(int(date1.split('/')[0]),int(date1.split('/')[1]),int(date1.split('/')[2]))
     end_date = date(int(date2.split('/')[0]),int(date2.split('/')[1]),int(date2.split('/')[2]))
@@ -57,7 +57,7 @@ def get_all_dates(date1, date2):
         yield(start_date.strftime('%y/%m/%d'))
         start_date = start_date + days
 ```
-```python
+```Python
 for i in get_all_dates('2018/01/01','2018/01/10'):
     print(i)
 ```
@@ -73,14 +73,14 @@ so, just change the code to ```yield (start_date.strftime('%Y-%m-%d'))```, capit
 
 we need to find the volume of which member on which day.
 
-```python
+```Python
 def get_data_within(date1,date2,members):
     for member in members:
         for date in get_all_dates(date1,date2):
             a = list(loginfo.find({'date':date,'handle_by':member}))
             print(date, member, len(a))
 ```
-```python
+```Python
 get_data_within('2018/01/01','2018/01/10',['David Liu'])
 ```
 we use ```for``` loop to find who in which day did how much cases. that means each factor in members, and get_date_from() will generate a list named a, one by one.
@@ -88,7 +88,7 @@ we use ```for``` loop to find who in which day did how much cases. that means ea
 
 # 4.Make the chart by using the data above
 
-```python
+```Python
 def get_data_within(date1, date2, members):
     for member in members:
         each_day_posts = []
@@ -103,13 +103,13 @@ def get_data_within(date1, date2, members):
         }
         yield data
 ```
-```python
+```Python
 for i in get_data_within('2018/01/01', '2018/01/10', ['David Liu','Andy Tsao']):
     print(i)
 ```
 ![1.jpg](http://user-image.logdown.io/user/42937/blog/39533/post/4739924/970Qf0UTCLqpdBEeRk4Q_1.jpg)
 
-```python
+```Python
 options = {
     'chart': {'zoomType':'xy'},
     'title' : {'text': 'volume'},

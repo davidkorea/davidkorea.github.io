@@ -86,114 +86,114 @@ $ <code class="highlighter-rouge">show tables</code>
 $ <code class="highlighter-rouge">db.createCollection('loginfo_backup')</code>
 $ <code class="highlighter-rouge">db.loginfo.copyTo('logdata_backup')</code>
 5th, use backup db when sort data</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pymongo</span>
-<span class="n">client</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">(</span><span class="s">'localhost'</span><span class="p">,</span> <span class="mi">27017</span><span class="p">)</span>
-<span class="n">awms</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s">'awms'</span><span class="p">]</span>
-<span class="n">loginfo</span> <span class="o">=</span> <span class="n">awms</span><span class="p">[</span><span class="s">'loginfo_backup'</span><span class="p">]</span>
-</code></pre></div></div>
+<pre><code class="language-Python">import pymongo
+client = pymongo.MongoClient('localhost', 27017)
+awms = client['awms']
+loginfo = awms['loginfo_backup']
+</code></pre>
 
 <h1 id="2-string-of-xa0-in-caseid">2. String of ‘\xa0’ in [‘caseid’]</h1>
 
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4734411/FlGFz0ZTQmFaPfkbU1p7_1.png" alt="1.png" />
 1st, use this codes to find out which one has ‘\xa0’</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">find</span><span class="p">():</span>
-    <span class="k">if</span> <span class="s">'</span><span class="se">\xa0</span><span class="s">'</span> <span class="ow">in</span> <span class="n">i</span><span class="p">[</span><span class="s">'caseid'</span><span class="p">]:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s">'caseid'</span><span class="p">])</span>
-</code></pre></div></div>
+<pre><code class="language-Python">for i in loginfo.find():
+    if '\xa0' in i['caseid']:
+        print(i['caseid'])
+</code></pre>
 
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4734411/v9hToJhOSBOakpFsWitF_2.png" alt="2.png" /></p>
 
 <p>2nd, delete this string of data, you need to <code class="highlighter-rouge">j = "".join(j.split())</code>,or <code class="highlighter-rouge">j = ''.join(j.split())</code>
 refer to :<a href="https://www.cnblogs.com/yqpy/p/8203783.html">https://www.cnblogs.com/yqpy/p/8203783.html</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">find</span><span class="p">():</span>
-    <span class="k">if</span> <span class="s">'</span><span class="se">\xa0</span><span class="s">'</span> <span class="ow">in</span> <span class="n">i</span><span class="p">[</span><span class="s">'caseid'</span><span class="p">]:</span>
-        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="s">'caseid'</span><span class="p">]</span>
-        <span class="n">j</span> <span class="o">=</span> <span class="s">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-        <span class="k">if</span> <span class="s">'</span><span class="se">\xa0</span><span class="s">'</span> <span class="ow">in</span> <span class="n">j</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">'yes'</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">'no'</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">for i in loginfo.find():
+    if '\xa0' in i['caseid']:
+        j = i['caseid']
+        j = "".join(j.split())
+        if '\xa0' in j:
+            print('yes')
+        else:
+            print('no')
+</code></pre>
 
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4734411/ygx6Co5RWexSkayag1CJ_3.png" alt="3.png" /></p>
 
 <p>3rd, update the refreshed data to db</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">find</span><span class="p">():</span>
-    <span class="k">if</span> <span class="s">'</span><span class="se">\xa0</span><span class="s">'</span> <span class="ow">in</span> <span class="n">i</span><span class="p">[</span><span class="s">'caseid'</span><span class="p">]:</span>
-        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="s">'caseid'</span><span class="p">]</span>
-        <span class="n">j</span> <span class="o">=</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-        <span class="n">loginfo</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s">'_id'</span><span class="p">:</span><span class="n">i</span><span class="p">[</span><span class="s">'_id'</span><span class="p">]},{</span><span class="s">'$set'</span><span class="p">:{</span><span class="s">'caseid'</span><span class="p">:</span><span class="n">j</span><span class="p">}})</span>
-</code></pre></div></div>
+<pre><code class="language-Python">for i in loginfo.find():
+    if '\xa0' in i['caseid']:
+        j = i['caseid']
+        j = ''.join(j.split())
+        loginfo.update({'_id':i['_id']},{'$set':{'caseid':j}})
+</code></pre>
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4734411/BxAQSs23SmOKiV1YY2Gv_1.png" alt="1.png" /></p>
 
 <h1 id="3-make-data-visible-by-highcharts">3. Make data visible by highcharts</h1>
 
 <p>import charts package</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">charts</span>
-</code></pre></div></div>
+<pre><code class="language-Python">import charts
+</code></pre>
 <p>shift + enter, it runs well if the following come out‘Server running in the folder /Users/osx at 127.0.0.1:65060’</p>
 
 <p>firstly, let’s see a sample</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">series</span> <span class="o">=</span> <span class="p">[{</span>
-    <span class="s">'name'</span><span class="p">:</span> <span class="s">'OS X'</span><span class="p">,</span>
-    <span class="s">'data'</span><span class="p">:</span> <span class="p">[</span><span class="mi">11</span><span class="p">],</span>
-    <span class="s">'type'</span><span class="p">:</span> <span class="s">'column'</span>
-<span class="p">},{</span>
-    <span class="s">'name'</span><span class="p">:</span> <span class="s">'windows'</span><span class="p">,</span>
-    <span class="s">'data'</span><span class="p">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">],</span>
-    <span class="s">'type'</span><span class="p">:</span> <span class="s">'column'</span>
-<span class="p">},{</span>
-    <span class="s">'name'</span><span class="p">:</span> <span class="s">'other'</span><span class="p">,</span>
-    <span class="s">'data'</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span>
-    <span class="s">'type'</span><span class="p">:</span> <span class="s">'column'</span>
-<span class="p">}]</span>
-<span class="n">charts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="s">'inline'</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s">'charts are nice!'</span><span class="p">)))</span>
-</code></pre></div></div>
+<pre><code class="language-Python">series = [{
+    'name': 'OS X',
+    'data': [11],
+    'type': 'column'
+},{
+    'name': 'windows',
+    'data': [12],
+    'type': 'column'
+},{
+    'name': 'other',
+    'data': [2],
+    'type': 'column'
+}]
+charts.plot(series, show='inline', options=dict(title=dict(text='charts are nice!')))
+</code></pre>
 
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4734411/UxyPOH4GTHygDqx9hiV6_2.png" alt="2.png" /></p>
 
 <p>NOW, let’s start to make a chart to show the volume of each city
 1st, unduplicated city names</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">city_list</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">find</span><span class="p">():</span>
-    <span class="n">city_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s">'city'</span><span class="p">])</span>
-<span class="n">city_index</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">city_list</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">city_index</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">city_list = []
+for i in loginfo.find():
+    city_list.append(i['city'])
+city_index = list(set(city_list))
+print(city_index)
+</code></pre>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># unduplicated city索引, 集合set可自动去重 ![3.png](http://user-image.logdown.io/user/42937/blog/39533/post/4734411/i4cAurYwR3GMDsjSbT4U_3.png)
 </code></pre></div></div>
 
 <p>2nd, volumes of each unduplicated city</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">post_times</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">city_index</span><span class="p">:</span>
-    <span class="n">post_times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">city_list</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">post_times</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">post_times = []
+for index in city_index:
+    post_times.append(city_list.count(index))
+print(post_times)
+</code></pre>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># count each unduplicated city in the duplicated city_list
 </code></pre></div></div>
 
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4734411/hDSSv4gMTSOsA4ci2viQ_4.jpg" alt="4.jpg" /></p>
 
 <p>3rd, make a data generator for making a chart</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">data_gen</span><span class="p">(</span><span class="n">types</span><span class="p">):</span>
-    <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">if</span> <span class="n">length</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">city_index</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">city</span><span class="p">,</span> <span class="n">times</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">city_index</span><span class="p">,</span> <span class="n">post_times</span><span class="p">):</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s">'name'</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span>
-                <span class="s">'data'</span><span class="p">:</span> <span class="p">[</span><span class="n">times</span><span class="p">],</span>
-                <span class="s">'type'</span><span class="p">:</span> <span class="n">types</span>
-            <span class="p">}</span>
-            <span class="k">yield</span> <span class="n">data</span>
-            <span class="n">length</span> <span class="o">+=</span> <span class="mi">1</span>
-</code></pre></div></div>
+<pre><code class="language-Python">def data_gen(types):
+    length = 0
+    if length &lt;= len(city_index):
+        for city, times in zip(city_index, post_times):
+            data = {
+                'name': city,
+                'data': [times],
+                'type': types
+            }
+            yield data
+            length += 1
+</code></pre>
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4734411/gL5IFhd8TEauzgBQ4FuR_5.jpg" alt="5.jpg" /></p>
 
 <p>4th, make the chart</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">data_gen</span><span class="p">(</span><span class="s">'column'</span><span class="p">)]</span>
-<span class="n">charts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="s">'inline'</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s">'case city'</span><span class="p">)))</span>
-</code></pre></div></div>
+<pre><code class="language-Python">series = [data for data in data_gen('column')]
+charts.plot(series, show='inline', options=dict(title=dict(text='case city')))
+</code></pre>
 
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4734411/ACLdbUQRlKTFhl9BdfIP_6.jpg" alt="6.jpg" /></p>
 

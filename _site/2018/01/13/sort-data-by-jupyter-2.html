@@ -84,27 +84,27 @@ find the data in 2018/01/09 and only show caseid,<code class="highlighter-rouge"
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4739924/w5JgGHn6QaoOf29r7XAw_2.png" alt="2.png" /></p>
 
 <p>the different format of data,yy-mm-dd,yy.mm.dd,yy/mm/dd</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loginfo</span><span class="o">.</span><span class="n">find</span><span class="p">():</span>
-    <span class="n">frags</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="s">'date'</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">frags</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">date</span> <span class="o">=</span> <span class="n">frags</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">date</span> <span class="o">=</span> <span class="s">'{}.{}.{}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">frags</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">frags</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">frags</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
-    <span class="n">loginfo</span><span class="o">.</span><span class="n">update_one</span><span class="p">({</span><span class="s">'_id'</span><span class="p">:</span><span class="n">i</span><span class="p">[</span><span class="s">'_id'</span><span class="p">]},{</span><span class="s">'$set'</span><span class="p">:{</span><span class="s">'date'</span><span class="p">:</span><span class="n">date</span><span class="p">}})</span>
-</code></pre></div></div>
+<pre><code class="language-Python">for i in loginfo.find():
+    frags = i['date'].split('/')
+    if len(frags) == 1:
+        date = frags
+    else:
+        date = '{}.{}.{}'.format(frags[0],frags[1],frags[2])
+    print(date)
+    loginfo.update_one({'_id':i['_id']},{'$set':{'date':date}})
+</code></pre>
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4739924/OZ25yEvnRvGcwQDhpTsr_3.png" alt="3.png" /></p>
 
 <h1 id="2-let-codes-know-the-date">2. let codes know the date</h1>
 
 <p>import the libraries, <code class="highlighter-rouge">from datetime import timedelta, date</code>
 firstly, let’s ge to know how date and datedelta work</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-</code></pre></div></div>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">a = date(2018,1,13)
+print(a)
+</code></pre>
+<pre><code class="language-Python">a = timedelta(days=1)
+print(a)
+</code></pre>
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4739924/NnfetC86QleEvKoEUIWV_1.png" alt="1.png" />
 NOW, let’s jump into the codes
 unfortunately, this is a wrong case to remind me not to do it again</p>
@@ -113,17 +113,17 @@ unfortunately, this is a wrong case to remind me not to do it again</p>
 we will input the date like ‘2018-01-01’ into the get_all_dates(). and for comparing the 2 dates, we need to split it first, and the combine them together by date() so that our code could compare them and give us a date period. BUT, when use date() to combine, transfer it into <code class="highlighter-rouge">int(date1.split('-'))</code>.</p>
 
 <p>you may think why not use date2 minus date1???. the problem is how to minus them and give us how many days between them???</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_all_dates</span><span class="p">(</span><span class="n">date1</span><span class="p">,</span> <span class="n">date2</span><span class="p">):</span>
-    <span class="n">start_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">date1</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">date1</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">date1</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">2</span><span class="p">]))</span>
-    <span class="n">end_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">date2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">date2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">date2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">2</span><span class="p">]))</span>
-    <span class="n">days</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">while</span> <span class="n">start_date</span> <span class="o">&lt;=</span> <span class="n">end_date</span><span class="p">:</span>
-        <span class="k">yield</span><span class="p">(</span><span class="n">start_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'</span><span class="si">%</span><span class="s">y/</span><span class="si">%</span><span class="s">m/</span><span class="si">%</span><span class="s">d'</span><span class="p">))</span>
-        <span class="n">start_date</span> <span class="o">=</span> <span class="n">start_date</span> <span class="o">+</span> <span class="n">days</span>
-</code></pre></div></div>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">get_all_dates</span><span class="p">(</span><span class="s">'2018/01/01'</span><span class="p">,</span><span class="s">'2018/01/10'</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">def get_all_dates(date1, date2):
+    start_date = date(int(date1.split('/')[0]),int(date1.split('/')[1]),int(date1.split('/')[2]))
+    end_date = date(int(date2.split('/')[0]),int(date2.split('/')[1]),int(date2.split('/')[2]))
+    days = timedelta(days=1)
+    while start_date &lt;= end_date:
+        yield(start_date.strftime('%y/%m/%d'))
+        start_date = start_date + days
+</code></pre>
+<pre><code class="language-Python">for i in get_all_dates('2018/01/01','2018/01/10'):
+    print(i)
+</code></pre>
 
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4739924/Jswq4hMPTJyw6Bj9Yykz_2.jpg" alt="2.jpg" /></p>
 
@@ -136,48 +136,48 @@ so, just change the code to <code class="highlighter-rouge">yield (start_date.st
 
 <p>we need to find the volume of which member on which day.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_data_within</span><span class="p">(</span><span class="n">date1</span><span class="p">,</span><span class="n">date2</span><span class="p">,</span><span class="n">members</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="n">members</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">get_all_dates</span><span class="p">(</span><span class="n">date1</span><span class="p">,</span><span class="n">date2</span><span class="p">):</span>
-            <span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">loginfo</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">'date'</span><span class="p">:</span><span class="n">date</span><span class="p">,</span><span class="s">'handle_by'</span><span class="p">:</span><span class="n">member</span><span class="p">}))</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">member</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
-</code></pre></div></div>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_data_within</span><span class="p">(</span><span class="s">'2018/01/01'</span><span class="p">,</span><span class="s">'2018/01/10'</span><span class="p">,[</span><span class="s">'David Liu'</span><span class="p">])</span>
-</code></pre></div></div>
+<pre><code class="language-Python">def get_data_within(date1,date2,members):
+    for member in members:
+        for date in get_all_dates(date1,date2):
+            a = list(loginfo.find({'date':date,'handle_by':member}))
+            print(date, member, len(a))
+</code></pre>
+<pre><code class="language-Python">get_data_within('2018/01/01','2018/01/10',['David Liu'])
+</code></pre>
 <p>we use <code class="highlighter-rouge">for</code> loop to find who in which day did how much cases. that means each factor in members, and get_date_from() will generate a list named a, one by one.
 <img src="http://user-image.logdown.io/user/42937/blog/39533/post/4739924/A8dVcnW2Q3O83Oer3dqV_2.jpg" alt="2.jpg" /></p>
 
 <h1 id="4make-the-chart-by-using-the-data-above">4.Make the chart by using the data above</h1>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_data_within</span><span class="p">(</span><span class="n">date1</span><span class="p">,</span> <span class="n">date2</span><span class="p">,</span> <span class="n">members</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="n">members</span><span class="p">:</span>
-        <span class="n">each_day_posts</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">get_all_dates</span><span class="p">(</span><span class="n">date1</span><span class="p">,</span><span class="n">date2</span><span class="p">):</span>
-            <span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">loginfo</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">'date'</span><span class="p">:</span><span class="n">date</span><span class="p">,</span> <span class="s">'handle_by'</span><span class="p">:</span><span class="n">member</span><span class="p">}))</span>
-            <span class="n">each_day_post</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-            <span class="n">each_day_posts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">each_day_post</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s">'name'</span><span class="p">:</span> <span class="n">member</span><span class="p">,</span>
-            <span class="s">'data'</span><span class="p">:</span> <span class="n">each_day_posts</span><span class="p">,</span>
-            <span class="s">'type'</span><span class="p">:</span> <span class="s">'line'</span>
-        <span class="p">}</span>
-        <span class="k">yield</span> <span class="n">data</span>
-</code></pre></div></div>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">get_data_within</span><span class="p">(</span><span class="s">'2018/01/01'</span><span class="p">,</span> <span class="s">'2018/01/10'</span><span class="p">,</span> <span class="p">[</span><span class="s">'David Liu'</span><span class="p">,</span><span class="s">'Andy Tsao'</span><span class="p">]):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">def get_data_within(date1, date2, members):
+    for member in members:
+        each_day_posts = []
+        for date in get_all_dates(date1,date2):
+            a = list(loginfo.find({'date':date, 'handle_by':member}))
+            each_day_post = len(a)
+            each_day_posts.append(each_day_post)
+        data = {
+            'name': member,
+            'data': each_day_posts,
+            'type': 'line'
+        }
+        yield data
+</code></pre>
+<pre><code class="language-Python">for i in get_data_within('2018/01/01', '2018/01/10', ['David Liu','Andy Tsao']):
+    print(i)
+</code></pre>
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4739924/970Qf0UTCLqpdBEeRk4Q_1.jpg" alt="1.jpg" /></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'chart'</span><span class="p">:</span> <span class="p">{</span><span class="s">'zoomType'</span><span class="p">:</span><span class="s">'xy'</span><span class="p">},</span>
-    <span class="s">'title'</span> <span class="p">:</span> <span class="p">{</span><span class="s">'text'</span><span class="p">:</span> <span class="s">'volume'</span><span class="p">},</span>
-    <span class="s">'subtitle'</span> <span class="p">:</span> <span class="p">{</span><span class="s">'text'</span><span class="p">:</span> <span class="s">'by member'</span><span class="p">},</span>
-    <span class="s">'xAxis'</span> <span class="p">:</span> <span class="p">{</span><span class="s">'categories'</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">get_all_dates</span><span class="p">(</span><span class="s">'2018/01/01'</span><span class="p">,</span> <span class="s">'2018/01/10'</span><span class="p">)]},</span>
-    <span class="s">'yAxis'</span> <span class="p">:</span> <span class="p">{</span><span class="s">'title'</span><span class="p">:</span> <span class="p">{</span><span class="s">'text'</span><span class="p">:</span> <span class="s">'cases'</span><span class="p">}}</span>
-<span class="p">}</span>
-<span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">get_data_within</span><span class="p">(</span><span class="s">'2018/01/01'</span><span class="p">,</span> <span class="s">'2018/01/10'</span><span class="p">,</span> <span class="p">[</span><span class="s">'David Liu'</span><span class="p">,</span><span class="s">'Andy Tsao'</span><span class="p">])]</span>
-<span class="n">charts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="s">'inline'</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">options = {
+    'chart': {'zoomType':'xy'},
+    'title' : {'text': 'volume'},
+    'subtitle' : {'text': 'by member'},
+    'xAxis' : {'categories': [i for i in get_all_dates('2018/01/01', '2018/01/10')]},
+    'yAxis' : {'title': {'text': 'cases'}}
+}
+series = [i for i in get_data_within('2018/01/01', '2018/01/10', ['David Liu','Andy Tsao'])]
+charts.plot(series, options=options, show='inline')
+</code></pre>
 
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4739924/HjXtvhUSSmiTTM42uV3d_1.jpg" alt="1.jpg" /></p>
 
@@ -325,7 +325,7 @@ refer to:
         <a href="/2018/01/14/4767051.html" class="read-next-link"></a>
         <section>
           <span>개빡치네...</span>
-          <p>ㅅㅂ..빗썸출금신청ㅗ코이원가상계좌 법에따라발급불가GXS구매하자마 손해발생XRP절반정도밑짐BTCJL사용하...</p>
+          <p></p>
         </section>
         
      </div>

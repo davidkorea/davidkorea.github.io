@@ -81,13 +81,13 @@ Refer to: <a href="http://davidkor.logdown.com/posts/5303036"> [Ultimate] Django
 
 <h2 id="11-viewspy">1.1 views.py</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s">'title'</span><span class="p">:</span><span class="s">'caseid'</span><span class="p">,</span>
-        <span class="s">'content'</span><span class="p">:</span><span class="s">'company'</span><span class="p">,</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">'index.html'</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">def index(request):
+    context = {
+        'title':'caseid',
+        'content':'company',
+    }
+    return render(request, 'index.html', context)
+</code></pre>
 <h2 id="12-indexhtml">1.2 index.html</h2>
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"header"</span><span class="nt">&gt;</span>
 	
@@ -149,9 +149,9 @@ copy index.html to templates folder<span class="nt">&lt;/p&gt;</span>
 
 <span class="nt">&lt;p&gt;</span>django_web/views.py<span class="nt">&lt;/p&gt;</span>
 
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"language-python highlighter-rouge"</span><span class="nt">&gt;&lt;div</span> <span class="na">class=</span><span class="s">"highlight"</span><span class="nt">&gt;&lt;pre</span> <span class="na">class=</span><span class="s">"highlight"</span><span class="nt">&gt;&lt;code&gt;&lt;span</span> <span class="na">class=</span><span class="s">"k"</span><span class="nt">&gt;</span>def<span class="nt">&lt;/span&gt;</span> <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"nf"</span><span class="nt">&gt;</span>index<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>(<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"n"</span><span class="nt">&gt;</span>request<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>):<span class="nt">&lt;/span&gt;</span>
-    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"k"</span><span class="nt">&gt;</span>return<span class="nt">&lt;/span&gt;</span> <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"n"</span><span class="nt">&gt;</span>render<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>(<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"n"</span><span class="nt">&gt;</span>request<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>,<span class="nt">&lt;/span&gt;</span> <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"s"</span><span class="nt">&gt;</span>'index.html'<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>)<span class="nt">&lt;/span&gt;</span>
-<span class="nt">&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;pre&gt;&lt;code</span> <span class="na">class=</span><span class="s">"language-Python"</span><span class="nt">&gt;</span>def index(request):
+    return render(request, 'index.html')
+<span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
 
 <span class="nt">&lt;p&gt;&lt;img</span> <span class="na">src=</span><span class="s">"http://user-image.logdown.io/user/42937/blog/39533/post/5298745/LoRWZnGeTSit0iaefvQA_5.png"</span> <span class="na">alt=</span><span class="s">"5.png"</span> <span class="nt">/&gt;&lt;/p&gt;</span>
 
@@ -194,10 +194,10 @@ urlpatterns = [
 <span class="nt">&lt;p&gt;&lt;img</span> <span class="na">src=</span><span class="s">"http://user-image.logdown.io/user/42937/blog/39533/post/5298745/L90aIjAHSrGWwzv7U2YX_1.png"</span> <span class="na">alt=</span><span class="s">"1.png"</span> <span class="nt">/&gt;&lt;/p&gt;</span>
 
 <span class="nt">&lt;p&gt;</span>but, the “static files” may not be found by codes, so we need to set the absolute path in settings.py<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"language-python highlighter-rouge"</span><span class="nt">&gt;&lt;div</span> <span class="na">class=</span><span class="s">"highlight"</span><span class="nt">&gt;&lt;pre</span> <span class="na">class=</span><span class="s">"highlight"</span><span class="nt">&gt;&lt;code&gt;</span>
-<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"n"</span><span class="nt">&gt;</span>STATICFILES_DIRS<span class="nt">&lt;/span&gt;</span> <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"o"</span><span class="nt">&gt;</span>=<span class="nt">&lt;/span&gt;</span> <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>(<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"n"</span><span class="nt">&gt;</span>os<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"o"</span><span class="nt">&gt;</span>.<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"n"</span><span class="nt">&gt;</span>path<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"o"</span><span class="nt">&gt;</span>.<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"n"</span><span class="nt">&gt;</span>join<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>(<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"n"</span><span class="nt">&gt;</span>BASE_DIR<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>,<span class="nt">&lt;/span&gt;</span> <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"s"</span><span class="nt">&gt;</span>"static"<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>),)<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;pre&gt;&lt;code</span> <span class="na">class=</span><span class="s">"language-Python"</span><span class="nt">&gt;</span>
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
-<span class="nt">&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
 
 <span class="nt">&lt;p&gt;&lt;img</span> <span class="na">src=</span><span class="s">"http://user-image.logdown.io/user/42937/blog/39533/post/5298745/zSW8jhhR0mNfUcmOJrYR_2.png"</span> <span class="na">alt=</span><span class="s">"2.png"</span> <span class="nt">/&gt;&lt;/p&gt;</span>
 
@@ -220,25 +220,25 @@ urlpatterns = [
 <h2 id="21-settingspy">2.1 settings.py</h2>
 <p>Django will run settings.py first to check all the configrations.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">mongoengine</span> <span class="kn">import</span> <span class="n">connect</span>
-<span class="n">connect</span><span class="p">(</span><span class="s">'awms'</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s">'127.0.0.1'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">27017</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">from mongoengine import connect
+connect('awms', host='127.0.0.1', port=27017)
+</code></pre>
 
 <h2 id="22-modelspy">2.2 models.py</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">mongoengine</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">mongoengine</span> <span class="kn">import</span> <span class="n">connect</span>
-<span class="n">connect</span><span class="p">(</span><span class="s">'awms'</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s">'127.0.0.1'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">27017</span><span class="p">)</span>
+<pre><code class="language-Python">from mongoengine import *
+from mongoengine import connect
+connect('awms', host='127.0.0.1', port=27017)
 
-<span class="k">class</span> <span class="nc">LogInfo</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
-    <span class="n">caseid</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">orgnization</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
+class LogInfo(Document):
+    caseid = StringField()
+    orgnization = StringField()
 
-    <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s">'collection'</span><span class="p">:</span><span class="s">'loginfo_backup'</span><span class="p">}</span>
+    meta = {'collection':'loginfo_backup'}
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">LogInfo</span><span class="o">.</span><span class="n">objects</span><span class="p">[:</span><span class="mi">1</span><span class="p">]:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">caseid</span><span class="p">)</span>
-</code></pre></div></div>
+for i in LogInfo.objects[:1]:
+    print(i.caseid)
+</code></pre>
 
 <hr />
 <h1 id="problem-1mongoengine-module-package-need-to-be-installed">PROBLEM-1:mongoengine module package need to be installed</h1>
@@ -266,47 +266,47 @@ $ <code class="highlighter-rouge">~/PycharmProjects/180125/my_project ⮀ pip in
 
 <h2 id="22-modelspy-1">2.2’ models.py</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">mongoengine</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">mongoengine</span> <span class="kn">import</span> <span class="n">connect</span>
-<span class="n">connect</span><span class="p">(</span><span class="s">'awms'</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s">'127.0.0.1'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">27017</span><span class="p">)</span>
+<pre><code class="language-Python">from mongoengine import *
+from mongoengine import connect
+connect('awms', host='127.0.0.1', port=27017)
 
-<span class="k">class</span> <span class="nc">LogInfo</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
-    <span class="n">caseid</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">problem</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">custtpye</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">orgnization</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">handle_by</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">city</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">no</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">date</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">attachment</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">solution</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">source</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">resolved</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">note</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
+class LogInfo(Document):
+    caseid = StringField()
+    problem = StringField()
+    custtpye = StringField()
+    orgnization = StringField()
+    handle_by = StringField()
+    city = StringField()
+    no = StringField()
+    date = StringField()
+    attachment = StringField()
+    solution = StringField()
+    source = StringField()
+    resolved = StringField()
+    note = StringField()
 
-    <span class="n">meta</span> <span class="o">=</span><span class="p">{</span><span class="s">'collection'</span><span class="p">:</span><span class="s">'loginfo_backup'</span><span class="p">}</span>
+    meta ={'collection':'loginfo_backup'}
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">LogInfo</span><span class="o">.</span><span class="n">objects</span><span class="p">[:</span><span class="mi">1</span><span class="p">]:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">caseid</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">date</span><span class="p">)</span>
-</code></pre></div></div>
+for i in LogInfo.objects[:1]:
+    print(i.caseid, i.date)
+</code></pre>
 
 <p>If the database already exits <code class="highlighter-rouge">mata={}</code>, otherwise no need.
 <img src="http://user-image.logdown.io/user/42937/blog/39533/post/5303690/9qUYc07QzCkSSBhR7OWQ_1.png" alt="1.png" /></p>
 
 <h2 id="23-viewspy">2.3 views.py</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
-<span class="kn">from</span> <span class="nn">django_web.models</span> <span class="kn">import</span> <span class="n">LogInfo</span>
+<pre><code class="language-Python">from django.shortcuts import render
+from django_web.models import LogInfo
 
-<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="n">log_info</span> <span class="o">=</span> <span class="n">LogInfo</span><span class="o">.</span><span class="n">objects</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s">'title'</span><span class="p">:</span> <span class="n">log_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">caseid</span><span class="p">,</span>
-        <span class="s">'content'</span><span class="p">:</span><span class="n">log_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">orgnization</span><span class="p">,</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">'index.html'</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
-</code></pre></div></div>
+def index(request):
+    log_info = LogInfo.objects[:1]
+    context = {
+        'title': log_info[0].caseid,
+        'content':log_info[0].orgnization,
+    }
+    return render(request, 'index.html', context)
+</code></pre>
 
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5303690/1xhM2XGQvK7upXpK1ubH_2.png" alt="2.png" /></p>
 
@@ -316,42 +316,42 @@ $ <code class="highlighter-rouge">~/PycharmProjects/180125/my_project ⮀ pip in
 Firstly, get to know how paginator works.</p>
 
 <p>views.py - console</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="kn">from</span> <span class="nn">django.core.paginator</span> <span class="kn">import</span> <span class="n">Paginator</span>
-<span class="err">$</span> <span class="nb">iter</span> <span class="o">=</span> <span class="s">'qwertyuiop'</span>
-<span class="err">$</span> <span class="n">paginator</span> <span class="o">=</span> <span class="n">Paginator</span><span class="p">(</span><span class="nb">iter</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<span class="err">$</span> <span class="n">paginator</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="o">&lt;</span><span class="n">Page</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">4</span><span class="o">&gt;</span>
-<span class="err">$</span> <span class="n">page1</span> <span class="o">=</span> <span class="n">paginator</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="err">$</span> <span class="n">page1</span><span class="o">.</span><span class="n">object_list</span>
-<span class="s">'qwe'</span>
-<span class="err">$</span> <span class="n">page1</span><span class="o">.</span><span class="n">has_next</span><span class="p">()</span>
-<span class="bp">True</span>
-<span class="err">$</span> <span class="n">page1</span><span class="o">.</span><span class="n">number</span>
-<span class="mi">1</span>
-<span class="err">$</span> <span class="n">page1</span><span class="o">.</span><span class="n">paginator</span><span class="o">.</span><span class="n">num_pages</span>
-<span class="mi">4</span>
-</code></pre></div></div>
+<pre><code class="language-Python">$ from django.core.paginator import Paginator
+$ iter = 'qwertyuiop'
+$ paginator = Paginator(iter,3)
+$ paginator.page(1)
+&lt;Page 1 of 4&gt;
+$ page1 = paginator.page(1)
+$ page1.object_list
+'qwe'
+$ page1.has_next()
+True
+$ page1.number
+1
+$ page1.paginator.num_pages
+4
+</code></pre>
 <p>Let’s jump into codes.</p>
 
 <ul>
   <li>views.py</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
-<span class="kn">from</span> <span class="nn">django_web.models</span> <span class="kn">import</span> <span class="n">LogInfo</span>
-<span class="kn">from</span> <span class="nn">django.core.paginator</span> <span class="kn">import</span> <span class="n">Paginator</span>
+<pre><code class="language-Python">from django.shortcuts import render
+from django_web.models import LogInfo
+from django.core.paginator import Paginator
 
-<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="n">limit</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="n">log_info</span> <span class="o">=</span> <span class="n">LogInfo</span><span class="o">.</span><span class="n">objects</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
-    <span class="n">paginator</span> <span class="o">=</span> <span class="n">Paginator</span><span class="p">(</span><span class="n">log_info</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span>
-    <span class="n">page</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'page'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">loaded</span> <span class="o">=</span> <span class="n">paginator</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
-    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s">'LogInfo'</span><span class="p">:</span><span class="n">loaded</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">'index.html'</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
-</code></pre></div></div>
+def index(request):
+    limit = 10
+    log_info = LogInfo.objects[:10]
+    paginator = Paginator(log_info, limit)
+    page = request.GET.get('page', 1)
+    loaded = paginator.page(page)
+    context = {
+        'LogInfo':loaded
+    }
+    return render(request, 'index.html', context)
+</code></pre>
 
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5303690/V16G0fPYTgWvvjvwHbYf_4.png" alt="4.png" /></p>
 

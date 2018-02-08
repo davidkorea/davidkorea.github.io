@@ -13,7 +13,7 @@ tags: semanticui
 
 # 2. HTML Framework
 
-```html
+```HTML
   <head>
     <meta charset="utf-8">
     <title>web</title>
@@ -25,7 +25,7 @@ tags: semanticui
 
 > jquery.min.js should be above of semantic.js
 
-```html
+```HTML
   <body>    
     <div class="ui menu">
       <div class="header item" id="menu">
@@ -75,7 +75,7 @@ tags: semanticui
 
 # 3. JS - Sidebar
 
-```html
+```HTML
 <body>
   <div class="ui sidebar Inverted vertical menu">
     here is the sidebar
@@ -94,7 +94,7 @@ tags: semanticui
 </body>
 ```
 Now, let's jump into the codes
-```html
+```HTML
   <body>
     <div class="ui visible left thin sidebar inverted vertical menu" id="sidebar">
       <div class="item">option1</div>

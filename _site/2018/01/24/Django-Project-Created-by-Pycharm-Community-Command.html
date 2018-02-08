@@ -126,9 +126,9 @@ copy index.html to templates folder</p>
 
 <p>django_web/views.py</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">'index.html'</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">def index(request):
+    return render(request, 'index.html')
+</code></pre>
 
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5298745/LoRWZnGeTSit0iaefvQA_5.png" alt="5.png" /></p>
 
@@ -171,10 +171,10 @@ urlpatterns = [
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5298745/L90aIjAHSrGWwzv7U2YX_1.png" alt="1.png" /></p>
 
 <p>but, the “static files” may not be found by codes, so we need to set the absolute path in settings.py</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="n">STATICFILES_DIRS</span> <span class="o">=</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s">"static"</span><span class="p">),)</span>
+<pre><code class="language-Python">
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
-</code></pre></div></div>
+</code></pre>
 
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/5298745/zSW8jhhR0mNfUcmOJrYR_2.png" alt="2.png" /></p>
 

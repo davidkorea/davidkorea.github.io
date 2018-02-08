@@ -12,7 +12,7 @@ tags: django
 
 ## 1.1 views.py
 
-```python
+```Python
 def index(request):
     context = {
         'title':'caseid',
@@ -41,14 +41,14 @@ def index(request):
 ## 2.1 settings.py
 Django will run settings.py first to check all the configrations.
 
-```python
+```Python
 from mongoengine import connect
 connect('awms', host='127.0.0.1', port=27017)
 ```
 
 ## 2.2 models.py
 
-```python
+```Python
 from mongoengine import *
 from mongoengine import connect
 connect('awms', host='127.0.0.1', port=27017)
@@ -88,7 +88,7 @@ All the columns in db should be defined here.
 
 ## 2.2' models.py
 
-```python
+```Python
 from mongoengine import *
 from mongoengine import connect
 connect('awms', host='127.0.0.1', port=27017)
@@ -119,7 +119,7 @@ If the database already exits ```mata={}```, otherwise no need.
 
 ## 2.3 views.py
 
-```python
+```Python
 from django.shortcuts import render
 from django_web.models import LogInfo
 
@@ -141,7 +141,7 @@ def index(request):
 Firstly, get to know how paginator works.
 
 views.py - console
-```python
+```Python
 $ from django.core.paginator import Paginator
 $ iter = 'qwertyuiop'
 $ paginator = Paginator(iter,3)
@@ -161,7 +161,7 @@ Let's jump into codes.
 
 * views.py
 
-```python
+```Python
 from django.shortcuts import render
 from django_web.models import LogInfo
 from django.core.paginator import Paginator

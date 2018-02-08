@@ -78,43 +78,44 @@
       <h1 id="1split-content-in-lines">1.split content in lines</h1>
 <p>walden.txt
 create new file in pycharm named walden.txt and copy the content</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">path</span> <span class="o">=</span> <span class="s">'/Users/osx/PycharmProjects/lesson2/waldenn.txt'</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s">'index'</span><span class="p">:</span><span class="n">index</span><span class="p">,</span>
-            <span class="s">'line'</span> <span class="p">:</span><span class="n">line</span><span class="p">,</span>
-            <span class="s">'words'</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-        <span class="p">}</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-Python">path = '/Users/osx/PycharmProjects/lesson2/waldenn.txt'
+with open(path, 'r') as f:
+    lines = f.readlines()
+    for index, line in enumerate(lines):
+        data = {
+            'index':index,
+            'line' :line,
+            'words':len(line.split())
+        }
+        print(data)
+</code></pre>
 
 <p>if open a text file with ascii or unicode or utf8 python can not decode</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; Error:
-UnicodeDecodeError: 'ascii' codec can't decode byte 0xff in position 0: ordinal not in range(128)
-Process finished with exit code 1
-</code></pre></div></div>
+<blockquote>
+  <p>Error:
+	UnicodeDecodeError: ‘ascii’ codec can’t decode byte 0xff in position 0: ordinal not in range(128)
+	Process finished with exit code 1</p>
+</blockquote>
 
 <h1 id="2-save-splited-lines-into-mongodb">2. Save splited lines into Mongodb</h1>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pymongo</span>
+<pre><code class="language-Python">import pymongo
 
-<span class="n">client</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">(</span><span class="s">'localhost'</span><span class="p">,</span> <span class="mi">27017</span><span class="p">)</span>
-<span class="n">workbook</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s">'workbook'</span><span class="p">]</span>
-<span class="n">sheet_tab</span> <span class="o">=</span> <span class="n">workbook</span><span class="p">[</span><span class="s">'sheet_tab'</span><span class="p">]</span>
+client = pymongo.MongoClient('localhost', 27017)
+workbook = client['workbook']
+sheet_tab = workbook['sheet_tab']
 
-<span class="n">path</span> <span class="o">=</span> <span class="s">'/Users/osx/PycharmProjects/lesson2/waldenn.txt'</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s">'index'</span><span class="p">:</span><span class="n">index</span><span class="p">,</span>
-            <span class="s">'line'</span> <span class="p">:</span><span class="n">line</span><span class="p">,</span>
-            <span class="s">'words'</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-        <span class="p">}</span>
-        <span class="n">sheet_tab</span><span class="o">.</span><span class="n">insert_one</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</code></pre></div></div>
+path = '/Users/osx/PycharmProjects/lesson2/waldenn.txt'
+with open(path, 'r') as f:
+    lines = f.readlines()
+    for index, line in enumerate(lines):
+        data = {
+            'index':index,
+            'line' :line,
+            'words':len(line.split())
+        }
+        sheet_tab.insert_one(data)
+</code></pre>
 <p>if no pymongo package in this project, add it as follow</p>
 
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4716513/5HG7fzZTRg2M3j5VF6GF_3.png" alt="3.png" /></p>
@@ -125,26 +126,26 @@ Process finished with exit code 1
 
 <h1 id="3check-the-data-saved-in-db">3.check the data saved in db</h1>
 <h2 id="31-use-code">3.1 use code</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pymongo</span>
+<pre><code class="language-Python">import pymongo
 
-<span class="n">client</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">(</span><span class="s">'localhost'</span><span class="p">,</span> <span class="mi">27017</span><span class="p">)</span>
-<span class="n">workbook</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s">'workbook'</span><span class="p">]</span>
-<span class="n">sheet_tab</span> <span class="o">=</span> <span class="n">workbook</span><span class="p">[</span><span class="s">'sheet_tab'</span><span class="p">]</span>
+client = pymongo.MongoClient('localhost', 27017)
+workbook = client['workbook']
+sheet_tab = workbook['sheet_tab']
 
-<span class="c"># path = '/Users/osx/PycharmProjects/lesson2/waldenn.txt'</span>
-<span class="c"># with open(path, 'r') as f:</span>
-<span class="c">#     lines = f.readlines()</span>
-<span class="c">#     for index, line in enumerate(lines):</span>
-<span class="c">#         data = {</span>
-<span class="c">#             'index':index,</span>
-<span class="c">#             'line' :line,</span>
-<span class="c">#             'words':len(line.split())</span>
-<span class="c">#         }</span>
-<span class="c">#         sheet_tab.insert_one(data)</span>
+# path = '/Users/osx/PycharmProjects/lesson2/waldenn.txt'
+# with open(path, 'r') as f:
+#     lines = f.readlines()
+#     for index, line in enumerate(lines):
+#         data = {
+#             'index':index,
+#             'line' :line,
+#             'words':len(line.split())
+#         }
+#         sheet_tab.insert_one(data)
 
-<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sheet_tab</span><span class="o">.</span><span class="n">find</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-</code></pre></div></div>
+for item in sheet_tab.find():
+    print(item)
+</code></pre>
 <h2 id="32-use-plug-in-tool-in-pycharm">3.2 use plug-in tool in pycharm</h2>
 <p><img src="http://user-image.logdown.io/user/42937/blog/39533/post/4716513/77ixpyQ8Soa0zDscR6r1_4.png" alt="4.png" /></p>
 
@@ -158,7 +159,7 @@ using command can find all the records in mongodb
 
 <h1 id="4-orgnize-data-in-order">4 orgnize data in order</h1>
 <h2 id="41-fliter-commandsquery-db">4.1 fliter commands/query db</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;  $lt/$lte/$gt/$gte/$ne，依次等价于&lt;/&lt;=/&gt;/&gt;=/!=。（l表示less g表示greater e表示equal n表示not ） example: ```python for item in sheet_tab.find({'words':{'$lt':5}}): print(item) #find the words of a line is less than 5 words ```
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;  $lt/$lte/$gt/$gte/$ne，依次等价于&lt;/&lt;=/&gt;/&gt;=/!=。（l表示less g表示greater e表示equal n表示not ） example: ```Python for item in sheet_tab.find({'words':{'$lt':5}}): print(item) #find the words of a line is less than 5 words ```
 </code></pre></div></div>
 
     </article>
