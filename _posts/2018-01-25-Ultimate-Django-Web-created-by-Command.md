@@ -1,9 +1,8 @@
 ---
 layout: post
 title: '[Ultimate] Django Web created by Command'
-date: 2018-01-25 03:03
-comments: true
-categories: [django]
+date: 2018-01-25
+tags: django
 ---
 > An updated version of the [last aritical](http://davidkor.logdown.com/posts/5298745).
 Due to the [last ariticle](http://davidkor.logdown.com/posts/5298745) is still 번거로워...lets use only command line to create a Django project.let's start ㄱ
@@ -54,13 +53,13 @@ INSTALLED-APPS = [
 ]
 ```
 
-# 5. Templates, Static 
+# 5. Templates, Static
 
 For make the process visible, i would like to create the relevant folders in Finder.
 
 It's said that the folder templates and static should be created at the same folder level as [startapp:django_web], in another word, the 2 folders should be created under [startproject:my_project]
 
-Actually, as last ariticle showed that even you don't follow the rule, it still works. 
+Actually, as last ariticle showed that even you don't follow the rule, it still works.
 
 Whatever, just do as the rule, for coding more reasonalbe.
 
@@ -105,12 +104,12 @@ urlpatterns = [
 
 -----
 
-# ========== ERROR ========== 
+# ========== ERROR ==========
 
 
 ![6.png](http://user-image.logdown.io/user/42937/blog/39533/post/5303036/W5DgRVTRPFB2zKwMoVAg_6.png)
 
-# ========== ANSWER ========== 
+# ========== ANSWER ==========
 
 add ```[os.path.join(BASE_DIR, 'templates')]```to TEMPLATES 'DIRS' in settings.py
 [Reference](https://www.zhihu.com/question/61051824)
@@ -125,4 +124,3 @@ add ```[os.path.join(BASE_DIR, 'templates')]```to TEMPLATES 'DIRS' in settings.p
 > I found that the video codes also has  ```[os.path.join(BASE_DIR, 'templates')]``` in the settings.py file. cuz the templates folder was created in Finder. BUT it wasn't taughted in the video about this piece of code.
 
 -----
-

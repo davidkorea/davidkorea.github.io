@@ -1,12 +1,11 @@
 ---
 layout: post
 title: 'Django Template Language'
-date: 2018-01-25 07:33
-comments: true
-categories: [django]
+date: 2018-01-25
+tags: django
 ---
 장고 템플릿 언어
-> All the steps should be finished before start. 
+> All the steps should be finished before start.
 > Refer to: [ [Ultimate] Django Web created by Command](http://davidkor.logdown.com/posts/5303036)
 
 # 1. render(request, x.html, context)
@@ -57,9 +56,9 @@ connect('awms', host='127.0.0.1', port=27017)
 class LogInfo(Document):
     caseid = StringField()
     orgnization = StringField()
-    
+
     meta = {'collection':'loginfo_backup'}
-    
+
 for i in LogInfo.objects[:1]:
     print(i.caseid)
 ```
@@ -75,7 +74,7 @@ Go to the project root path use command to install mongoengine package.
 $ ```~/PycharmProjects/180125/my_project ⮀ pip install mongoengine```
 
 [Reference](https://www.douban.com/note/513251201/)
-> Donno why ㅠㅜ 
+> Donno why ㅠㅜ
 
 -----
 # PROBLEM-2:mongoengine.errors.FieldDoesNotExist
@@ -216,7 +215,7 @@ A sample of how the paginator looks like.
 ```html
 <a> 《 Previous </a>
 <span> 1 of 4 </span>
-<a> Next 》 </a> 
+<a> Next 》 </a>
 ```
 Then use template language to activate it.
 ```html
@@ -236,7 +235,7 @@ Then use template language to activate it.
 ```
 ![9.png](http://user-image.logdown.io/user/42937/blog/39533/post/5303690/Cb31UvFSeefNg5c3Dqtu_9.png)
 
-> What does ```page = request.GET.get('page', 1)```really mean? 
+> What does ```page = request.GET.get('page', 1)```really mean?
 
 ![1.png](http://user-image.logdown.io/user/42937/blog/39533/post/5303690/iYieTpGbSNicfplFsQCg_1.png)
 

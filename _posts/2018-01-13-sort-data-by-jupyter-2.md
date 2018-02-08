@@ -1,13 +1,12 @@
 ---
 layout: post
 title: 'Sort data by jupyter 2'
-date: 2018-01-13 11:36
-comments: true
-categories: 
+date: 2018-01-13
+tags: jupyter chart
 ---
 # 1.get the data we need by .find({},{})
 to find the only data that i need through monggodb find() ,find(),will not change database.
-find the data in 2018/01/09 and only show caseid,```loginfo.find({'date':'2018/01/09'},{'_id':0,'caseid':1})``` 
+find the data in 2018/01/09 and only show caseid,```loginfo.find({'date':'2018/01/09'},{'_id':0,'caseid':1})```
 
 ![1.png](http://user-image.logdown.io/user/42937/blog/39533/post/4739924/WPfwEzTxmpscbpl3qiGw_1.png)
 

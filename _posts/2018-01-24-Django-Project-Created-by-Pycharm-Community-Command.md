@@ -1,9 +1,8 @@
 ---
 layout: post
 title: 'Django Project Created by Pycharm Community + Command'
-date: 2018-01-24 07:58
-comments: true
-categories: [django]
+date: 2018-01-24
+tags: django
 ---
 > This is an updated approach to create Django project by Pycharm community version which is much easier and more reasonable than the former one: [ Django Web created by Pycharm+Command](http://davidkor.logdown.com/posts/4716406)
 
@@ -12,7 +11,7 @@ categories: [django]
 
 ![1.png](http://user-image.logdown.io/user/42937/blog/39533/post/5298745/jRV2IJYmSQqJb9zZEICB_1.png)
 
-we don't use pycharm to create a virtual environment. 
+we don't use pycharm to create a virtual environment.
 
 # 2.Command
 $```cd PycharmProjects```
@@ -68,7 +67,7 @@ def index(request):
 
 # 8.urls.py
  my_project/urls.py
- 
+
 ```python
  from django_web.views import index
 
@@ -77,7 +76,7 @@ urlpatterns = [
     url(r'^index/', index),
 ]
 ```
- 
+
 ![6.png](http://user-image.logdown.io/user/42937/blog/39533/post/5298745/C3eO5JciS5GDhuzIxuFK_6.png)
 
 # 9.Get access to 127.0.0.1:8000/index
@@ -91,7 +90,9 @@ $```mkdir static```,  copy 'css' and 'images'folder to static
 
 go to templates/index.html, put the following code on the 1st line of this html file
 ```python
+{% raw %}
 {% load static %}
+{% endraw %}
 ```
 change all the css styles and image paths by using ```{% static 'oringin path' %}```,sample as follows
 

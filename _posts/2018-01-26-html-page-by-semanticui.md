@@ -1,9 +1,8 @@
 ---
 layout: post
 title: 'HTML Page by SemanticUI'
-date: 2018-01-26 04:48
-comments: true
-categories: [semanticui]
+date: 2018-01-26
+tags: semanticui
 ---
 # 1. Preparation
 
@@ -38,7 +37,7 @@ categories: [semanticui]
     </div>
 
     <div class="ui text container segment">
-      
+
       <div class="ui divided items">
         <div class="item">
           <div class="content">
@@ -85,13 +84,13 @@ categories: [semanticui]
     here is the normal html content page,
     which contains all the codes above
   </div>    
-  
+
   <script>
       $('#menu').click(function () {
         $('.ui.sidebar').sidebar('toggle')
       })
    </script>
-  
+
 </body>
 ```
 Now, let's jump into the codes

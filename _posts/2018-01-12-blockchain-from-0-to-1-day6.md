@@ -1,9 +1,8 @@
 ---
 layout: post
 title: 'BlockChain from 0 to 1_day6'
-date: 2018-01-12 07:15
-comments: true
-categories: 
+date: 2018-01-12
+tags: blockchain bitcoin
 ---
 # 12. 区块链的诞生
 

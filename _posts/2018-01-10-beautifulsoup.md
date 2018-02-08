@@ -1,12 +1,11 @@
 ---
 layout: post
 title: 'BeautifulSoup'
-date: 2018-01-10 06:58
-comments: true
-categories: [beautifulsoup]
+date: 2018-01-10
+tags: beautifulsoup
 ---
 # 0-1.TODAY'S FU*KIN CASE 1
- if you create a python file named ```python.py```, then all the python files will run with an error like this,  ``` ModuleNotFoundError: No module named 'html.entities'; 'html' is not a package``` 
+ if you create a python file named ```python.py```, then all the python files will run with an error like this,  ``` ModuleNotFoundError: No module named 'html.entities'; 'html' is not a package```
 
 errer as below
 ```

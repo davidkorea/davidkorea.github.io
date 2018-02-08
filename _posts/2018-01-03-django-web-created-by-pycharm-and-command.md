@@ -1,10 +1,10 @@
 ---
 layout: post
-title: 'Django Web created by Pycharm+Command'
-date: 2018-01-03 13:10
-comments: true
-categories: [pycharm, django]
+title: 'Django Web created by Pycharm & Command'
+date: 2018-01-03
+tags: pycharm django
 ---
+
 # 1.Pycharm - Community Edition
 
 ![1.jpg](http://user-image.logdown.io/user/42937/blog/39533/post/4716406/OX2sU3HlQkuGC86nodOk_1.jpg)

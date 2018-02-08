@@ -1,9 +1,8 @@
 ---
 layout: post
 title: 'Running a jupyter notebook server on local pc'
-date: 2018-01-10 15:14
-comments: true
-categories: [jupyter]
+date: 2018-01-10
+tags: jupyter
 ---
 $```jupyter notebook --generate-config```
 

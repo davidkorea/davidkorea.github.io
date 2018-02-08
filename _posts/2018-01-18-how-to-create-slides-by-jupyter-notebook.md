@@ -1,9 +1,8 @@
 ---
 layout: post
 title: 'How to create slides by jupyter notebook'
-date: 2018-01-18 06:19
-comments: true
-categories: [jupyter, slide]
+date: 2018-01-18
+tags: jupyter slide
 ---
 
 ![1.jpg](http://user-image.logdown.io/user/42937/blog/39533/post/4879189/v2PkJi3XShSkuZ2vmS7A_1.jpg)

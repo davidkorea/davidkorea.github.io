@@ -1,9 +1,8 @@
 ---
 layout: post
 title: 'Sort data by jupyter 3'
-date: 2018-01-17 00:53
-comments: true
-categories: [aggregate pipeline]
+date: 2018-01-17
+tags: jupyter aggregate pipeline
 ---
 ### Sort data by using [aggregate(pipeline)->user guide](https://docs.mongodb.com/manual/reference/operator/aggregation/)
 
@@ -23,7 +22,7 @@ for i in loginfo.aggregate(pipeline):
 
 * ```$match```: ```$and```is needed if 2 conditions must be met at the same time,if not```{'$match':{'date':'2018/01/09'}}```
 
-* ```$group```: grouping by 'city' and will sum up the same city +1, 'counts' isn't in database but named manually 
+* ```$group```: grouping by 'city' and will sum up the same city +1, 'counts' isn't in database but named manually
 
 * ```$sort```: -1: from 9 to 0, 1: from 0 to 9
 
@@ -79,7 +78,7 @@ for i in loginfo.aggregate(pipeline):
 ```
 unduplicated data can be sorted through ```$grooup```, cuz it means that find the same city and add 1.
 grouping means take duplicated data in order and make it unduplicated.
-	
+
 ![2.jpg](http://user-image.logdown.io/user/42937/blog/39533/post/4773093/fyHR4bURfabsCNCZ17iy_2.jpg)
 create a data generator to yiled the data that column chart needs.
 ```python

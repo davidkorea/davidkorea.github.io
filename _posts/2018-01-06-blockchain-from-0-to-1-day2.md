@@ -1,9 +1,8 @@
 ---
 layout: post
 title: 'BlockChain from 0 to 1_day2'
-date: 2018-01-06 11:51
-comments: true
-categories: 
+date: 2018-01-06
+tags: blockchain bitcoin
 ---
 # 5.比特币价格的含义
 
@@ -22,4 +21,3 @@ categories:
 
 ## 比特币的全球定价
 * 每个比特币交易平台价格不完全相同，由于每家交易平台的买卖需求不一样，因此报价不一样
-  

@@ -1,9 +1,8 @@
 ---
 layout: post
 title: 'Crawl data from 58.com 2nd-hand products'
-date: 2018-01-06 14:07
-comments: true
-categories: [python mongodb]
+date: 2018-01-06
+tags: python mongodb
 ---
 # 0.Workflow
 
@@ -66,7 +65,7 @@ get_channel_urls(start_url)
 ![2.png](http://user-image.logdown.io/user/42937/blog/39533/post/4724433/c7X24GURmeaeYNOZDxg9_2.png)
 
 # 3. Parse product page and get each product's link
-    > parse	
+    > parse
       vt.从语法上描述或分析（词句等）
       [例句]Parse files: files in this filter are parsed for autocomplete and other designers.
       分析文件：针对自动完成和其他设计器来对该筛选器中的文件进行分析。
@@ -144,7 +143,7 @@ use soup.find() to check whether the page has ```<div class="noinfotishi">```
 BeautifulSoup's find() may a little different from select()
 we can just input tab div and class noinfotishi with , divided to find the css selector path,like find('div', 'noinfotishi')
 if use select(), we need to use select('div.nothfotishi')
-      
+
 ```python
 soup = BeautifulSoup(wb_data.text, 'lxml')
     if soup.find('td','t'):

@@ -1,9 +1,8 @@
 ---
 layout: post
 title: 'Django Template Inheritance'
-date: 2018-01-30 01:27
-comments: true
-categories: 
+date: 2018-01-30
+tags: django
 ---
 > ```Command + K``` 서버에 연결, 윈도우 쉐어 플더 연결
 > At the very beginning, we need to import [what we have done last time](http://davidkor.logdown.com/posts/5404393) into [django project 20180125,](http://davidkor.logdown.com/posts/5303690) including, html webpage and charts js files.
@@ -13,7 +12,7 @@ categories:
 
 ## 0.1 Import relevant files
 
-template <- default.html 
+template <- default.html
 statics <- js/exporting.js, js/highcharts-more.js, js/highcharts.js
 
 ## 0.2 Django project urls.py, views.py
@@ -36,13 +35,14 @@ from django_web.views import default
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/', index),
-    url(r'^default/', default), 
+    url(r'^default/', default),
 ]
 ```
 
-* Rewrite dafault.html by Template Language 
+* Rewrite dafault.html by Template Language
 
 ```python
+{% raw %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -56,6 +56,7 @@ urlpatterns = [
     <script src="{% static 'js/highcharts-more.js' %}"></script>
     <script src="{% static 'js/highcharts.js' %}"></script>
   </head>
+{% endraw %}
 ```
 
 ![1.png](http://user-image.logdown.io/user/42937/blog/39533/post/5408258/nTkaOlVVTqyTppsGG2S9_1.png)
@@ -71,7 +72,7 @@ As the picture shows, things in the red line box should be removed except the ma
 
 ## 1.1 Move to sub template （LogInfo data field）
 
-* create sub template 'default_data.html' 
+* create sub template 'default_data.html'
 * copy the 'ui equal width grid' from default.html to default_data.html
 * relate main template with sub template
 
@@ -102,10 +103,10 @@ The correct views.py should be like this: ```def default(request):```
 wrong: ```return render(request, 'default.html')```
 correct: ```return render(request, 'default_data.html')```
 
-> Cuz the sub template has already have the full page contents. 
+> Cuz the sub template has already have the full page contents.
 > Thats's why views.py should render the sub template.
 > ```{% extends 'default.html '%}``` means abtain all the main template's contents,
-> and the empty block in the main template will be filled with 
+> and the empty block in the main template will be filled with
 > ```{% block grid %}......{% endblock %}```, which belongs to the sub template.
 
 ----
@@ -147,9 +148,9 @@ urlpatterns = [
 ]
 ```
 
-6.views.py Again 
+6.views.py Again
 
-> Reference:  [Sort data by jupyter 3](http://davidkor.logdown.com/posts/4773093) 
+> Reference:  [Sort data by jupyter 3](http://davidkor.logdown.com/posts/4773093)
 
 ```python
 # =====Data Generator=====
@@ -246,7 +247,7 @@ def charts(request):
 ![1.png](http://user-image.logdown.io/user/42937/blog/39533/post/5408258/xkX51UmZRpumG8eXeZbC_1.png)
 
 
-8.NOT Necessery, BUt can test in models.py 
+8.NOT Necessery, BUt can test in models.py
 
 ```python
 pipeline = [

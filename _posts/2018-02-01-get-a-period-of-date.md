@@ -1,9 +1,8 @@
 ---
 layout: post
 title: 'Get a Week Period'
-date: 2018-02-01 09:21
-comments: true
-categories: [datetime]
+date: 2018-02-01
+tags: python datetime
 ---
 > Get the date period of this week and last week.```from datetime import *```
 date.weekday()：Return weekday，Monday，return 0；Tuesday，return 1

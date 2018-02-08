@@ -1,9 +1,8 @@
 ---
 layout: post
 title: 'Show Highcharts.js in HTML with Dropdown Menu'
-date: 2018-01-29 05:08
-comments: true
-categories: [highcharts]
+date: 2018-01-29
+tags: highcharts
 ---
 > All the css style provided by Semantic UI.
 
@@ -15,7 +14,7 @@ categories: [highcharts]
 		<div class="column">1  </div>    
 		<div class="column">2  </div>
 	</div>
-  
+
 	<div class="row">
 		<div class="column">3  </div>
 	</div>
@@ -57,7 +56,7 @@ categories: [highcharts]
         </div>
       </div>
     </div>
-    
+
     <div class="item">
     	... ...
     </div>
@@ -158,7 +157,7 @@ data: [5, 7, 3]
 <div class="ui equal width grid" style="width:75%;margin:5px 5px 5px 5px;">
   <div class="row">
     <div class="column">
-    	
+
       <!-- dropdown item-->    
       <div class="ui simple dropdown item">
         Menber
@@ -169,7 +168,7 @@ data: [5, 7, 3]
         </div>
       </div>
       <!-- dropdown item-->
-      
+
       <div class="ui container segment">
         <div class="container" id="chart1">
             charts       
@@ -229,7 +228,7 @@ data: [5, 7, 3]
 > ``` ... ... ```
 > ```}); ```
 > ```});```
-> It means when you click ```<div id="andy">```, 
+> It means when you click ```<div id="andy">```,
 > the ```<div id="chart1">```will be activated(showed).
 
 ![7.png](http://user-image.logdown.io/user/42937/blog/39533/post/5404393/FmnWhA8fSNSfWdZRx7uN_7.png)

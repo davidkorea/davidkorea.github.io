@@ -1,9 +1,8 @@
 ---
 layout: post
 title: 'BlockChain from 0 to 1_day3'
-date: 2018-01-07 11:27
-comments: true
-categories: [blockchain bitcoin]
+date: 2018-01-07
+tags: blockchain bitcoin
 ---
 # 6. 比特币的上游，挖矿
 
@@ -64,13 +63,3 @@ categories: [blockchain bitcoin]
 
 ## 成为一名在矿场维护的矿工
 * 基本机械维修，看懂电路板，适应偏远地区的寂寞
-
- 	
-  
-  
-
-
-
-
-
-

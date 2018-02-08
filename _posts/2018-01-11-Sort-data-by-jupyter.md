@@ -1,9 +1,8 @@
 ---
 layout: post
 title: 'Sort data by jupyter'
-date: 2018-01-11 06:44
-comments: true
-categories: [jupyter, chart]
+date: 2018-01-11
+tags: jupyter chart
 ---
 # 1. make a backup of database
 1st, open a terminal in jupyter
@@ -64,7 +63,7 @@ for i in loginfo.find():
 
 # 3. Make data visible by highcharts
 
-import charts package 
+import charts package
 ```python
 import charts
 ```
@@ -111,10 +110,10 @@ for index in city_index:
 print(post_times)
 ```
     # count each unduplicated city in the duplicated city_list
-    
+
 ![4.jpg](http://user-image.logdown.io/user/42937/blog/39533/post/4734411/hDSSv4gMTSOsA4ci2viQ_4.jpg)
-    
- 3rd, make a data generator for making a chart 
+
+ 3rd, make a data generator for making a chart
 ```python
 def data_gen(types):
     length = 0
