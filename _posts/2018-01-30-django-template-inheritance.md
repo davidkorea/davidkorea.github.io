@@ -273,7 +273,7 @@ for i in LogInfo._get_collection().aggregate(pipeline):
 Set the correct link on the side mwnu.
 
 main template: default.html
-```html
+```HTML
     <div class="ui thin visible left sidebar inverted vertical menu" id="sidebar">
       <div class="item"><a href="/default">Index</a></div>
       <div class="item"><a href="/charts">Charts</a></div>
