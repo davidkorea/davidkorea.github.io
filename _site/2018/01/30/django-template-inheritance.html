@@ -344,11 +344,11 @@ for i in LogInfo._get_collection().aggregate(pipeline):
 <p>Set the correct link on the side mwnu.</p>
 
 <p>main template: default.html</p>
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui thin visible left sidebar inverted vertical menu"</span> <span class="na">id=</span><span class="s">"sidebar"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"/default"</span><span class="nt">&gt;</span>Index<span class="nt">&lt;/a&gt;&lt;/div&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"/charts"</span><span class="nt">&gt;</span>Charts<span class="nt">&lt;/a&gt;&lt;/div&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-</code></pre></div></div>
+<pre><code class="language-HTML">    &lt;div class="ui thin visible left sidebar inverted vertical menu" id="sidebar"&gt;
+      &lt;div class="item"&gt;&lt;a href="/default"&gt;Index&lt;/a&gt;&lt;/div&gt;
+      &lt;div class="item"&gt;&lt;a href="/charts"&gt;Charts&lt;/a&gt;&lt;/div&gt;
+    &lt;/div&gt;
+</code></pre>
 
 <blockquote>
   <p><code class="highlighter-rouge">href="..."</code> should use the path set in urls.py
