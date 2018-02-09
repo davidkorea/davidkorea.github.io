@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Git push remote repo"
+title: "Git Push Remote Repository"
 date: 2018-02-09
 tags: git
 ---
