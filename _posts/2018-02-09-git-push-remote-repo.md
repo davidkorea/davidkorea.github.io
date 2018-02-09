@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: "Git push remote repo"
 date: 2018-02-09
 tags: git
