@@ -83,7 +83,7 @@ The explanation.
   For testing print(queryset), input the url as 127.0.0.1:4000/default/?handleby=123456,
   and it will shows '123456', which is the value of this attribute 'handleby' we just input. 
   
-  ![pic](https://github.com/davidkorea/blogdata/blob/master/20180211/image/20180211163847.png)
+  ![](https://raw.githubusercontent.com/davidkorea/blogdata/master/20180211/image/20180211163847.png)
 
 
 - So, all the same. we can make an url with a spicific 'handleby' attribute to sort data by using GET method.
