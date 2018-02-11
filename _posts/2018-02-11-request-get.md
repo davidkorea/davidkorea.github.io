@@ -29,7 +29,7 @@ class Caselog(models.Model):
     handleby = models.CharField(null=True, blank=True, max_length=5, choices=MEMBER)
     date = models.DateField(null=True)
     def __str__(self):
-return self.caseid
+    return self.caseid
 {% endraw %}
 ```
 Explanation about the codes above.
