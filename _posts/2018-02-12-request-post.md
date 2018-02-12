@@ -6,6 +6,7 @@ tags: request
 ---
 
 > To give a detailed introduction about request.post. we will make the comment fuction to show how request.post works.
+> [Project link](https://github.com/davidkorea/180205)
 
 - Create comment database in models.py
 
