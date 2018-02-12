@@ -50,30 +50,32 @@ $ ```git config --global user.email "*****@naver.com"```
 
 ```Python
 PS C:\Users\xerox\Desktop\blogdata> git push origin
-  To https://github.com/davidkorea/blogdata.git
-   ! [rejected]        master -> master (fetch first)
-  error: failed to push some refs to 'https://github.com/davidkorea/blogdata.git'
-  hint: Updates were rejected because the remote contains work that you do
-  hint: not have locally. This is usually caused by another repository pushing
 
-  hint: to the same ref. You may want to first integrate the remote changes
-  hint: (e.g., 'git pull ...') before pushing again.
-  hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+To https://github.com/davidkorea/blogdata.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/davidkorea/blogdata.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 ANSWER
 
 ```Python
 PS C:\Users\xerox\Desktop\blogdata> git pull
-  remote: Counting objects: 4, done.
-  remote: Compressing objects: 100% (3/3), done.
-  remote: Total 4 (delta 1), reused 0 (delta 0), pack-reused 0
-  Unpacking objects: 100% (4/4), done.
-  From https://github.com/davidkorea/blogdata
-     529a2ff..3e1790e  master     -> origin/master
 
-  Merge made by the 'recursive' strategy.
-   20180211/2018-02-11-request-get.md | 6 +++++-
-   1 file changed, 5 insertions(+), 1 deletion(-)
+remote: Counting objects: 4, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 4 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (4/4), done.
+From https://github.com/davidkorea/blogdata
+   529a2ff..3e1790e  master     -> origin/master
+
+Merge made by the 'recursive' strategy.
+ 20180211/2018-02-11-request-get.md | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
  
 PS C:\Users\xerox\Desktop\blogdata> git push origin
 ```
