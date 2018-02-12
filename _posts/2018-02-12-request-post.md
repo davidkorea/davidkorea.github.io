@@ -155,7 +155,7 @@ class CommentForm(forms.Form):
 
 Explanation.
 
-- {{ form.as_p }} means wrap each field of form in a `<p></p>`
+- ```{{ form.as_p }}``` means wrap each field of form in a `<p></p>`
 
 ![1](https://raw.githubusercontent.com/davidkorea/blogdata/master/20180212/image/1.png)
 
