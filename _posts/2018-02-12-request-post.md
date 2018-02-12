@@ -162,7 +162,7 @@ Explanation.
 ![2](https://raw.githubusercontent.com/davidkorea/blogdata/master/20180212/image/2.png)
 
 - when we try to submit the form, then csrf error occurred.
-  {{ csrf_token }} means let the broswer know you are you.
+  `csrf_token` means let the broswer know you are you.
 
 ![3](https://raw.githubusercontent.com/davidkorea/blogdata/master/20180212/image/3.png)  
 
