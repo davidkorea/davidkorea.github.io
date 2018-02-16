@@ -1,4 +1,4 @@
-# **Happy New Year!**
+# Happy New Year!
 
 ## This is the first day of the lunar year of dog in China.
 
@@ -12,12 +12,10 @@
 
 #### When back home, a warm-hearted message from Aiden which is saying that his families were talking about me this morning and praised me a lot. SAME! SAME! ALRIGHT??? To be honest, i was really happy to meet Aiden and his families treated me as a member of his family. All the memories make me feel i am not alone in a foreign country and like any other Korean people who have a family. I become not to fear of anything around me because i know i have my family here!
 
-## A good beginning should be the half of success! 
-## Be Happy, Be Strong, Be Healthy!
-## **Best Wishes** to every one of my families both in China and Korea.
+### A good beginning should be the half of success! 
+### Be Happy, Be Strong, Be Healthy!
+### Best Wishes to every one of my families both in China and Korea.
 
-</br> 
-</br> 
-</br> 
-David,</br> 
+David,
+
 in Jinan 
