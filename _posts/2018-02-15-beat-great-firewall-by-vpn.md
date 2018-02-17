@@ -15,7 +15,7 @@ tags:
 
 - 4G/LTE would be disable when firstly get access to UnicomChina
 
-- For sumsung, LTE whould be fine after the following steps.
+- For sumsung, LTE would be fine after the following steps.
   - 연경
   - 해외로밍
   - 로밍환경설정
