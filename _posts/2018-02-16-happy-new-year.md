@@ -1,4 +1,9 @@
-# Happy New Year!
+---
+layout: post
+title: "Happy New Year!"
+date: 2018-02-16
+tags: 
+---
 
 ## This is the first day of the lunar year of dog in China.
 
