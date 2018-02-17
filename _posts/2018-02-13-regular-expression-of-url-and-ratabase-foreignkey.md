@@ -70,6 +70,7 @@ url(r'^detail/(?P<page_num>\d+)$', detail, name='detail'),
 - log_detail.html
 
 ```HTML
+{% raw %}
 <div class="ui  segment padded container" >
    <h1 class="ui header" style="font-family:'Oswald', sans-serif;font-size:40px">
       {{ caselog.problem }}
@@ -78,6 +79,7 @@ url(r'^detail/(?P<page_num>\d+)$', detail, name='detail'),
       {{ caselog.solution }}
    </p>
 </div>
+{% endraw %}
 ```
 
 - default.html
@@ -217,6 +219,7 @@ def detail(request, page_num):
 - template
 
 ```HTML
+{% raw %}
 {% if best_comment %}
     <div class="ui mini red left ribbon label">
         <i class="icon fire"></i>
@@ -242,6 +245,7 @@ def detail(request, page_num):
 {% for comment in article.under_comments.all %}
   ......
 {% endfor %}
+{% endraw %}
 ```
 
   > Somethings strang!!! Best and normal comments shows duplicated.
