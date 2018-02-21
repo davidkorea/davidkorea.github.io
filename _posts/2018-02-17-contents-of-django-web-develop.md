@@ -1,9 +1,7 @@
-
 ---
 layout: post
-title: 'Contents of Django Web Develop.md'
+title: 'Contents of Django Web Develop'
 date: 2018-02-17
-#cover: 'http://on2171g4d.bkt.clouddn.com/jekyll-banner.png'
 tags: contents django
 ---
 
