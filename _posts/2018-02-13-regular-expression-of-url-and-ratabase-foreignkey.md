@@ -115,6 +115,14 @@ url(r'^detail/(?P<page_num>\d+)$', detail, name='detail'),
 {% endraw %}
 ```
 
+> The ```'detail'```in the ```{% raw %} {% url 'detail' iten.id %} {% endraw %}```, is which belongs to the colum of name of this piece of url command ```url(r'^detail/(?P<page_num>\d+)$', detail, name='detail'),
+
+
+著作权归作者所有。
+商业转载请联系作者获得授权,非商业转载请注明出处。
+原文: https://davidkorea.github.io/2018/02/13/regular-expression-of-url-and-ratabase-foreignkey.html```
+
+
 # 2. Each post shows its own comments
 
 Relate comments with its post.
