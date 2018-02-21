@@ -126,7 +126,7 @@ class Comment(models.Model):
 +  belong_to = models.ForeignKey(to=Caselog, related_name='under_comments', null=True, blank=True)
 ```
 - 'to': relate to **Caselog** database.
-- 'related_name': same as insert a column 'under_comments' in **Caselog**. BUT you can use **Caselog.under_commentse** even you don't really need to insert this column in **Caselog**.
+- 'related_name': same as insert a column 'under_comments' in **Caselog**. BUT you can use **Caselog.under_comments** even you don't really need to insert this column in **Caselog**.
 - **Comment.belong_to** == **Caselog.under_comments**
 
 Then update database by using makemigrations and migrate.
