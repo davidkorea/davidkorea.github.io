@@ -40,6 +40,9 @@ tags: django regularexpression foreignkey
 ```Python
 url(r'^detail/(?P<page_num>\d+)$', detail, name='detail'),
 ```
+ 
+> The 'page_num' that in the '?P<page_num>` is the attribute that defined in the view.py below.
+
 
 ### 1.2.2 views.py
 
