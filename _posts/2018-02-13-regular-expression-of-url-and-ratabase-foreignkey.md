@@ -248,4 +248,4 @@ def detail(request, page_num):
 {% endraw %}
 ```
 
-  > Somethings strang!!! Best and normal comments shows duplicated.
+  > Somethings strange!!! Best and normal comments shows duplicated.
