@@ -15,5 +15,7 @@ This is the collection that tells how to develop a django web project from a to 
   - [Django Project - Blog/AWMS](https://davidkorea.github.io/2018/02/08/django-project-blog-awms.html)
 
 -2. Complete web functions
+  - [Request GET method](https://davidkorea.github.io/2018/02/10/request-get.html)
+  - [Request POST method](https://davidkorea.github.io/2018/02/11/request-post.html)
   - [Regular Expression of Url and Batabase ForeignKey](https://davidkorea.github.io/2018/02/13/regular-expression-of-url-and-ratabase-foreignkey.html)
 
